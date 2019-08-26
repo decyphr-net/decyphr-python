@@ -1,5 +1,6 @@
 from django.conf import settings
 import boto3
+from languages.models import Language
 
 # Initialize the two AWS clients. We need a translator client,
 # and a polly client. These are initialized mostly using the
@@ -56,6 +57,8 @@ def bundle_aws_data(text):
     new_data = {
         "source_text": text,
         "translated_text": new_text,
-        "audio_file_path": path_to_audio_file
+        "audio_file_path": path_to_audio_file,
+        "source_language": Language.objects.first().id,
+        "target_language": Language.objects.last().id
     }
     return new_data

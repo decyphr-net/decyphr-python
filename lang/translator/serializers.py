@@ -9,6 +9,7 @@ class IncomingSerializer(serializers.Serializer):
     wants to have translated
     """
     text_to_be_translated = serializers.CharField(required=True)
+    user_id = serializers.IntegerField()
 
 
 class TranslationSerializer(serializers.ModelSerializer):
@@ -22,4 +23,4 @@ class TranslationSerializer(serializers.ModelSerializer):
         model = Translation
         fields = [
             'source_text', 'translated_text', 'audio_file_path',
-            'source_language', 'target_language']
+            'source_language', 'target_language', 'user']

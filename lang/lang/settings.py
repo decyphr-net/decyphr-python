@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'translator',
     'languages',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +123,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Users
+AUTH_USER_MODEL = 'accounts.UserProfile'
+
 # AWS
 ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
@@ -132,6 +136,7 @@ POLLY_CONFIG = {
     'engine': 'standard', 'output_format': 'mp3', 'text_type': 'text'
 }
 
+# Django Rest Framework
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
     'PAGINATE_BY': 10

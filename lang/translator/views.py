@@ -5,6 +5,7 @@ from translator.aws_utils import bundle_aws_data
 from translator.models import Translation
 from translator.serializers import IncomingSerializer
 from translator.serializers import TranslationSerializer
+from accounts.models import UserProfile
 
 
 class TranslatorView(APIView):
@@ -35,8 +36,10 @@ class TranslatorView(APIView):
         # If the data coming in from the request is valid
         if serializer.is_valid():
             # Generate the data from AWS
+            user = UserProfile.objects.get(
+                pk=serializer.data["user_id"])
             new_data = bundle_aws_data(
-                serializer.data["text_to_be_translated"])
+                serializer.data["text_to_be_translated"], user)
             
             # Create a new `TranslationSerializer` from this new data
             translation = TranslationSerializer(data=new_data)

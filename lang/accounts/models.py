@@ -4,7 +4,7 @@ from languages.models import Language
 
 
 class UserProfile(AbstractUser):
-    
+
     first_language = models.ForeignKey(
         Language,
         related_name='first_language',

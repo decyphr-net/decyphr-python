@@ -5,8 +5,8 @@ from languages.models import Language
 
 class Translation(models.Model):
 
-    user = models.ForeignKey(UserProfile,
-        related_name='user', on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        UserProfile, related_name='user', on_delete=models.CASCADE)
     source_text = models.TextField()
     translated_text = models.TextField()
     audio_file_path = models.CharField(max_length=200)
@@ -16,3 +16,7 @@ class Translation(models.Model):
     target_language = models.ForeignKey(
         Language, on_delete=models.CASCADE,
         related_name='target_language')
+
+    def __str__(self):
+        return "{} - {} -> {}".format(
+            self.user, self.source_text, self.translated_text)

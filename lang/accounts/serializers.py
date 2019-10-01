@@ -1,4 +1,4 @@
-from rest_framework import serializers 
+from rest_framework import serializers
 from accounts.models import UserProfile
 
 
@@ -6,7 +6,7 @@ class UserSerializer(serializers.ModelSerializer):
     """
     The main serializer object that will be used to retrieve user
     information from the database so that it can be displayed to
-    the currently looged in user
+    the currently logged in user
     """
 
     class Meta:

@@ -12,7 +12,6 @@ class TranslatorView(APIView):
     """
     The main view surround the translation API
     """
-
     def get(self, request):
         translations = Translation.objects.all()
         serializer = TranslationSerializer(translations, many=True)
@@ -40,7 +39,7 @@ class TranslatorView(APIView):
                 pk=serializer.data["user_id"])
             new_data = bundle_aws_data(
                 serializer.data["text_to_be_translated"], user)
-            
+
             # Create a new `TranslationSerializer` from this new data
             translation = TranslationSerializer(data=new_data)
 
@@ -50,14 +49,13 @@ class TranslatorView(APIView):
                 translation.save()
                 return Response(
                     translation.data, status=status.HTTP_201_CREATED)
-            
+
             # If there was an issue validating the `translation` then
             # return a bad request and a status of 400
             return Response(
                 translation.errors, status=status.HTTP_400_BAD_REQUEST)
-        
+
         # If there was an issue validating the `serializer` then
         # return a bad request and a status of 400
         return Response(
             serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-

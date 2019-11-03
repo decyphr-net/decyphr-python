@@ -1,42 +1,87 @@
+from django.contrib.auth import authenticate
 from rest_framework import serializers
-from rest_framework_jwt.settings import api_settings
 from accounts.models import UserProfile
 
 
-class UserSerializer(serializers.ModelSerializer):
-    """
-    The main serializer object that will be used to retrieve user
-    information from the database so that it can be displayed to
-    the currently logged in user
-    """
+class RegistrationSerializer(serializers.ModelSerializer):
+
+    password = serializers.CharField(
+        max_length=128,
+        min_length=8,
+        write_only=True
+    )
+    token = serializers.CharField(max_length=255, read_only=True)
 
     class Meta:
         model = UserProfile
-        depth = 1
-        fields = [
-            'email', 'username', 'first_name', 'last_name',
-            'date_joined', 'first_language', 'language_being_learned']
-
-
-class UserSerializerWithToken(serializers.ModelSerializer):
-
-    token = serializers.SerializerMethodField()
-    password = serializers.CharField(write_only=True)
-
-    def get_token(self, obj):
-        jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
-        jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
-
-        payload = jwt_payload_handler(obj)
-        token = jwt_encode_handler(payload)
-        return token
+        fields = ('email', 'username', 'password', 'token')
     
     def create(self, validated_data):
+        return UserProfile.objects.create_user(**validated_data)
+
+
+class LoginSerializer(serializers.Serializer):
+
+    email = serializers.CharField(max_length=255)
+    username = serializers.CharField(max_length=255, read_only=True)
+    password = serializers.CharField(max_length=128, write_only=True)
+    token = serializers.CharField(max_length=255, read_only=True)
+
+    def validate(self, data):
+        email = data.get('email', None)
+        password = data.get('password', None)
+
+        if email is None:
+            raise serializers.ValidationError(
+                'An email addressis required to log in.'
+            )
+        
+        if password is None:
+            raise serializers.ValidationError(
+                'A password is required to log in.'
+            )
+        
+        user = authenticate(username=email, password=password)
+
+        if user is None:
+            raise serializers.ValidationError(
+                'A user with this email and password was not found.'
+            )
+        
+        if not user.is_active:
+            raise serializers.ValidationError(
+                'This user has been deactivated.'
+            )
+        
+        return {
+            'email': user.email,
+            'username': user.username,
+            'token': user.token
+        }
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    password = serializers.CharField(
+        max_length=128,
+        min_length=8,
+        write_only=True
+    )
+
+    class Meta:
+        model = UserProfile
+        fields = ('email', 'username', 'password', 'token')
+        read_only_fields = ('token',)
+    
+    def update(self, instance, validated_data):
         password = validated_data.pop('password', None)
-        instance = self.Meta.model(**validated_data)
+
+        for (key, value) in validated_data.items():
+            setattr(instance, key, value)
 
         if password is not None:
             instance.set_password(password)
         
         instance.save()
+
         return instance

@@ -82,3 +82,48 @@ class AccountsTests(APITestCase):
             UserProfile.objects.get().first_language.name, 'Spanish')
         self.assertEqual(
             UserProfile.objects.get().language_being_learned.name, 'German')
+    
+    def test_that_a_registered_user_can_get_a_token(self):
+        """
+        Ensure that once a user has registered, they can get access to an
+        authentication token
+        """
+        registration_url = reverse('register')
+        auth_token_url = reverse('api_token_auth')
+
+        registration_data = self.user_details_as_dict
+        login_data = {
+            'username': self.username,
+            'password': self.password
+        }
+
+        registration_response = self.client.post(
+            registration_url, registration_data, format='json')
+
+        self.assertEqual(
+            registration_response.status_code, status.HTTP_201_CREATED)
+        
+        login_response = self.client.post(
+            auth_token_url, login_data, format='json')
+        
+        self.assertEqual(
+            login_response.status_code, status.HTTP_200_OK)
+        self.assertIn('token', login_response.data)
+
+    def test_unregistered_users_cannot_get_tokens(self):
+        """
+        Ensure that a user that doesn't exist within the 
+        cannot be granted access to receive an auth token
+        """
+        url = reverse('api_token_auth')
+        data = {
+            'username': 'notindatabaseusername',
+            'password': 'noneexistentpassword'
+        }
+
+        response = self.client.post(url, data, format='json')
+
+        self.assertEqual(
+            response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.data['non_field_errors'][0],
+            'Unable to log in with provided credentials.')

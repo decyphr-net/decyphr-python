@@ -23,5 +23,5 @@ urlpatterns = [
     path('languages/', include('languages.urls')),
     path('user/', include('accounts.urls')),
 
-    path('token-auth/', obtain_jwt_token),
+    path('token-auth/', obtain_jwt_token, name='api_token_auth'),
 ]

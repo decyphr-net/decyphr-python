@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,10 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", False)
 
-ALLOWED_HOSTS = ['192.168.0.16', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = [
+    '192.168.0.16', '192.168.178.80',
+    '127.0.0.1', 'aaron-lang-app.herokuapp.com'
+]
 
 
 # Application definition
@@ -38,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders',
+    'rest_framework.authtoken',
     'translator',
     'languages',
     'accounts',
@@ -52,7 +56,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'lang.urls'
@@ -79,12 +82,15 @@ WSGI_APPLICATION = 'lang.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
+DATABASES = {}
+
+if os.getenv('DATABASE_URL'):
+    DATABASES['default'] = dj_database_url.parse(os.getenv('DATABASE_URL'))
+else:
+    DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}
 
 
 # Password validation
@@ -139,12 +145,7 @@ POLLY_CONFIG = {
 }
 
 REST_FRAMEWORK = {
-   'DEFAULT_AUTHENTICATION_CLASSES': (
-       'accounts.backends.JWTAuthentication',
-   ),
-   'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAdminUser'
-   ),
-   'EXCEPTION_HANDLER': 'accounts.exceptions.core_exception_handler',
-   'NON_FIELD_ERRORS_KEY': 'error',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+    ],
 }

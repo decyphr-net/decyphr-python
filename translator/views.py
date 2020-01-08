@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from translator.aws_utils import bundle_aws_data
 from translator.models import Translation
 from translator.serializers import IncomingSerializer
@@ -12,8 +13,11 @@ class TranslatorView(APIView):
     """
     The main view surround the translation API
     """
+
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request):
-        translations = Translation.objects.all()
+        translations = Translation.objects.filter(user=request.user)
         serializer = TranslationSerializer(translations, many=True)
         return Response(serializer.data)
 
@@ -34,11 +38,10 @@ class TranslatorView(APIView):
 
         # If the data coming in from the request is valid
         if serializer.is_valid():
+            
             # Generate the data from AWS
-            user = UserProfile.objects.get(
-                pk=serializer.data["user_id"])
             new_data = bundle_aws_data(
-                serializer.data["text_to_be_translated"], user)
+                serializer.data["text_to_be_translated"], request.user)
 
             # Create a new `TranslationSerializer` from this new data
             translation = TranslationSerializer(data=new_data)

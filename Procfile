@@ -1,0 +1,1 @@
+web: gunicorn lang.wsgi:application --preload --log-level debug

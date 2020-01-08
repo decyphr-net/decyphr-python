@@ -16,6 +16,12 @@ markdown = "*"
 django-filter = "*"
 flake8 = "*"
 flake8-django = "*"
+dj-database-url = "*"
+gunicorn = "*"
+whitenoise = "*"
+psycopg2-binary = "*"
+djangorestframework-jwt = "*"
+djangorestframework-simplejwt = "*"
 
 [requires]
 python_version = "3.6"

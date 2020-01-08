@@ -9,7 +9,6 @@ class IncomingSerializer(serializers.Serializer):
     wants to have translated
     """
     text_to_be_translated = serializers.CharField(required=True)
-    user_id = serializers.IntegerField()
 
 
 class TranslationSerializer(serializers.ModelSerializer):

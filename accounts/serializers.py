@@ -9,13 +9,21 @@ class UserSerializer(serializers.ModelSerializer):
     information from the database so that it can be displayed to
     the currently logged in user
     """
+    password = serializers.CharField(write_only=True)
+    date_joined = serializers.DateTimeField(read_only=True)
 
     class Meta:
         model = UserProfile
         depth = 1
         fields = [
-            'email', 'username', 'first_name', 'last_name',
+            'email', 'username', 'first_name', 'last_name', 'password',
             'date_joined', 'first_language', 'language_being_learned']
+    
+    def create(self, validated_data):
+        user = super(UserSerializer, self).create(validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):

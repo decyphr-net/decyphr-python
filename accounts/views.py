@@ -21,12 +21,11 @@ class UserRegistration(APIView):
             print(serializer.errors)
 
 
-class UserPofileView(APIView):
+class UserProfileView(APIView):
 
     permission_classes = (IsAuthenticated,)
     serializer_class = UserSerializer
 
     def get(self, request):
-        user = UserProfile.objects.get(id=request.user.id)
-        serializer = self.serializer_class(data=user)
+        serializer = self.serializer_class(request.user)
         return Response(serializer.data)

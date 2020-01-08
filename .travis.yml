@@ -4,10 +4,5 @@ python:
 install:
   - pip install pipenv
   - pipenv install
-before_script:
- - psql -U postgres -c 'CREATE DATABASE dbtest;'
- - psql -U postgres -c "CREATE USER test WITH PASSWORD 'test';"
- - psql -U postgres -c "ALTER USER test CREATEDB;"
- - psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE dbtest to test;"
- - pipenv run python manage.py migrate
+before_script: pipenv run python manage.py migrate
 script: pipenv run python manage.py test

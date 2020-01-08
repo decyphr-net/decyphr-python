@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from accounts.models import UserProfile
+from languages.models import Language
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -11,6 +12,12 @@ class UserSerializer(serializers.ModelSerializer):
     """
     password = serializers.CharField(write_only=True)
     date_joined = serializers.DateTimeField(read_only=True)
+    first_language = serializers.PrimaryKeyRelatedField(
+        queryset=Language.objects.all()
+    )
+    language_being_learned = serializers.PrimaryKeyRelatedField(
+        queryset=Language.objects.all()
+    )
 
     class Meta:
         model = UserProfile

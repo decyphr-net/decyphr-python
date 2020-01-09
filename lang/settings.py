@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'lang.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-DATABASES ={
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
@@ -130,11 +130,18 @@ STATIC_URL = '/static/'
 # Users
 AUTH_USER_MODEL = 'accounts.UserProfile'
 
+# Email Settings
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+
 # AWS
-ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-REGION = os.environ["AWS_REGION"]
-BUCKET_NAME = os.getenv("BUCKET_NAME")
+ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+REGION = os.getenv('AWS_REGION')
+BUCKET_NAME = os.getenv('BUCKET_NAME')
 
 POLLY_CONFIG = {
     'engine': 'standard', 'output_format': 'mp3', 'text_type': 'text'

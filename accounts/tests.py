@@ -6,6 +6,9 @@ from languages.models import Language
 
 
 class AccountsTests(APITestCase):
+    """
+    The test cases for the accounts API endpoint
+    """
 
     def setUp(self):
         """
@@ -48,6 +51,16 @@ class AccountsTests(APITestCase):
             'first_language': 1,
             'language_being_learned': 2
         }
+    
+    def _do_registration(self):
+        """
+        A convenience function that is used when tests require a new
+        user to be created
+        """
+        url = reverse('register')
+        data = self.user_details_as_dict
+
+        response = self.client.post(url, data, format='json')
 
     def test_registration(self):
         """
@@ -55,8 +68,6 @@ class AccountsTests(APITestCase):
         """
         url = reverse('register')
         data = self.user_details_as_dict
-
-        data.update({})
 
         response = self.client.post(url, data, format='json')
         self.assertEqual(
@@ -127,3 +138,48 @@ class AccountsTests(APITestCase):
             response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.data['non_field_errors'][0],
             'Unable to log in with provided credentials.')
+    
+    def test_that_a_user_can_retrieve_their_profile(self):
+        """
+        Ensure that a user can retrieve their profile when an
+        auth token is provided
+        """
+        url = reverse('profile')
+        self._do_registration()
+
+        user = UserProfile.objects.get(email=self.email)
+        self.client.force_authenticate(user=user)
+        response = self.client.get(url, format='json')
+        
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+    
+    def test_correct_profile_is_retrieved_for_user(self):
+        """
+        Test to ensure that the correct profile is returned for a user
+        when they request the profile URL
+        """
+        url = reverse('profile')
+        self._do_registration()
+
+        user = UserProfile.objects.get(email=self.email)
+        self.client.force_authenticate(user=user)
+        response = self.client.get(url, format='json')
+        
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['email'], self.email)
+        self.assertEqual(response.data['username'], self.username)
+        self.assertEqual(response.data['first_name'], self.first_name)
+        self.assertEqual(response.data['last_name'], self.last_name)
+        self.assertEqual(response.data['first_language'], 1)
+        self.assertEqual(response.data['language_being_learned'], 2)
+    
+    def test_that_profile_cannot_be_accessed_by_unauthenicated_user(self):
+        """
+        Ensure that the user profile cannot be accessed unless the user
+        has been authenticated
+        """
+        url = reverse('profile')
+
+        response = self.client.get(url, format='json')
+        self.assertEqual(
+            response.status_code, status.HTTP_401_UNAUTHORIZED)

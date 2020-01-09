@@ -5,7 +5,7 @@ from accounts.views import (
 
 urlpatterns = [
     path('register/', UserRegistration.as_view(), name='register'),
-    path('current-user/', UserProfileView.as_view(), name='profiles'),
+    path('current-user/', UserProfileView.as_view(), name='profile'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

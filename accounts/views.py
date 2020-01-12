@@ -24,14 +24,14 @@ class UserRegistration(APIView):
         Send an email to the newly created to user to let them know
         that they've completed the sign up
         """
-        subject = 'Welcome to langapp'
-        message = 'Thank you for registering on langapp'
+        subject = "Welcome to langapp"
+        message = "Thank you for registering on langapp"
         send_mail(
             subject,
             message,
             settings.EMAIL_HOST_USER,
             [email_address],
-            fail_silently=False
+            fail_silently=False,
         )
 
     def post(self, request):
@@ -39,12 +39,10 @@ class UserRegistration(APIView):
 
         if serializer.is_valid():
             serializer.save()
-            self._send_email(serializer.data['email'])
-            return Response(
-                serializer.data, status=status.HTTP_201_CREATED)
+            self._send_email(serializer.data["email"])
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
-            return Response(
-                serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserProfileView(APIView):

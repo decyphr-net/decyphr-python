@@ -8,6 +8,7 @@ class IncomingSerializer(serializers.Serializer):
     deserialising the JSON that contains the text that the user
     wants to have translated
     """
+
     text_to_be_translated = serializers.CharField(required=True)
 
 
@@ -21,5 +22,10 @@ class TranslationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Translation
         fields = [
-            'source_text', 'translated_text', 'audio_file_path',
-            'source_language', 'target_language', 'user']
+            "source_text",
+            "translated_text",
+            "audio_file_path",
+            "source_language",
+            "target_language",
+            "user",
+        ]

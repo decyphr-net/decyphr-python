@@ -11,14 +11,13 @@ class UserSerializer(serializers.ModelSerializer):
     information from the database so that it can be displayed to
     the currently logged in user
     """
+
     email = serializers.EmailField(
-        validators=[UniqueValidator(
-            queryset=UserProfile.objects.all())])
+        validators=[UniqueValidator(queryset=UserProfile.objects.all())]
+    )
     password = serializers.CharField(write_only=True)
     date_joined = serializers.DateTimeField(read_only=True)
-    first_language = serializers.PrimaryKeyRelatedField(
-        queryset=Language.objects.all()
-    )
+    first_language = serializers.PrimaryKeyRelatedField(queryset=Language.objects.all())
     language_being_learned = serializers.PrimaryKeyRelatedField(
         queryset=Language.objects.all()
     )
@@ -27,9 +26,16 @@ class UserSerializer(serializers.ModelSerializer):
         model = UserProfile
         depth = 1
         fields = [
-            'email', 'username', 'first_name', 'last_name', 'password',
-            'date_joined', 'first_language', 'language_being_learned']
-    
+            "email",
+            "username",
+            "first_name",
+            "last_name",
+            "password",
+            "date_joined",
+            "first_language",
+            "language_being_learned",
+        ]
+
     def create(self, validated_data):
         """
         When creating a new user, we need to take the password from
@@ -37,41 +43,18 @@ class UserSerializer(serializers.ModelSerializer):
         properly encrypt the password
         """
         user = super(UserSerializer, self).create(validated_data)
-        user.set_password(validated_data['password'])
+        user.set_password(validated_data["password"])
         user.save()
         return user
-    
+
     def validate(self, data):
         """
         We'll do an extra step of validation to ensure that a user
         hasn't chosen thesame language from both language fields upon
         registration
         """
-        if data['first_language'] == data['language_being_learned']:
+        if data["first_language"] == data["language_being_learned"]:
             raise serializers.ValidationError(
-                'You cannot learn a language that is the same as your native language.')
+                "You cannot learn a language that is the same as your native language."
+            )
         return data
-
-
-class UserSerializerWithToken(serializers.ModelSerializer):
-
-    token = serializers.SerializerMethodField()
-    password = serializers.CharField(write_only=True)
-
-    def get_token(self, obj):
-        jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
-        jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
-
-        payload = jwt_payload_handler(obj)
-        token = jwt_encode_handler(payload)
-        return token
-    
-    def create(self, validated_data):
-        password = validated_data.pop('password', None)
-        instance = self.Meta.model(**validated_data)
-
-        if password is not None:
-            instance.set_password(password)
-        
-        instance.save()
-        return instance

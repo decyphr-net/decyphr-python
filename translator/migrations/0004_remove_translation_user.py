@@ -6,12 +6,9 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('translator', '0003_translation_user'),
+        ("translator", "0003_translation_user"),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='translation',
-            name='user',
-        ),
+        migrations.RemoveField(model_name="translation", name="user",),
     ]

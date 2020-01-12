@@ -6,13 +6,17 @@ from languages.models import Language
 # and a polly client. These are initialized mostly using the
 # configuration in `settings`
 _translator = boto3.client(
-    "translate", settings.REGION,
+    "translate",
+    settings.REGION,
     aws_access_key_id=settings.ACCESS_KEY_ID,
-    aws_secret_access_key=settings.SECRET_ACCESS_KEY)
+    aws_secret_access_key=settings.SECRET_ACCESS_KEY,
+)
 _polly = boto3.client(
-    "polly", settings.REGION,
+    "polly",
+    settings.REGION,
     aws_access_key_id=settings.ACCESS_KEY_ID,
-    aws_secret_access_key=settings.SECRET_ACCESS_KEY)
+    aws_secret_access_key=settings.SECRET_ACCESS_KEY,
+)
 
 
 def _generate_audio_file(text, new_language):
@@ -30,7 +34,7 @@ def _generate_audio_file(text, new_language):
         OutputS3BucketName=settings.BUCKET_NAME,
         Text=text,
         TextType=settings.POLLY_CONFIG["text_type"],
-        VoiceId="Ricardo"
+        VoiceId="Ricardo",
     )
     return response["SynthesisTask"]["OutputUri"]
 
@@ -45,7 +49,8 @@ def _translate_text(text, first_language, new_language):
     response = _translator.translate_text(
         Text=text,
         SourceLanguageCode=new_language.short_code,
-        TargetLanguageCode=first_language.short_code)
+        TargetLanguageCode=first_language.short_code,
+    )
     return response["TranslatedText"]
 
 
@@ -54,16 +59,14 @@ def bundle_aws_data(text, user):
     Collects the data from the two primary AWS interface functions
     and bundles it up into a dictionary and returns that dictionary
     """
-    new_text = _translate_text(
-        text, user.first_language, user.language_being_learned)
-    path_to_audio_file = _generate_audio_file(
-        text, user.language_being_learned)
+    new_text = _translate_text(text, user.first_language, user.language_being_learned)
+    path_to_audio_file = _generate_audio_file(text, user.language_being_learned)
     new_data = {
         "source_text": text,
         "translated_text": new_text,
         "audio_file_path": path_to_audio_file,
         "source_language": Language.objects.first().id,
         "target_language": Language.objects.last().id,
-        "user": user.id
+        "user": user.id,
     }
     return new_data

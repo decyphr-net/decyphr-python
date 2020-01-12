@@ -5,7 +5,6 @@ from languages.serializers import LanguageSerializer
 
 
 class LanguageView(APIView):
-
     def get(self, request):
         languages = Language.objects.all()
         serializer = LanguageSerializer(languages, many=True)

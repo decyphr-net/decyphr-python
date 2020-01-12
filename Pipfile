@@ -21,8 +21,11 @@ gunicorn = "*"
 whitenoise = "*"
 psycopg2-binary = "*"
 djangorestframework-jwt = "*"
-djangorestframework-simplejwt = "*"
 django-cors-headers = "*"
+black = "*"
 
 [requires]
 python_version = "3.6"
+
+[pipenv]
+allow_prereleases = true

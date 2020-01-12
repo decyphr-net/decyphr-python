@@ -19,14 +19,11 @@ class UserProfile(AbstractUser):
     """
 
     first_language = models.ForeignKey(
-        Language,
-        related_name='first_language',
-        on_delete=models.CASCADE,
-        default=1
+        Language, related_name="first_language", on_delete=models.CASCADE, default=1
     )
     language_being_learned = models.ForeignKey(
         Language,
-        related_name='language_being_learned',
+        related_name="language_being_learned",
         on_delete=models.CASCADE,
-        default=2
+        default=2,
     )

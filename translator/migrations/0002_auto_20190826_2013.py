@@ -7,21 +7,31 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('languages', '0002_language_short_code'),
-        ('translator', '0001_initial'),
+        ("languages", "0002_language_short_code"),
+        ("translator", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='translation',
-            name='source_language',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, related_name='source_language', to='languages.Language'),
+            model_name="translation",
+            name="source_language",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="source_language",
+                to="languages.Language",
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='translation',
-            name='target_language',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, related_name='target_language', to='languages.Language'),
+            model_name="translation",
+            name="target_language",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="target_language",
+                to="languages.Language",
+            ),
             preserve_default=False,
         ),
     ]

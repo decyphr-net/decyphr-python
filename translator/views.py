@@ -38,10 +38,11 @@ class TranslatorView(APIView):
 
         # If the data coming in from the request is valid
         if serializer.is_valid():
-            
+
             # Generate the data from AWS
             new_data = bundle_aws_data(
-                serializer.data["text_to_be_translated"], request.user)
+                serializer.data["text_to_be_translated"], request.user
+            )
 
             # Create a new `TranslationSerializer` from this new data
             translation = TranslationSerializer(data=new_data)
@@ -50,15 +51,12 @@ class TranslatorView(APIView):
             # successful status
             if translation.is_valid():
                 translation.save()
-                return Response(
-                    translation.data, status=status.HTTP_201_CREATED)
+                return Response(translation.data, status=status.HTTP_201_CREATED)
 
             # If there was an issue validating the `translation` then
             # return a bad request and a status of 400
-            return Response(
-                translation.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(translation.errors, status=status.HTTP_400_BAD_REQUEST)
 
         # If there was an issue validating the `serializer` then
         # return a bad request and a status of 400
-        return Response(
-            serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

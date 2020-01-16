@@ -65,8 +65,8 @@ def bundle_aws_data(text, user):
         "source_text": text,
         "translated_text": new_text,
         "audio_file_path": path_to_audio_file,
-        "source_language": Language.objects.first().id,
-        "target_language": Language.objects.last().id,
+        "source_language": user.language_being_learned.id,
+        "target_language": user.first_language.id,
         "user": user.id,
     }
     return new_data

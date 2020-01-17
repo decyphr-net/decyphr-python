@@ -17,9 +17,12 @@ class TranslatorView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
+        """
+        Get the entire list of the current user's translations
+        """
         translations = Translation.objects.filter(user=request.user)
         serializer = TranslationSerializer(translations, many=True)
-        return Response(serializer.data)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
         """

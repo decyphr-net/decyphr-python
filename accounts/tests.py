@@ -1,6 +1,7 @@
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
+from rest_framework.authtoken.models import Token
 from accounts.models import UserProfile
 from languages.models import Language
 
@@ -209,6 +210,22 @@ class AccountsTests(APITestCase):
         self.assertEqual(
             UserProfile.objects.get().language_being_learned.name, "German"
         )
+    
+    def test_that_token_is_created_for_user_upon_registration(self):
+        """
+        Ensure that a new token is generated for a user when they
+        register as a new user on the site
+        """
+        url = reverse("register")
+        data = self.user_details_as_dict
+
+        response = self.client.post(url, data, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        self.assertIsNotNone(
+            Token.objects.get(
+                user__email=self.user_details_as_dict["email"]))
 
     def test_that_a_registered_user_can_get_a_token(self):
         """

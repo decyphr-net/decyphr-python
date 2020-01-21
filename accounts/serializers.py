@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from rest_framework.validators import UniqueValidator
+from rest_framework.authtoken.models import Token
 from accounts.models import UserProfile
 from languages.models import Language
 
@@ -45,6 +46,7 @@ class UserSerializer(serializers.ModelSerializer):
         user = super(UserSerializer, self).create(validated_data)
         user.set_password(validated_data["password"])
         user.save()
+        Token.objects.create(user=user)
         return user
 
     def validate(self, data):

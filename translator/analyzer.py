@@ -1,6 +1,6 @@
 import spacy
 
-nlp = spacy.load('pt')
+nlp = spacy.load("pt_core_news_sm")
 
 
 def analyse(text):

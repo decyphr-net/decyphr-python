@@ -224,3 +224,18 @@ class TranslatorTests(APITestCase):
         response = self.client.post(url, data)
 
         self.assertIn("audio_file_path", response.data)
+    
+    def test_that_the_analysis_is_received(self):
+        """
+        Test to ensure that the text anaylses of the text snippet is
+        received
+        """
+        url = reverse("translate")
+        data = {
+            "text_to_be_translated": "Esta é uma frase em português."
+        }
+        user = UserProfile.objects.get(email=self._create_user())
+        self.client.force_authenticate(user=user)
+
+        response = self.client.post(url, data)
+        self.assertIn("analysis", response.data)

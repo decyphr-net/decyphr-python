@@ -22,6 +22,7 @@ psycopg2-binary = "*"
 djangorestframework-jwt = "*"
 django-cors-headers = "*"
 black = "*"
+pt-core-news-sm = {file = "https://github.com/explosion/spacy-models/releases/download/pt_core_news_sm-2.2.0/pt_core_news_sm-2.2.0.tar.gz"}
 
 [requires]
 python_version = "3.6"

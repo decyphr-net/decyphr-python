@@ -4,7 +4,5 @@ python:
 install:
   - pip install pipenv
   - pipenv install
-before_script:
-  - pipenv run python manage.py migrate
-  - pipenv install https://github.com/explosion/spacy-models/releases/download/pt_core_news_sm-2.2.0/pt_core_news_sm-2.2.0.tar.gz
+before_script: pipenv run python manage.py migrate
 script: pipenv run python manage.py test

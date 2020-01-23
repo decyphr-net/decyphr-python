@@ -4,5 +4,7 @@ python:
 install:
   - pip install pipenv
   - pipenv install
-before_script: pipenv run python manage.py migrate
+before_script:
+  - pipenv run python manage.py migrate
+  - pipenv run python -m spacy download pt_core_news_sm
 script: pipenv run python manage.py test

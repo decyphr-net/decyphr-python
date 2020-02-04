@@ -12,16 +12,21 @@ from accounts.serializers import UserSerializer, TokenAuthSerializer
 class ObtainAuthToken(APIView):
 
     def post(self, request):
-        serializer = TokenAuthSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data["user"]
-        token, created = Token.objects.get_or_create(user=user)
+        try:
+            serializer = TokenAuthSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+        
+            user = serializer.validated_data["user"]
+            token, created = Token.objects.get_or_create(user=user)
 
-        content = {
-            'token': token.key,
-        }
+            content = {
+              "token": token.key
+            }
 
-        return Response(content)
+            return Response(content, status=status.HTTP_200_OK)
+        except UserProfile.DoesNotExist:
+            message = "This user wasn't found. Please try again"
+            return Response(message, status.HTTP_404_NOT_FOUND)
 
 
 class UserRegistration(APIView):

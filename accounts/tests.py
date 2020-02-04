@@ -248,6 +248,80 @@ class AccountsTests(APITestCase):
 
         self.assertEqual(login_response.status_code, status.HTTP_200_OK)
         self.assertIn("token", login_response.data)
+    
+    def test_that_a_user_can_log_in_with_an_email(self):
+        """
+        Test that a user can log in and get a token with an email
+        """
+        url = reverse("api_token_auth")
+        data = {"username": self.email, "password": self.password}
+        
+        self._do_registration()
+
+        response = self.client.post(url, data, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn("token", response.data)
+    
+    def test_that_correct_error_is_thrown_if_the_username_field_is_empty(self):
+        """
+        Test that the correct error message is returned if a username
+        string is empty
+        """
+        url = reverse("api_token_auth")
+        data = {"username": "", "password": self.password}
+        
+        self._do_registration()
+
+        response = self.client.post(url, data, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.data["username"][0], "Please enter a username")
+
+    def test_that_correct_error_is_thrown_if_no_username_is_provided(self):
+        """
+        Test that the correct error message is returned if a username
+        property is not provided in the incoming data
+        """
+        url = reverse("api_token_auth")
+        data = {"password": self.password}
+        
+        self._do_registration()
+
+        response = self.client.post(url, data, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.data["username"][0], "Username is required")
+    
+    def test_that_correct_error_is_thrown_if_the_password_field_is_empty(self):
+        """
+        Test that the correct error message is returned if a username
+        string is empty
+        """
+        url = reverse("api_token_auth")
+        data = {"username": "aaronsing501", "password": ""}
+        
+        self._do_registration()
+
+        response = self.client.post(url, data, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.data["password"][0], "Please enter a password")
+
+    def test_that_correct_error_is_thrown_if_no_password_is_provided(self):
+        """
+        Test that the correct error message is returned if a password
+        property is not provided in the incoming data
+        """
+        url = reverse("api_token_auth")
+        data = {"username": self.username}
+        
+        self._do_registration()
+
+        response = self.client.post(url, data, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.data["password"][0], "Password is required")
 
     def test_unregistered_users_cannot_get_tokens(self):
         """
@@ -259,10 +333,10 @@ class AccountsTests(APITestCase):
 
         response = self.client.post(url, data, format="json")
 
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         self.assertEqual(
-            response.data["non_field_errors"][0],
-            "Unable to log in with provided credentials.",
+            response.data,
+            "This user wasn't found. Please try again"
         )
 
     def test_that_a_user_can_retrieve_their_profile(self):

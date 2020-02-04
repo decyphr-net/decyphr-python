@@ -11,21 +11,34 @@ from languages.models import Language
 
 class TokenAuthSerializer(serializers.Serializer):
 
-    email_or_username = serializers.CharField()
+    username = serializers.CharField()
     password = serializers.CharField()
 
+    def __init__(self, *args, **kwargs):
+        super(TokenAuthSerializer, self).__init__(*args, **kwargs)
+
+        self.fields["username"].error_messages["required"] = u"Username is required"
+        self.fields["username"].error_messages["blank"] = u"Please enter a username"
+        self.fields["password"].error_messages["required"] = u"Password is required"
+        self.fields["password"].error_messages["blank"] = u"Please enter a password"
+
     def validate(self, attrs):
-        print(attrs)
-        email_or_username = attrs.get("email_or_username")
+        username = attrs.get("username")
         password = attrs.get("password")
 
-        if email_or_username and password:
-            user_request = get_object_or_404(
-                UserProfile, email=email_or_username
-            )
+        if username and password:
+            
+            try:
+                user_profile = UserProfile.objects.get(
+                    email=username)
+            except UserProfile.DoesNotExist:
+                user_profile = UserProfile.objects.get(
+                    username=username)
+            except UserProfile.DoesNotExist:
+                raise exceptions.ValidationError("User not found")
 
-            email_or_username = user_request.username
-            user = authenticate(username=email_or_username, password=password)
+            username = user_profile.username
+            user = authenticate(username=username, password=password)
 
             if user:
                 if not user.is_active:

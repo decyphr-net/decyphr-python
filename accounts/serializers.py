@@ -1,9 +1,45 @@
+from django.shortcuts import get_object_or_404
+from django.contrib.auth import authenticate
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from rest_framework.validators import UniqueValidator
 from rest_framework.authtoken.models import Token
+from rest_framework import exceptions
 from accounts.models import UserProfile
 from languages.models import Language
+
+
+class TokenAuthSerializer(serializers.Serializer):
+
+    email_or_username = serializers.CharField()
+    password = serializers.CharField()
+
+    def validate(self, attrs):
+        print(attrs)
+        email_or_username = attrs.get("email_or_username")
+        password = attrs.get("password")
+
+        if email_or_username and password:
+            user_request = get_object_or_404(
+                UserProfile, email=email_or_username
+            )
+
+            email_or_username = user_request.username
+            user = authenticate(username=email_or_username, password=password)
+
+            if user:
+                if not user.is_active:
+                    message = "User account is disabled"
+                    raise exceptions.ValidationError(message)
+            else:
+                message = "Unable to log in with provided credentials"
+                raise exceptions.ValidationError(message)
+        else:
+            message = "Must include email or username and password"
+            raise exceptions.ValidationError(message)
+
+        attrs["user"] = user
+        return attrs
 
 
 class UserSerializer(serializers.ModelSerializer):

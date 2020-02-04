@@ -4,8 +4,24 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authtoken.models import Token
 from accounts.models import UserProfile
-from accounts.serializers import UserSerializer
+from accounts.serializers import UserSerializer, TokenAuthSerializer
+
+
+class ObtainAuthToken(APIView):
+
+    def post(self, request):
+        serializer = TokenAuthSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data["user"]
+        token, created = Token.objects.get_or_create(user=user)
+
+        content = {
+            'token': token.key,
+        }
+
+        return Response(content)
 
 
 class UserRegistration(APIView):

@@ -6,22 +6,31 @@ from translator.aws_utils import bundle_aws_data
 from translator.models import Translation
 from translator.serializers import IncomingSerializer
 from translator.serializers import TranslationSerializer
+from translator.pagination import BasicPagination
+from translator.pagination import PaginationHandlerMixin
 from accounts.models import UserProfile
 
 
-class TranslatorView(APIView):
+class TranslatorView(APIView, PaginationHandlerMixin):
     """
     The main view surround the translation API
     """
 
     permission_classes = (IsAuthenticated,)
+    pagination_class = BasicPagination
 
     def get(self, request):
         """
         Get the entire list of the current user's translations
         """
         translations = Translation.objects.filter(user=request.user)
-        serializer = TranslationSerializer(translations, many=True)
+
+        page = self.paginate_queryset(translations)
+        if page is not None:
+            serializer = self.get_paginated_response(
+                TranslationSerializer(page, many=True).data)
+        else:
+            serializer = TranslationSerializer(translations, many=True)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):

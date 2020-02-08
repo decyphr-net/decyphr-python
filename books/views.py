@@ -23,7 +23,6 @@ class BookAPIView(generics.ListCreateAPIView):
     def get(self, request):
         lang = request.user.language_being_learned.short_code
         book_name = request.query_params["name"]
-        print(book_name)
 
         book_list = get_books(book_name, lang)
 
@@ -37,7 +36,7 @@ class BookAPIView(generics.ListCreateAPIView):
                     }
                 except KeyError:
                     pass
-                
+
                 try:
                     new_book, created = Book.objects.get_or_create(
                         title__icontains=book["volumeInfo"]["title"], defaults=book_dict)

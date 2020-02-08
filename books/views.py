@@ -1,6 +1,7 @@
 import requests
 from django.shortcuts import render
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
@@ -9,7 +10,7 @@ from rest_framework import filters
 from languages.models import Language
 from books.models import Book
 from books.serializers import BookSerializer
-from books.google_utils import get_books
+from books.google_utils import get_books, parse_book_data
 
 
 class BookAPIView(generics.ListCreateAPIView):
@@ -28,20 +29,17 @@ class BookAPIView(generics.ListCreateAPIView):
 
         if book_list:
             for book in book_list:
-                try:
-                    book_dict = {
-                        "title": book["volumeInfo"]["title"],
-                        "author": [author for author in book["volumeInfo"]["authors"]],
-                        "language": Language.objects.get(short_code=lang),
-                    }
-                except KeyError:
-                    pass
+                book_dict = parse_book_data(book, lang)
 
                 try:
                     new_book, created = Book.objects.get_or_create(
-                        title__icontains=book["volumeInfo"]["title"], defaults=book_dict)
+                        title__icontains=book_dict["title"], defaults=book_dict)
                 except Book.MultipleObjectsReturned:
-                    pass
+                    continue
+                except TypeError:
+                    continue
+                except ValidationError:
+                    continue
         books = self.serializer_class(
             Book.objects.filter(title__icontains=book_name), many=True)
         return Response(books.data)

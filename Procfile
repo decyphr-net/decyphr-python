@@ -1,1 +1,1 @@
-web: gunicorn lang.wsgi:application --preload --log-level debug
+web: gunicorn decypher.wsgi:application --preload --log-level debug

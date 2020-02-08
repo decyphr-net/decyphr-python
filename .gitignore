@@ -1,3 +1,4 @@
 env_vars
 *.sqlite3
 env/
+.vscode/

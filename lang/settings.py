@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "translator",
     "languages",
     "accounts",
+    "books",
 ]
 
 MIDDLEWARE = [
@@ -146,6 +147,10 @@ REGION = os.getenv("AWS_REGION")
 BUCKET_NAME = os.getenv("BUCKET_NAME")
 
 POLLY_CONFIG = {"engine": "standard", "output_format": "mp3", "text_type": "text"}
+
+# GOOGLE BOOKS API
+GOOGLE_BOOKS_API = os.getenv("GOOGLE_BOOKS_API")
+GOOGLE_BOOKS_ENDPOINT = "https://www.googleapis.com/books/v1/volumes?"
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [

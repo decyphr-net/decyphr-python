@@ -12,7 +12,6 @@ def _construct_url(name, lang):
 def parse_book_data(data, lang):
     book = data["volumeInfo"]
     try:
-        print(book)
         title = "" if book.get("title") is None else book.get("title")
         authors = "" if book.get("authors") is None else book.get("authors")
         publisher = "" if book.get("publisher") is None else book.get("publisher")

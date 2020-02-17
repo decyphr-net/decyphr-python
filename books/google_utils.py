@@ -1,12 +1,29 @@
+"""
+A utility module that used to retrieve information from the Google
+Books API.
+"""
 import requests
 from django.conf import settings
 from languages.models import Language
 
 
 def _construct_url(name, lang):
+    """
+    The URL for Google Books is a simple URL with query parameters.
+
+    These are all combined together to form the full string and this
+    function constructs that string
+    """
     endpoint = settings.GOOGLE_BOOKS_ENDPOINT
-    key = settings.GOOGLE_BOOKS_API
-    return f"{endpoint}q={name}&projection=lite&langRestrict={lang}&orderBy=relevance&limit=10&key={key}"
+
+    name_param = f"q={name}"
+    projection_param = f"projection=lite"
+    lang_param = f"langRestrict={lang}"
+    order_param = f"orderBy=relevance"
+    limit_param = f"limit=10"
+    key_param = f"key={settings.GOOGLE_BOOKS_API}"
+
+    return f"{endpoint}{name_param}&{projection_param}&{lang_param}&{order_param}&{key_param}"
 
 
 def parse_book_data(data, lang):
@@ -36,6 +53,7 @@ def parse_book_data(data, lang):
         "thumbnail": thumbnail
     }
     return book_dict
+
 
 def get_books(name, language_code):
     url = _construct_url(name, language_code)

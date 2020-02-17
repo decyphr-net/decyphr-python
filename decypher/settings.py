@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "languages",
     "accounts",
     "books",
+    "reading_list"
 ]
 
 MIDDLEWARE = [

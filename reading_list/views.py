@@ -25,7 +25,6 @@ class ReadingListView(APIView):
         serializer = AddToReadingListSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            print(serializer.data)
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(data=serializer.errors)

@@ -138,6 +138,20 @@ class TranslatorTests(APITestCase):
 
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+    
+    def test_that_the_translation_contains_an_id(self):
+        """
+        Ensure that the translation contains an ID property
+        """
+        url = reverse("translate")
+        data = {
+            "text_to_be_translated": "Esta é uma frase em português."
+        }
+        user = UserProfile.objects.get(email=self._create_user())
+        self.client.force_authenticate(user=user)
+
+        response = self.client.post(url, data)
+        self.assertIn("id", response.data)
 
     def test_that_the_source_text_is_correct(self):
         """

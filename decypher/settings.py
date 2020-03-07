@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     "languages",
     "accounts",
     "books",
-    "reading_list"
+    "reading_list",
+    "lemmatizer"
 ]
 
 MIDDLEWARE = [
@@ -161,3 +162,5 @@ REST_FRAMEWORK = {
 
 # CORS
 CORS_ORIGIN_ALLOW_ALL = True
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 20000

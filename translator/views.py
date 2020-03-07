@@ -1,3 +1,4 @@
+from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -18,6 +19,16 @@ class TranslatorView(APIView, PaginationHandlerMixin):
 
     permission_classes = (IsAuthenticated,)
     pagination_class = BasicPagination
+
+    def get_object(self, pk):
+        """
+        A simple helper method to retrieve an individual item from
+        the database based on the ID, or raise a 404 error
+        """
+        try:
+            return Translation.objects.get(pk=pk)
+        except Translation.DoesNotExist:
+            raise Http404
 
     def get(self, request):
         """
@@ -72,3 +83,11 @@ class TranslatorView(APIView, PaginationHandlerMixin):
         # If there was an issue validating the `serializer` then
         # return a bad request and a status of 400
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, pk):
+        """
+        Delete a translation from the database
+        """
+        translation = self.get_object(pk)
+        translation.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

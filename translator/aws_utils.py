@@ -70,3 +70,21 @@ def bundle_aws_data(text, user):
         "user": user.id,
     }
     return new_data
+
+
+def _parse_key_from_url(url):
+    """
+    Get the S3 key from the URL of the S3 object
+    """
+    return url.rsplit('/', 1)[1]
+
+
+def delete_from_bucket(object_url):
+    """
+    Delete an object from the S3 Bucket based on the
+    `object_url` provided
+    """
+    key = _parse_key_from_url(object_url)
+    client = boto3.client('s3')
+    client.delete_object(Bucket=settings.BUCKET_NAME, Key=key)
+    

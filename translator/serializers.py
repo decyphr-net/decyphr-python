@@ -25,6 +25,7 @@ class TranslationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Translation
         fields = [
+            "id",
             "source_text",
             "translated_text",
             "audio_file_path",

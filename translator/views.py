@@ -84,7 +84,7 @@ class TranslatorView(APIView, PaginationHandlerMixin):
         # return a bad request and a status of 400
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    def delete(self, pk):
+    def delete(self, request, pk):
         """
         Delete a translation from the database
         """

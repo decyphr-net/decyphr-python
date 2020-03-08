@@ -253,3 +253,11 @@ class TranslatorTests(APITestCase):
 
         response = self.client.post(url, data)
         self.assertIn("analysis", response.data)
+    
+    def test_to_ensure_that_an_item_can_be_deleted(self):
+        pass
+
+    # TODO: Create a test to ensure the correct ordering
+    # TODO: Create tests for the `pagination` functionality
+    # TODO: Create tests for the `analisys` functionality
+    # TODO: Create tests for the `aws_utils` functions

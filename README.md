@@ -17,11 +17,17 @@ The purpose of this is to show a user to learn how sentences are structured with
 Below I've detailed a list of the initial goals of Decyphr, as well as some goals that we hope to achieve with this project.
 
 ### Initial Goals
-  - Translation services. This should include the following:
+  - Translation services:
     - Translate the text from the language that the user is learning into their native language
     - Show a historical record of the items that a user has translated so they may review them at a later point
     - Provide an audio file with an example of the pronunciation of the original text for the user to hear how the text should sound in the language that they are trying to learn
     - Provide an analysis of the text that they've translated to, so the user can which words are verbs, adverbs, etc
+  - Reading sessions:
+    - Timed reading sessions
+    - Reading sessions will store records of the book that was read in the session, as well as the translations and the amount of the book that user read through
+  - Create reading lists:
+    - A user should be able to search for books and add then to their own personal reading list
+    - Reading lists should allow users to have translation tied to their books
 
 ## Technical Documentation
 This part of the project is built as a series of APIs.

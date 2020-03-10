@@ -1,3 +1,10 @@
+"""
+Set of helper functions that will be used to assist with the
+comminucation with AWS.
+
+Most utilities will sit in here, and most will likely remain
+private in order to wrap up the API
+"""
 from django.conf import settings
 import boto3
 from languages.models import Language

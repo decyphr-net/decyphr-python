@@ -16,6 +16,7 @@ class Translation(models.Model):
     target_language = models.ForeignKey(
         Language, on_delete=models.CASCADE, related_name="target_language"
     )
+    created_on = models.DateTimeField(auto_now_add=True)
 
     def delete(self):
         delete_from_bucket(self.audio_file_path)

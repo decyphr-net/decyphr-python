@@ -16,7 +16,8 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 from translator.models import Translation
-from translator.aws_utils import bundle_aws_data
+from translator.aws_utils import (
+    bundle_aws_data, _generate_audio_file, _translate_text)
 from translator.serializers import TranslationSerializer
 from accounts.models import UserProfile
 from languages.models import Language
@@ -292,7 +293,7 @@ class TranslatorTests(APITestCase):
 
     def test_that_the_analysis_is_received(self):
         """
-        Test to ensure that the text anaylses of the text snippet is
+        Test to ensure that the text anaylsis of the text snippet is
         received
         """
         url = reverse("translate")
@@ -309,9 +310,42 @@ class TranslatorTests(APITestCase):
         self.assertIn("analysis", response.data)
 
     def test_to_ensure_that_an_item_can_be_deleted(self):
-        pass
+        """
+        Test to ensure that the a translation can be deleted
+        """
+        url = reverse("translate-id", args=(1,))
+        self._create_reading_session()
+        
+        user = UserProfile.objects.get(email=self._create_user())
+        self.client.force_authenticate(user=user)
+
+        self._create_translation("Esta é uma frase em português.", user)
+
+        response = self.client.delete(url)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+    
+    def test_that_the_audio_file_is_generated_correctly(self):
+        """
+        Test to ensure that the audio file is generated and that the URL
+        provided contains the bucket name and the correct `.mp3` extension
+        """
+        language = Language.objects.get(name="Brazilian Portuguese")
+        file_path = _generate_audio_file("Eu estou com fome", language)
+        self.assertIn("https://s3.eu-west-1.amazonaws.com/langappaaron/", file_path)
+        self.assertIn(".mp3", file_path)
+    
+    def test_that_the_text_is_contains_the_correct_translation(self):
+        """
+        Test that the correct translation comes back from AWS Translate
+        """
+        text = "Eu estou com fome"
+        first_language = Language.objects.get(name="English")
+        new_language = Language.objects.get(name="Brazilian Portuguese")
+        translation = _translate_text(
+            text, first_language, new_language)
+        self.assertEqual(translation, "I am hungry.")
 
     # TODO: Create a test to ensure the correct ordering
     # TODO: Create tests for the `pagination` functionality
-    # TODO: Create tests for the `analisys` functionality
-    # TODO: Create tests for the `aws_utils` functions
+    # TODO: Create tests for the `analysis` functionality
+    # TODO: Finish tests for the `aws_utils` functions

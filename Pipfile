@@ -8,7 +8,7 @@ verify_ssl = true
 [packages]
 matplotlib = "*"
 spacy = "*"
-django = "*"
+django = "==3.0.3"
 boto3 = "*"
 djangorestframework = "*"
 markdown = "*"

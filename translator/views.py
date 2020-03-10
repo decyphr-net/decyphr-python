@@ -34,7 +34,8 @@ class TranslatorView(APIView, PaginationHandlerMixin):
         """
         Get the entire list of the current user's translations
         """
-        translations = Translation.objects.filter(user=request.user)
+        translations = Translation.objects.filter(
+            user=request.user).order_by('created_on')
 
         page = self.paginate_queryset(translations)
         if page is not None:

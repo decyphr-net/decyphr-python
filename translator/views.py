@@ -67,6 +67,7 @@ class TranslatorView(APIView, PaginationHandlerMixin):
             new_data = bundle_aws_data(
                 serializer.data["text_to_be_translated"], request.user
             )
+            new_data["session"] = serializer.data["session"]
 
             # Create a new `TranslationSerializer` from this new data
             translation = TranslationSerializer(data=new_data)

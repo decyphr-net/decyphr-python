@@ -11,6 +11,7 @@ class IncomingSerializer(serializers.Serializer):
     """
 
     text_to_be_translated = serializers.CharField(required=True)
+    session = serializers.IntegerField(required=True)
 
 
 class TranslationSerializer(serializers.ModelSerializer):
@@ -19,7 +20,6 @@ class TranslationSerializer(serializers.ModelSerializer):
     translations and store them in the database, as well as
     render translations to a user
     """
-
     analysis = serializers.SerializerMethodField()
 
     class Meta:
@@ -32,6 +32,7 @@ class TranslationSerializer(serializers.ModelSerializer):
             "source_language",
             "target_language",
             "user",
+            "session",
             "analysis"
         ]
     

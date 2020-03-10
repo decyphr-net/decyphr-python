@@ -11,6 +11,7 @@ for the following test cases:
     - A user will recieve an audio clip so they can hear how the original
         text is supposed to be pronounced
 """
+from datetime import timedelta
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -19,6 +20,8 @@ from translator.aws_utils import bundle_aws_data
 from translator.serializers import TranslationSerializer
 from accounts.models import UserProfile
 from languages.models import Language
+from books.models import Book
+from reading_sessions.models import ReadingSession
 
 
 class TranslatorTests(APITestCase):
@@ -39,11 +42,36 @@ class TranslatorTests(APITestCase):
         
         return data["email"]
     
+    def _create_reading_session(self):
+        book_url = reverse("books")
+        query_param = "?name=harry"
+
+        user = UserProfile.objects.get(email=self._create_user())
+        self.client.force_authenticate(user=user)
+
+        response = self.client.get(book_url + query_param)
+        book = Book.objects.get(id=response.data[0]["id"])
+
+        reading_session = ReadingSession(
+            user=user, book=book, duration=timedelta(microseconds=-1), pages=2.5)
+        reading_session.save()
+        return reading_session
+
     def _create_translation(self, text, user):
         data = bundle_aws_data(text, user)
-        translation = TranslationSerializer(data=data)
-        if translation.is_valid():
-            translation.save()
+
+        source_language = user.language_being_learned
+        target_language = user.first_language
+        session = self._create_reading_session()
+
+        translation = Translation(
+            user=user, source_text=data["source_text"],
+            translated_text=data["translated_text"],
+            audio_file_path=data["audio_file_path"],
+            source_language=source_language,
+            target_language=target_language,
+            session=session)
+        translation.save()
 
     def setUp(self):
         """
@@ -93,20 +121,22 @@ class TranslatorTests(APITestCase):
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_that_a_non_logged_in_user_cant_create_translations(self):
         """
         Ensure that unauthenticated users cannot add translations via the
         translations API
         """
         url = reverse("translate")
+
         data = {
-            "text_to_be_translated": "hello"
+            "text_to_be_translated": "Esta é uma frase em português.",
+            "session": 1
         }
 
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_user_can_retrieve_their_translations(self):
         """
         Test to ensure that a logged in user can retrieve a list of their
@@ -123,29 +153,35 @@ class TranslatorTests(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
-    
+
     def test_that_a_logged_in_user_can_create_translations(self):
         """
         Test to ensure that a user that is logged in can post to the
         translations endpoint
         """
         url = reverse("translate")
+        self._create_reading_session()
+
         data = {
-            "text_to_be_translated": "Esta é uma frase em português."
+            "text_to_be_translated": "Esta é uma frase em português.",
+            "session": 1
         }
         user = UserProfile.objects.get(email=self._create_user())
         self.client.force_authenticate(user=user)
 
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-    
+
     def test_that_the_translation_contains_an_id(self):
         """
         Ensure that the translation contains an ID property
         """
         url = reverse("translate")
+        self._create_reading_session()
+
         data = {
-            "text_to_be_translated": "Esta é uma frase em português."
+            "text_to_be_translated": "Esta é uma frase em português.",
+            "session": 1
         }
         user = UserProfile.objects.get(email=self._create_user())
         self.client.force_authenticate(user=user)
@@ -159,8 +195,11 @@ class TranslatorTests(APITestCase):
         the logged in user
         """
         url = reverse("translate")
+        self._create_reading_session()
+
         data = {
-            "text_to_be_translated": "Esta é uma frase em português."
+            "text_to_be_translated": "Esta é uma frase em português.",
+            "session": 1
         }
         user = UserProfile.objects.get(email=self._create_user())
         self.client.force_authenticate(user=user)
@@ -177,8 +216,11 @@ class TranslatorTests(APITestCase):
         text has been translated
         """
         url = reverse("translate")
+        self._create_reading_session()
+
         data = {
-            "text_to_be_translated": "Esta é uma frase em português."
+            "text_to_be_translated": "Esta é uma frase em português.",
+            "session": 1
         }
         user = UserProfile.objects.get(email=self._create_user())
         self.client.force_authenticate(user=user)
@@ -188,15 +230,18 @@ class TranslatorTests(APITestCase):
         self.assertEqual(
             response.data["translated_text"],
             "This is a phrase in Portuguese.")
-    
+
     def test_that_the_source_language_is_correct(self):
         """
         Ensure that the source language ID in the response is correct.
         This should match the ID of the language that the user is learning
         """
         url = reverse("translate")
+        self._create_reading_session()
+
         data = {
-            "text_to_be_translated": "Esta é uma frase em português."
+            "text_to_be_translated": "Esta é uma frase em português.",
+            "session": 1
         }
         user = UserProfile.objects.get(email=self._create_user())
         self.client.force_authenticate(user=user)
@@ -212,8 +257,11 @@ class TranslatorTests(APITestCase):
         This should match the ID of the user's native language
         """
         url = reverse("translate")
+        self._create_reading_session()
+
         data = {
-            "text_to_be_translated": "Esta é uma frase em português."
+            "text_to_be_translated": "Esta é uma frase em português.",
+            "session": 1
         }
         user = UserProfile.objects.get(email=self._create_user())
         self.client.force_authenticate(user=user)
@@ -229,8 +277,11 @@ class TranslatorTests(APITestCase):
         received
         """
         url = reverse("translate")
+        self._create_reading_session()
+
         data = {
-            "text_to_be_translated": "Esta é uma frase em português."
+            "text_to_be_translated": "Esta é uma frase em português.",
+            "session": 1
         }
         user = UserProfile.objects.get(email=self._create_user())
         self.client.force_authenticate(user=user)
@@ -238,22 +289,25 @@ class TranslatorTests(APITestCase):
         response = self.client.post(url, data)
 
         self.assertIn("audio_file_path", response.data)
-    
+
     def test_that_the_analysis_is_received(self):
         """
         Test to ensure that the text anaylses of the text snippet is
         received
         """
         url = reverse("translate")
+        self._create_reading_session()
+
         data = {
-            "text_to_be_translated": "Esta é uma frase em português."
+            "text_to_be_translated": "Esta é uma frase em português.",
+            "session": 1
         }
         user = UserProfile.objects.get(email=self._create_user())
         self.client.force_authenticate(user=user)
 
         response = self.client.post(url, data)
         self.assertIn("analysis", response.data)
-    
+
     def test_to_ensure_that_an_item_can_be_deleted(self):
         pass
 

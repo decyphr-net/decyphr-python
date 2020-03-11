@@ -11,6 +11,7 @@ for the following test cases:
     - A user will recieve an audio clip so they can hear how the original
         text is supposed to be pronounced
 """
+from datetime import datetime
 from datetime import timedelta
 from django.urls import reverse
 from rest_framework import status
@@ -44,17 +45,14 @@ class TranslatorTests(APITestCase):
         return data["email"]
     
     def _create_reading_session(self):
-        book_url = reverse("books")
-        query_param = "?name=harry"
-
-        user = UserProfile.objects.get(email=self._create_user())
-        self.client.force_authenticate(user=user)
-
-        response = self.client.get(book_url + query_param)
-        book = Book.objects.get(id=response.data[0]["id"])
+        book = Book(
+            title="Harry Potter", author="JK Rowling", publisher="hello",
+            language=Language.objects.get(name="Brazilian Portuguese"))
+        book.save()
 
         reading_session = ReadingSession(
-            user=user, book=book, duration=timedelta(microseconds=-1), pages=2.5)
+            user=UserProfile.objects.get(email=self._create_user()),
+            book=book, duration=timedelta(microseconds=-1), pages=2.5)
         reading_session.save()
         return reading_session
 

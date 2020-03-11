@@ -14,6 +14,8 @@ for the following test cases:
 from datetime import datetime
 from datetime import timedelta
 from django.urls import reverse
+from django.utils import timezone
+import pytz
 from rest_framework import status
 from rest_framework.test import APITestCase
 from translator.models import Translation
@@ -32,6 +34,10 @@ class TranslatorTests(APITestCase):
     """
 
     def _create_user(self):
+        """
+        A helper method that will create a new user and return that
+        user's email address
+        """
         url = reverse("register")
         data = {
             "username": "aaronsnig501",
@@ -45,8 +51,15 @@ class TranslatorTests(APITestCase):
         return data["email"]
     
     def _create_reading_session(self):
+        """
+        A helper method that will create a new `readingsession` so that
+        a translation can be tied to a session object. It begins by creating
+        a new book object that is required for the reading session
+        """
+        date = datetime(2013, 11, 20, 20, 8, 7, 127325, tzinfo=pytz.UTC)
         book = Book(
             title="Harry Potter", author="JK Rowling", publisher="hello",
+            publish_date=date,
             language=Language.objects.get(name="Brazilian Portuguese"))
         book.save()
 
@@ -57,6 +70,9 @@ class TranslatorTests(APITestCase):
         return reading_session
 
     def _create_translation(self, text, user):
+        """
+        A helper method used to create translations for the tests
+        """
         data = bundle_aws_data(text, user)
 
         source_language = user.language_being_learned

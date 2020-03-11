@@ -17,7 +17,9 @@ class ReadingSessionView(APIView):
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        serializer = self.serializer_class(data=request.data)
+        incoming_data = request.data
+        incoming_data["user"] = request.user.id
+        serializer = self.serializer_class(data=incoming_data)
         if serializer.is_valid():
             serializer.save()
         return Response(serializer.data)

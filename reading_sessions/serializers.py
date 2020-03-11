@@ -4,7 +4,7 @@ from translator.serializers import TranslationSerializer
 
 
 class ReadingSessionSerializer(serializers.ModelSerializer):
-    translation_set = TranslationSerializer(many=True)
+    translation_set = TranslationSerializer(many=True, read_only=True)
 
     class Meta:
         model = ReadingSession

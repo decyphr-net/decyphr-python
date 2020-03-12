@@ -11,9 +11,13 @@ class ReadingSessionView(APIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = ReadingSessionSerializer
 
-    def get(self, request):
-        sessions = ReadingSession.objects.filter(user=request.user)
-        serializer = self.serializer_class(sessions, many=True)
+    def get(self, request, pk=None):
+        if pk:
+            session = ReadingSession.objects.get(id=pk)
+            serializer = self.serializer_class(session)
+        else:
+            sessions = ReadingSession.objects.filter(user=request.user)
+            serializer = self.serializer_class(sessions, many=True)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):

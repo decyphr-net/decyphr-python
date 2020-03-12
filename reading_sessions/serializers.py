@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from reading_sessions.models import ReadingSession
 from translator.serializers import TranslationSerializer
-from books.serializers import Book
+from books.serializers import BookSerializer
 
 
 class ReadingSessionSerializer(serializers.ModelSerializer):

@@ -8,4 +8,4 @@ class ReadingSessionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ReadingSession
-        fields = ["user", "book", "duration", "pages", "translation_set"]
+        fields = ["id", "user", "book", "duration", "pages", "translation_set"]

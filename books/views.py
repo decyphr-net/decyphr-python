@@ -21,7 +21,11 @@ class BookAPIView(generics.ListCreateAPIView):
     filter_backends = (filters.SearchFilter,)
     queryset = Book.objects.all()
 
-    def get(self, request):
+    def get(self, request, pk=None):
+        if pk:
+            book = Book.objects.get(id=pk)
+            serializer = self.serializer_class(data=book)
+            return Response(data=serializer.data)
         lang = request.user.language_being_learned.short_code
         book_name = request.query_params["name"]
 

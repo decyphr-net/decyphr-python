@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     "languages",
     "accounts",
     "books",
-    "reading_list",
+    "library",
     "lemmatizer",
     "reading_sessions"
 ]

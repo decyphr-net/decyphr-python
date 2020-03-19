@@ -8,6 +8,7 @@ The purpose of this is to show a user to learn how sentences are structured with
 - [Decyphr](#decyphr)
   - [Goals](#goals)
     - [Initial Goals](#initial-goals)
+    - [Future Goals](#future-goals)
   - [Technical Documentation](#technical-documentation)
     - [`/token-auth/`](#token-auth)
     - [`/user/register/`](#userregister)
@@ -28,6 +29,10 @@ Below I've detailed a list of the initial goals of Decyphr, as well as some goal
   - Create reading lists:
     - A user should be able to search for books and add then to their own personal reading list
     - Reading lists should allow users to have translation tied to their books
+  - Practice Translations:
+    - Provide users with their translations so that they will be able to learn the phrases through repitition
+
+### Future Goals
 
 ## Technical Documentation
 This part of the project is built as a series of APIs.

@@ -10,7 +10,7 @@ class CreateReadingSessionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ReadingSession
-        fields = ["session_id", "user", "book", "duration", "pages", "translations"]
+        fields = ["session_id", "user", "reading_list", "duration", "pages", "translations"]
 
 
 class ReadingSessionSerializer(serializers.ModelSerializer):

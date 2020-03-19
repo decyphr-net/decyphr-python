@@ -22,6 +22,6 @@ urlpatterns = [
     path("books/", include("books.urls")),
     path("languages/", include("languages.urls")),
     path("user/", include("accounts.urls")),
-    path("reading-list/", include("reading_list.urls")),
+    path("reading-list/", include("library.urls")),
     path("reading-sessions/", include("reading_sessions.urls"))
 ]

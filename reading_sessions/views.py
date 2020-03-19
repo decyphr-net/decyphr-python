@@ -21,21 +21,21 @@ class ReadingSessionView(APIView):
             serializer = self.serializer_class(sessions, many=True)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
-    def post(self, request):
-        incoming_data = request.data
-        incoming_data["user"] = request.user.id
-        create_serializer = CreateReadingSessionSerializer(data=incoming_data)
-        if create_serializer.is_valid():
-            model = create_serializer.save()
-            data = {
-                "user": model.user.id,
-                "book": model.book,
-                "duration": model.duration,
-                "pages": model.pages,
-                "translation_set": model.translation_set.all(),
-                "id": model.id
-            }
-            return_serializer = self.serializer_class(data=data)
-            return_serializer.is_valid()
+    # def post(self, request):
+    #     incoming_data = request.data
+    #     incoming_data["user"] = request.user.id
+    #     create_serializer = CreateReadingSessionSerializer(data=incoming_data)
+    #     if create_serializer.is_valid():
+    #         model = create_serializer.save()
+    #         data = {
+    #             "user": model.user.id,
+    #             "book": model.book,
+    #             "duration": model.duration,
+    #             "pages": model.pages,
+    #             "translation_set": model.translation_set.all(),
+    #             "id": model.id
+    #         }
+    #         return_serializer = self.serializer_class(data=data)
+    #         return_serializer.is_valid()
             
-            return Response(return_serializer.data)
+    #         return Response(return_serializer.data)

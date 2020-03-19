@@ -3,7 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from reading_sessions.models import ReadingSession
-from reading_sessions.serializers import ReadingSessionSerializer
+from reading_sessions.serializers import (
+    CreateReadingSessionSerializer, ReadingSessionSerializer)
 
 
 class ReadingSessionView(APIView):
@@ -23,7 +24,18 @@ class ReadingSessionView(APIView):
     def post(self, request):
         incoming_data = request.data
         incoming_data["user"] = request.user.id
-        serializer = self.serializer_class(data=incoming_data)
-        if serializer.is_valid():
-            serializer.save()
-        return Response(serializer.data)
+        create_serializer = CreateReadingSessionSerializer(data=incoming_data)
+        if create_serializer.is_valid():
+            model = create_serializer.save()
+            data = {
+                "user": model.user.id,
+                "book": model.book,
+                "duration": model.duration,
+                "pages": model.pages,
+                "translation_set": model.translation_set.all(),
+                "id": model.id
+            }
+            return_serializer = self.serializer_class(data=data)
+            return_serializer.is_valid()
+            
+            return Response(return_serializer.data)

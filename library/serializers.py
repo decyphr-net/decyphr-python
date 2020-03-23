@@ -5,23 +5,32 @@ from accounts.models import UserProfile
 from books.models import Book
 from books.serializers import BookSerializer
 from reading_sessions.models import ReadingSession
-from reading_sessions.serializers import ReadingSessionSerializer
+
+
+class LibrarySessionSerializer(serializers.ModelSerializer):
+
+    book = BookSerializer()
+
+    class Meta:
+        model = LibraryBooks
+        fields = ["id", "book"]
 
 
 class LibrarySerializer(serializers.ModelSerializer):
 
     book = BookSerializer()
-    readingsession_set = serializers.SerializerMethodField()
+    readingsession_count = serializers.SerializerMethodField()
     
-    def get_readingsession_set(self, obj):
+    def get_readingsession_count(self, obj):
         reading_sessions = ReadingSession.objects.filter(
-            user=self.context["request"].user)
-        serializer = ReadingSessionSerializer(reading_sessions, many=True)
-        return serializer.data
+            user=self.context["request"].user, library_item__book=obj.book)
+        for session in reading_sessions:
+            print(session.library_item)
+        return reading_sessions.count()
 
     class Meta:
         model = LibraryBooks
-        fields = ["book", "readingsession_set"]
+        fields = ["id", "book", "readingsession_count"]
 
 
 class AddToLibrarySerializer(serializers.ModelSerializer):

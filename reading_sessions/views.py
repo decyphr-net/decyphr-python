@@ -39,9 +39,14 @@ class ReadingSessionView(APIView):
             }
             return_serializer = self.serializer_class(data=data)
             return_serializer.is_valid()
-            
-            
+
             return Response(return_serializer.data)
         else:
             print(create_serializer.errors)
             return Response(create_serializer.errors)
+    
+    def put(self, request, pk):
+        session = ReadingSession.objects.get(id=pk)
+        session.pages = request.data["number_of_pages"]
+        session.save()
+        return Response({"message": "Successfully updated"}, status=status.HTTP_200_OK)

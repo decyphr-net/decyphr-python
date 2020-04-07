@@ -42,7 +42,6 @@ class ReadingSessionView(APIView):
 
             return Response(return_serializer.data)
         else:
-            print(create_serializer.errors)
             return Response(create_serializer.errors)
     
     def put(self, request, pk):

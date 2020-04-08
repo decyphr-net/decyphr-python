@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     "books",
     "library",
     "lemmatizer",
-    "reading_sessions"
+    "reading_sessions",
+    "practice"
 ]
 
 MIDDLEWARE = [

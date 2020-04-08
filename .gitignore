@@ -2,3 +2,6 @@ env_vars
 *.sqlite3
 env/
 .vscode/
+.theia/
+.venv/
+setenvs.sh

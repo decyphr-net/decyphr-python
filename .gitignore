@@ -5,3 +5,4 @@ env/
 .theia/
 .venv/
 setenvs.sh
+staticfiles/

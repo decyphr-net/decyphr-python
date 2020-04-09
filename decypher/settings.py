@@ -144,6 +144,7 @@ STATICFILES_DIRS = (
 
 # Users
 AUTH_USER_MODEL = "accounts.UserProfile"
+LOGIN_REDIRECT_URL = "/practice-sessions/sessions/"
 
 # Email Settings
 EMAIL_HOST = os.getenv("EMAIL_HOST")
@@ -166,7 +167,8 @@ GOOGLE_BOOKS_ENDPOINT = "https://www.googleapis.com/books/v1/volumes?"
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.TokenAuthentication",  # <-- And here
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication"
     ],
 }
 

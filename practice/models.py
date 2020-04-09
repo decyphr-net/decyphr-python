@@ -15,6 +15,6 @@ class Question(models.Model):
     translation = models.ForeignKey(Translation, on_delete=models.CASCADE)
     session = models.ForeignKey(Session, on_delete=models.CASCADE)
     answer_provided = models.CharField(max_length=100, null=True, blank=True)
-    correct = models.BooleanField()
+    correct = models.BooleanField(null=True, blank=True)
     
     

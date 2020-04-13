@@ -1,4 +1,5 @@
 import random
+from fuzzywuzzy import fuzz
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -25,8 +26,20 @@ class PracticeQuestionView(APIView):
     
     def put(self, request, pk=None):
         question = Question.objects.get(id=pk)
-        serializer = self.serializer_class(question)
+        
+        users_guess = request.data["guess"]
+        correct_answer = question.translation.translated_text
 
+        ratio = fuzz.ratio(users_guess, correct_answer)
+        print(ratio)
+        
+        question.answer_provided
+        
+        if ratio >= 85:
+            question.correct = True
+        
+        question.save()
+        serializer = self.serializer_class(question)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
 

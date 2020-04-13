@@ -31,7 +31,6 @@ class PracticeQuestionView(APIView):
         correct_answer = question.translation.translated_text
 
         ratio = fuzz.ratio(users_guess, correct_answer)
-        print(ratio)
         
         question.answer_provided
         

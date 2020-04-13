@@ -6,6 +6,7 @@ from translator.serializers import TranslationSerializer
 class QuestionSerializer(serializers.ModelSerializer):
 
     translation = TranslationSerializer(read_only=True)
+    correct = serializers.BooleanField(read_only=True)
 
     class Meta:
         model = Question

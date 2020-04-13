@@ -11,16 +11,28 @@ from translator.serializers import TranslationSerializer
 
 class PracticeQuestionView(APIView):
 
+    permission_classes = (IsAuthenticated,)
     serializer_class = QuestionSerializer
 
     def get(self, request, pk=None):
-        questions = Question.objects.all()
-        serializer = self.serializer_class(questions, many=True)
+        if pk:
+            question = Question.objects.get(id=pk)
+            serializer = self.serializer_class(question)
+        else:
+            questions = Question.objects.all()
+            serializer = self.serializer_class(questions, many=True)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+    
+    def put(self, request, pk=None):
+        question = Question.objects.get(id=pk)
+        serializer = self.serializer_class(question)
+
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
 
 class PracticeSessionView(APIView):
 
+    permission_classes = (IsAuthenticated,)
     serializer_class = SessionSerializer
 
     def get(self, request, pk=None):

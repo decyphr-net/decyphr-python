@@ -4,6 +4,7 @@ from practice import views
 
 urlpatterns = [
     path("questions/", views.PracticeQuestionView.as_view(), name="question"),
+    path("questions/<int:pk>/", views.PracticeQuestionView.as_view(), name="answer-question"),
     path("sessions/", views.PracticeSessionView.as_view(), name="session"),
 ]
 

@@ -1,24 +1,20 @@
-import spacy
-
-nlp = spacy.load("pt_core_news_sm")
+from .aws_utils import get_text_analysis
 
 
-def analyse(text):
+def analyse(text, language):
     """
     Analyse a string of text an get a word by word breakdown of the
     text and a tag that describes each word, for example, if a word
     is verb, noun, pronoun, punctuation, etc
     """
-    doc = nlp(text)
+    response = get_text_analysis(text, language.short_code)
 
     sentence_breakdown = []
 
-    string = ""
-    
-    for token in doc:
-        string += spacy.explain(token.pos_) + " "
+    for item in response:
         sentence_breakdown.append({
-            "word": token.text,
-            "tag": spacy.explain(token.pos_)
+            "word": item["Text"],
+            "tag": item["PartOfSpeech"]["Tag"].lower()
         })
+    
     return sentence_breakdown

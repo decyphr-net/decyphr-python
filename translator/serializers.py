@@ -37,4 +37,4 @@ class TranslationSerializer(serializers.ModelSerializer):
         ]
     
     def get_analysis(self, obj):
-        return analyse(obj.source_text)
+        return analyse(obj.source_text, obj.target_language)

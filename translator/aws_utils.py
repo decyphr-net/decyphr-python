@@ -24,6 +24,17 @@ _polly = boto3.client(
     aws_access_key_id=settings.ACCESS_KEY_ID,
     aws_secret_access_key=settings.SECRET_ACCESS_KEY,
 )
+_comprehend = boto3.client(
+    "comprehend",
+    settings.REGION,
+    aws_access_key_id=settings.ACCESS_KEY_ID,
+    aws_secret_access_key=settings.SECRET_ACCESS_KEY,
+)
+
+
+def get_text_analysis(text, language):
+    response = _comprehend.detect_syntax(Text=text, LanguageCode=language)
+    return response["SyntaxTokens"]
 
 
 def _generate_audio_file(text, new_language):

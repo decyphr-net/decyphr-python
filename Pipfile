@@ -25,6 +25,7 @@ black = "*"
 pt-core-news-sm = {file = "https://github.com/explosion/spacy-models/releases/download/pt_core_news_sm-2.2.0/pt_core_news_sm-2.2.0.tar.gz"}
 verbecc = "*"
 fuzzywuzzy = "*"
+python-levenshtein = "*"
 
 [requires]
 python_version = "3.6"

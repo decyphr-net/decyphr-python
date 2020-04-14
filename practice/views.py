@@ -1,4 +1,6 @@
 import random
+from datetime import datetime
+from datetime import timedelta
 from fuzzywuzzy import fuzz
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -61,5 +63,24 @@ class PracticeSessionView(APIView):
             question = Question(translation=translation, session=session)
             question.save()
         
+        serializer = SessionSerializer(session)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+    
+    def put(self, request, pk):
+        session = Session.objects.get(id=pk)
+        duration_items = [int(date_item) for date_item in request.data["duration"].split(':')]
+        session.duration = timedelta(
+            hours=duration_items[0],
+            minutes=duration_items[1],
+            seconds=duration_items[2]
+        )
+
+        total_number_of_questions = session.question_set.all().count()
+        correct_questions = session.question_set.filter(correct=True).count()
+
+        percentage = 100 * correct_questions / total_number_of_questions
+
+        session.score = percentage
+        session.save()
         serializer = SessionSerializer(session)
         return Response(data=serializer.data, status=status.HTTP_200_OK)

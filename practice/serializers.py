@@ -21,7 +21,6 @@ class SessionSerializer(serializers.ModelSerializer):
 
     question_set = QuestionSerializer(read_only=True, many=True)
 
-
     class Meta:
         model = Session
-        fields = ["id", "user", "duration", "question_set"]
+        fields = ["id", "user", "duration", "score", "question_set"]

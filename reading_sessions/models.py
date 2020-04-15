@@ -9,3 +9,4 @@ class ReadingSession(models.Model):
     library_item = models.ForeignKey(LibraryBooks, on_delete=models.CASCADE)
     duration = models.DurationField(null=False, blank=False)
     pages = models.FloatField()
+    created_on = models.DateTimeField(auto_now_add=True)

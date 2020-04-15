@@ -25,6 +25,7 @@ from translator.serializers import TranslationSerializer
 from accounts.models import UserProfile
 from languages.models import Language
 from books.models import Book
+from library.models import LibraryBooks
 from reading_sessions.models import ReadingSession
 
 
@@ -63,9 +64,13 @@ class TranslatorTests(APITestCase):
             language=Language.objects.get(name="Brazilian Portuguese"))
         book.save()
 
+        user = UserProfile.objects.get(email=self._create_user())
+        library_item = LibraryBooks(user=user, book=book)
+        library_item.save()
+
         reading_session = ReadingSession(
-            user=UserProfile.objects.get(email=self._create_user()),
-            book=book, duration=timedelta(microseconds=-1), pages=2.5)
+            user=user,
+            library_item=library_item, duration=timedelta(microseconds=-1), pages=2.5)
         reading_session.save()
         return reading_session
 
@@ -167,7 +172,6 @@ class TranslatorTests(APITestCase):
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
 
     def test_that_a_logged_in_user_can_create_translations(self):
         """

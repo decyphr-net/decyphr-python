@@ -24,6 +24,7 @@ black = "*"
 verbecc = "*"
 fuzzywuzzy = "*"
 python-levenshtein = "*"
+requests = "*"
 
 [requires]
 python_version = "3.6"

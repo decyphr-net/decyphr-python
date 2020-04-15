@@ -15,9 +15,26 @@ class CreateReadingSessionSerializer(serializers.ModelSerializer):
 
 class ReadingSessionSerializer(serializers.ModelSerializer):
 
-    id = serializers.IntegerField()
+    id = serializers.ReadOnlyField()
     library_item = LibrarySessionSerializer(read_only=True)
 
     class Meta:
         model = ReadingSession
-        fields = ["id", "user", "library_item", "duration", "pages", "translation_set"]
+        fields = ["id", "user", "library_item", "duration", "pages", "status", "translation_set"]
+        extra_kwargs = {
+            'user': {
+                'required': False
+            },
+            'duration': {
+                'required': False
+            },
+            'pages': {
+                'required': False
+            },
+            'status': {
+                'required': False
+            },
+            'translation_set': {
+                'required': False
+            },
+        }

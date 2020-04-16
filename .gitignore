@@ -6,3 +6,4 @@ env/
 .venv/
 setenvs.sh
 staticfiles/
+*.pem

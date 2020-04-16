@@ -22,9 +22,7 @@ class LibrarySerializer(serializers.ModelSerializer):
     readingsession_count = serializers.SerializerMethodField()
     
     def get_readingsession_count(self, obj):
-        reading_sessions = ReadingSession.objects.filter(
-            user=self.context["request"].user, library_item__book=obj.book)
-        return reading_sessions.count()
+        return obj.readingsession_set.all().count()
 
     class Meta:
         model = LibraryBooks

@@ -15,8 +15,7 @@ class LibraryBooksView(APIView):
 
     def get(self, request):
         book_list = LibraryBooks.objects.filter(user=request.user)
-        serializer = LibrarySerializer(
-            book_list, many=True, context={"request": self.request})
+        serializer = LibrarySerializer(book_list, many=True)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):

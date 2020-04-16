@@ -15,7 +15,7 @@ class CreateReadingSessionSerializer(serializers.ModelSerializer):
 
 class ReadingSessionSerializer(serializers.ModelSerializer):
 
-    id = serializers.ReadOnlyField()
+    id = serializers.IntegerField()
     library_item = LibrarySessionSerializer(read_only=True)
 
     class Meta:

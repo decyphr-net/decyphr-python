@@ -19,13 +19,17 @@ class LibraryBooksView(APIView):
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
+        book = Book.objects.get(id=request.data["book"])
         data = {
             "user": request.user.id,
-            "book": int(request.data["book"])
+            "book": book.id
         }
         serializer = AddToLibrarySerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+
+            library_item = LibraryBooks.objects.get(user=request.user, book=book)
+            serialized_item = LibrarySerializer(library_item)
+            return Response(data=serialized_item.data, status=status.HTTP_201_CREATED)
         else:
             return Response(data=serializer.errors)

@@ -71,6 +71,9 @@ class UserSerializer(serializers.ModelSerializer):
     language_being_learned = serializers.PrimaryKeyRelatedField(
         queryset=Language.objects.all()
     )
+    language_preference = serializers.PrimaryKeyRelatedField(
+        queryset=Language.objects.all()
+    )
 
     class Meta:
         model = UserProfile
@@ -84,19 +87,8 @@ class UserSerializer(serializers.ModelSerializer):
             "date_joined",
             "first_language",
             "language_being_learned",
+            "language_preference"
         ]
-
-    def create(self, validated_data):
-        """
-        When creating a new user, we need to take the password from
-        the incoming data and use Django's built in `set_password` to
-        properly encrypt the password
-        """
-        user = super(UserSerializer, self).create(validated_data)
-        user.set_password(validated_data["password"])
-        user.save()
-        Token.objects.create(user=user)
-        return user
 
     def validate(self, data):
         """

@@ -1,10 +1,12 @@
 from django.core.mail import send_mail
 from django.conf import settings
 from rest_framework.views import APIView
+from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
+from accounts.permissions import IsCreationOrIsAuthenticated
 from accounts.models import UserProfile
 from accounts.serializers import UserSerializer, TokenAuthSerializer
 
@@ -29,16 +31,14 @@ class ObtainAuthToken(APIView):
             return Response(message, status.HTTP_404_NOT_FOUND)
 
 
-class UserRegistration(APIView):
+class UserViewSet(viewsets.ModelViewSet):
     """
-    The view that handles the registration process for a user.
-
-    This process includes creating a new entry in the database, as
-    well as sending an email to the user as confirmation that they've
-    registered
+    Handle user interactions with their profile
     """
 
+    queryset = UserProfile.objects.all()
     serializer_class = UserSerializer
+    permission_classes = (IsCreationOrIsAuthenticated, )
 
     def _send_email(self, email_address):
         """
@@ -54,23 +54,25 @@ class UserRegistration(APIView):
             [email_address],
             fail_silently=False,
         )
+    
+    def _create_token(self, user):
+        Token.objects.create(user=user)
+        return user
 
-    def post(self, request):
+    def create(self, request):
+        """
+        Register the new user
+        """
         serializer = self.serializer_class(data=request.data)
-
         if serializer.is_valid():
-            serializer.save()
-            self._send_email(serializer.data["email"])
+            user = UserProfile.objects.create_user(**serializer.validated_data)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class UserProfileView(APIView):
-
-    permission_classes = (IsAuthenticated,)
-    serializer_class = UserSerializer
-
-    def get(self, request):
+    
+    def retrieve(self, request, pk=None, *args, **kwargs):
+        """
+        Retrieve the profile for the currently logged in user
+        """
         serializer = self.serializer_class(request.user)
         return Response(serializer.data)

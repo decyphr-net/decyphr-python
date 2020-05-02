@@ -7,3 +7,5 @@ env/
 setenvs.sh
 staticfiles/
 *.pem
+__pycache__/
+vars.sh

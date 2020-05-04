@@ -16,16 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+
 from accounts.views import UserViewSet
+from translator.views import TranslationViewSet
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet, basename='user')
+router.register(r'translate', TranslationViewSet, basename='translate')
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path("auth/", include("accounts.urls")),
-    path("translate/", include("translator.urls")),
     path("books/", include("books.urls")),
     path("languages/", include("languages.urls")),
     path("reading-list/", include("library.urls")),

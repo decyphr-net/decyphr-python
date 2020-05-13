@@ -1,49 +1,80 @@
-import requests
-from django.shortcuts import render
-from django.conf import settings
-from django.core.exceptions import ValidationError
-from rest_framework import generics
+"""
+The Book Views.
+
+This module will handle the interaction between the client and the Book model.
+
+Clients can retrieve single book instances, or lists of books. When a client
+searches for a book, we check to see if the book is present in the database
+and if it's not, the book will be searched for in Google Books and if found
+there, they will be added to the database and for easier access when a client
+tries to access this data at a later point
+"""
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import filters
+from rest_framework import viewsets
 from languages.models import Language
 from books.models import Book
 from books.serializers import BookSerializer
 from books.google_utils import get_books, parse_book_data
 
 
-class BookAPIView(generics.ListCreateAPIView):
+class BookViewSet(viewsets.ModelViewSet):
+    """BookViewSet
+
+    Handles the interactions that the user will have with the the books within
+    the application.
+
+    Only users that have been authenticated will be able to access the books.
+    """
 
     permission_classes = (IsAuthenticated,)
     serializer_class = BookSerializer
-    search_fields = ["title"]
-    filter_backends = (filters.SearchFilter,)
     queryset = Book.objects.all()
 
-    def get(self, request, pk=None):
-        if pk:
-            book = Book.objects.get(id=pk)
-            serializer = self.serializer_class(data=book)
-            return Response(data=serializer.data)
-        lang = request.user.language_being_learned.short_code
-        book_name = request.query_params["name"]
+    def retrieve(self, request, pk):
+        """Get by ID
 
-        book_list = get_books(book_name, lang)
+        Retrieve a single book instance based on it's ID.
 
-        if book_list:
-            for book in book_list:
-                book_dict = parse_book_data(book, lang)
+        Args:
+            self (BookViewSet): The current BookViewSet instance
+            request (Request): The current request being handled
+            pk (int): The ID of the book that is being requested by the client
+        
+        Returns:
+            Reponse: The serialized book and the status
+        """
+        book = Book.objects.get(id=pk)
+        print(book)
+        serializer = self.serializer_class(book)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+    
+    def list(self, request):
+        """Get a list of books
 
-                try:
-                    new_book, created = Book.objects.get_or_create(
-                        title__icontains=book_dict["title"], defaults=book_dict)
-                except Book.MultipleObjectsReturned:
-                    continue
-                except TypeError:
-                    continue
-                except ValidationError:
-                    continue
-        books = self.serializer_class(
-            Book.objects.filter(title__icontains=book_name), many=True)
-        return Response(books.data)
+        Retrieves a list of books from the database, but will retrieve a list
+        from Google Books if no results are found in the database
+
+        Args:
+            self (BookViewSet): The current BookViewSet instance
+            request (Request): The current request being handled
+        
+        Returns:
+            Reponse: The serialized list of books and the status
+        """
+        search_parameters = request.query_params["name"]
+        user_language = request.user.language_being_learned.short_code
+        books = Book.objects.filter(title__icontains=search_parameters)
+
+        # If the set of books returned from the database is 0, get the books
+        # from the Google Books API
+        if books.count() == 0:
+            api_data = get_books(search_parameters, user_language)
+            books = parse_book_data(api_data, user_language)
+            serializer = self.serializer_class(data=books, many=True)
+            if serializer.is_valid():
+                serializer.save()
+        
+        serializer = self.serializer_class(books, many=True)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)

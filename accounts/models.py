@@ -30,5 +30,6 @@ class UserProfile(AbstractUser):
     language_preference = models.ForeignKey(
         Language,
         related_name="site_language_preference",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        default=2
     )

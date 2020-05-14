@@ -66,6 +66,7 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             user = UserProfile.objects.create_user(**serializer.validated_data)
+            self._create_token(user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

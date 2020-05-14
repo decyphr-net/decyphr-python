@@ -46,7 +46,6 @@ class BookViewSet(viewsets.ModelViewSet):
             Reponse: The serialized book and the status
         """
         book = Book.objects.get(id=pk)
-        print(book)
         serializer = self.serializer_class(book)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
     

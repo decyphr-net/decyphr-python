@@ -29,7 +29,7 @@ def _construct_url(name, lang):
 
 def parse_book_data(data, lang):
     books = []
-    for book in books:
+    for book in data:
         book = book["volumeInfo"]
         try:
             title = "" if book.get("title") is None else book.get("title")

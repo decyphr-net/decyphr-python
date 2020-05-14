@@ -6,7 +6,7 @@ from .serializers import DashboardSerializer
 from translator.models import Translation
 from practice.models import Session
 from reading_sessions.models import ReadingSession
-from library.models import LibraryBooks
+from library.models import LibraryBook
 
 
 class Dashboard(APIView):
@@ -19,7 +19,7 @@ class Dashboard(APIView):
         translations = Translation.objects.filter(user=user)
         practice_sessions = Session.objects.filter(user=user)
         reading_sessions = ReadingSession.objects.filter(user=user)
-        library_items = LibraryBooks.objects.filter(user=user)
+        library_items = LibraryBook.objects.filter(user=user)
 
         data = {
             "translations": translations,

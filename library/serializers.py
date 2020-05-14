@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
-from library.models import LibraryBooks
+from library.models import LibraryBook
 from accounts.models import UserProfile
 from books.models import Book
 from books.serializers import BookSerializer
@@ -12,7 +12,7 @@ class LibrarySessionSerializer(serializers.ModelSerializer):
     book = BookSerializer()
 
     class Meta:
-        model = LibraryBooks
+        model = LibraryBook
         fields = ["id", "book"]
 
 
@@ -25,18 +25,18 @@ class LibrarySerializer(serializers.ModelSerializer):
         return obj.readingsession_set.all().count()
 
     class Meta:
-        model = LibraryBooks
+        model = LibraryBook
         fields = ["id", "book", "readingsession_count"]
 
 
 class AddToLibrarySerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = LibraryBooks
+        model = LibraryBook
         fields = ["user", "book"]
         validators = [
             UniqueTogetherValidator(
-                queryset=LibraryBooks.objects.all(),
+                queryset=LibraryBook.objects.all(),
                 fields=("user", "book")
             )
         ]

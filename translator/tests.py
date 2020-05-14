@@ -25,7 +25,7 @@ from translator.serializers import TranslationSerializer
 from accounts.models import UserProfile
 from languages.models import Language
 from books.models import Book
-from library.models import LibraryBooks
+from library.models import LibraryBook
 from reading_sessions.models import ReadingSession
 
 
@@ -65,7 +65,7 @@ class TranslatorTests(APITestCase):
         book.save()
 
         user = UserProfile.objects.get(email=self._create_user())
-        library_item = LibraryBooks(user=user, book=book)
+        library_item = LibraryBook(user=user, book=book)
         library_item.save()
 
         reading_session = ReadingSession(

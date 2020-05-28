@@ -1,4 +1,6 @@
-"""Accounts Serializers
+"""
+
+The accounts serializers
 
 The Accounts app contains a number of different serializers that will all be
 used for various instances.

@@ -1,0 +1,2224 @@
+---------------------------------- page 1 ----------------------------------
+#### DownExpandingContainer('title')
+  StaticGroupedFlowables()
+    Paragraph('Decyphr Documentation', style='title page title')
+         > (0,0,1,0,2) title page title
+           (0,0,0,0,2) body
+      SingleStyledText('Decyphr Documentation')
+    Paragraph('Release 0.0.1', style='title page subtitle')
+         > (0,0,1,0,2) title page subtitle
+           (0,0,0,0,2) body
+      SingleStyledText('Release 0.0.1')
+    Paragraph('Aaron Sinnott', style='title page author')
+         > (0,0,1,0,2) title page author
+           (0,0,0,0,2) body
+      SingleStyledText('Aaron Sinnott')
+    Paragraph('May 28, 2020', style='title page date')
+         > (0,0,1,0,2) title page date
+           (0,0,0,0,2) body
+      SingleStyledText('May 28, 2020')
+---------------------------------- page i ----------------------------------
+#### FootnoteContainer('footnotes')
+  StaticGroupedFlowables()
+#### DownExpandingContainer('floats')
+  StaticGroupedFlowables()
+#### FlowablesContainer('chapter title')
+  Paragraph('Table of Contents', style='front matter section title')
+       > (0,0,1,0,2) front matter section title
+         (0,0,0,0,2) body
+    Field('Table of Contents')
+      SingleStyledText('Table of Contents')
+#### ChainedContainer('column1')
+  StaticGroupedFlowables()
+    TableOfContentsSection(style='table of contents')
+         > (0,0,1,0,1) table of contents section
+           (0,0,0,1,1) chapter
+      TableOfContents()   table of contents
+           > (0,0,0,0,2) table of contents
+        TableOfContentsEntry('	Python Module Index	5')
+             > (0,0,0,1,2) toc level 1
+            MixedStyledText('	Python Module Index	5')
+              ReferenceField('')
+                   x (0,0,0,1,3) toc linked reference
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('')
+              Tab('	')
+              ReferenceField('Python Module Index')
+                   x (0,0,0,1,3) toc linked reference
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('Python Module Index')
+              Tab('	')
+              ReferenceField('5')
+                   x (0,0,0,1,3) toc linked reference
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('5')
+        TableOfContentsEntry('	Index	7')
+             > (0,0,0,1,2) toc level 1
+            MixedStyledText('	Index	7')
+              ReferenceField('')
+                   x (0,0,0,1,3) toc linked reference
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('')
+              Tab('	')
+              ReferenceField('Index')
+                   x (0,0,0,1,3) toc linked reference
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('Index')
+              Tab('	')
+              ReferenceField('7')
+                   x (0,0,0,1,3) toc linked reference
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('7')
+#### DownExpandingContainer('footer')
+  StaticGroupedFlowables()
+    Footer('		i')
+         > (0,0,0,0,2) footer
+           (0,0,0,0,1) body
+      MixedStyledText('		i')
+        Tab('	')
+        Tab('	')
+        Field('i')
+          SingleStyledText('i')
+---------------------------------- page 1 ----------------------------------
+#### FootnoteContainer('footnotes')
+  StaticGroupedFlowables()
+#### DownExpandingContainer('floats')
+  StaticGroupedFlowables()
+#### ChainedContainer('column1')
+  StaticGroupedFlowables()
+    DocumentTree()
+      StaticGroupedFlowables()   /home/aaron/Documents/projects/decyphr/decyphr/docs/source/index.rst:0 <compound>
+      List(style='bulleted')   /home/aaron/Documents/projects/decyphr/decyphr/docs/source/index.rst:18 <bullet_list>
+           > (0,0,1,0,2) bulleted list
+        ListItem()
+             x (0,0,1,0,4) bulleted list item
+             > fallback to default style
+          ListItemLabel('•')
+               > (0,0,1,0,6) bulleted list item label
+                 (0,0,0,0,2) list item label
+              MixedStyledText('•')
+                SingleStyledText('')
+                SingleStyledText('•')
+                SingleStyledText('')
+          StaticGroupedFlowables()   /home/aaron/Documents/projects/decyphr/decyphr/docs/source/index.rst:None <list_item>
+               > (0,0,0,0,3) list item body
+            Paragraph('Index')   /home/aaron/Documents/projects/decyphr/decyphr/docs/source/index.rst:18 <paragraph>
+                 > (0,0,0,0,5) list item paragraph
+                   (0,0,0,0,2) body
+              MixedStyledText('Index')
+                AnnotatedText('Index', style='internal link')   None:None <reference>
+                     > (0,0,1,0,1) internal hyperlink
+                  MixedStyledText('Index')
+                    MixedStyledText('Index')   None:None <inline>
+                      SingleStyledText('Index')
+        ListItem()
+             x (0,0,1,0,4) bulleted list item
+             > fallback to default style
+          ListItemLabel('•')
+               > (0,0,1,0,6) bulleted list item label
+                 (0,0,0,0,2) list item label
+              MixedStyledText('•')
+                SingleStyledText('')
+                SingleStyledText('•')
+                SingleStyledText('')
+          StaticGroupedFlowables()   /home/aaron/Documents/projects/decyphr/decyphr/docs/source/index.rst:None <list_item>
+               > (0,0,0,0,3) list item body
+            Paragraph('Module Index')   /home/aaron/Documents/projects/decyphr/decyphr/docs/source/index.rst:19 <paragraph>
+                 > (0,0,0,0,5) list item paragraph
+                   (0,0,0,0,2) body
+              MixedStyledText('Module Index')
+                AnnotatedText('Module Index', style='internal link')   None:None <reference>
+                     > (0,0,1,0,1) internal hyperlink
+                  MixedStyledText('Module Index')
+                    MixedStyledText('Module Index')   None:None <inline>
+                      SingleStyledText('Module Index')
+        ListItem()
+             x (0,0,1,0,4) bulleted list item
+             > fallback to default style
+          ListItemLabel('•')
+               > (0,0,1,0,6) bulleted list item label
+                 (0,0,0,0,2) list item label
+              MixedStyledText('•')
+                SingleStyledText('')
+                SingleStyledText('•')
+                SingleStyledText('')
+          StaticGroupedFlowables()   /home/aaron/Documents/projects/decyphr/decyphr/docs/source/index.rst:None <list_item>
+               > (0,0,0,0,3) list item body
+            Paragraph('Search Page')   /home/aaron/Documents/projects/decyphr/decyphr/docs/source/index.rst:20 <paragraph>
+                 > (0,0,0,0,5) list item paragraph
+                   (0,0,0,0,2) body
+              MixedStyledText('Search Page')
+                AnnotatedText('Search Page', style='internal link')   None:None <reference>
+                     > (0,0,1,0,1) internal hyperlink
+                  MixedStyledText('Search Page')
+                    MixedStyledText('Search Page')   None:None <inline>
+                      SingleStyledText('Search Page')
+      Paragraph('The accounts app.')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/__init__.py:docstring of accounts.__init__:1 <paragraph>
+           > (0,0,0,0,2) body
+        MixedStyledText('The accounts app.')
+          SingleStyledText('The accounts app.')
+      Paragraph('The accounts will handle a coupl...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/__init__.py:docstring of accounts.__init__:3 <paragraph>
+           > (0,0,0,0,2) body
+        MixedStyledText('The accounts will handle a coupl...')
+          SingleStyledText('The accounts will handle a coupl...')
+      StaticGroupedFlowables(style='block quote')   /home/aaron/Documents/projects/decyphr/decyphr/docs/source/index.rst:0 <block_quote>
+           > (0,0,1,0,1) block quote
+        List(style='bulleted')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/__init__.py:docstring of accounts.__init__:5 <bullet_list>
+             > (0,0,1,0,2) bulleted list
+          ListItem()
+               x (0,0,1,0,4) bulleted list item
+               > fallback to default style
+            ListItemLabel('•')
+                 > (0,0,1,0,6) bulleted list item label
+                   (0,0,0,0,2) list item label
+                MixedStyledText('•')
+                  SingleStyledText('')
+                  SingleStyledText('•')
+                  SingleStyledText('')
+            StaticGroupedFlowables()   None:None <list_item>
+                 > (0,0,0,0,3) list item body
+              Paragraph('store basic user information, su...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/__init__.py:docstring of accounts.__init__:5 <paragraph>
+                   > (0,0,0,0,5) list item paragraph
+                     (0,0,0,0,2) body
+                MixedStyledText('store basic user information, su...')
+                  SingleStyledText('store basic user information, su...')
+          ListItem()
+               x (0,0,1,0,4) bulleted list item
+               > fallback to default style
+            ListItemLabel('•')
+                 > (0,0,1,0,6) bulleted list item label
+                   (0,0,0,0,2) list item label
+                MixedStyledText('•')
+                  SingleStyledText('')
+                  SingleStyledText('•')
+                  SingleStyledText('')
+            StaticGroupedFlowables()   None:None <list_item>
+                 > (0,0,0,0,3) list item body
+              Paragraph('store any preferences that a use...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/__init__.py:docstring of accounts.__init__:7 <paragraph>
+                   > (0,0,0,0,5) list item paragraph
+                     (0,0,0,0,2) body
+                MixedStyledText('store any preferences that a use...')
+                  SingleStyledText('store any preferences that a use...')
+          ListItem()
+               x (0,0,1,0,4) bulleted list item
+               > fallback to default style
+            ListItemLabel('•')
+                 > (0,0,1,0,6) bulleted list item label
+                   (0,0,0,0,2) list item label
+                MixedStyledText('•')
+                  SingleStyledText('')
+                  SingleStyledText('•')
+                  SingleStyledText('')
+            StaticGroupedFlowables()   None:None <list_item>
+                 > (0,0,0,0,3) list item body
+              Paragraph('store information about how ofte...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/__init__.py:docstring of accounts.__init__:9 <paragraph>
+                   > (0,0,0,0,5) list item paragraph
+                     (0,0,0,0,2) body
+                MixedStyledText('store information about how ofte...')
+                  SingleStyledText('store information about how ofte...')
+      Paragraph('The authentication system is tok...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/__init__.py:docstring of accounts.__init__:14 <paragraph>
+           > (0,0,0,0,2) body
+        MixedStyledText('The authentication system is tok...')
+          SingleStyledText('The authentication system is tok...')
+      Paragraph('In addition to this, we will nee...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/__init__.py:docstring of accounts.__init__:19 <paragraph>
+           > (0,0,0,0,2) body
+        MixedStyledText('In addition to this, we will nee...')
+          SingleStyledText('In addition to this, we will nee...')
+      DefinitionList()   /home/aaron/Documents/projects/decyphr/decyphr/docs/source/index.rst:0 <definition_list>
+           > (0,0,0,0,2) definition list
+        LabeledFlowable()   /home/aaron/Documents/projects/decyphr/decyphr/accounts/__init__.py:docstring of accounts.__init__:44 <definition_list_item>
+             > (0,0,0,0,4) definition list item
+          StaticGroupedFlowables(style='definition term')
+               > (0,0,1,0,5) definition term
+            Paragraph('The first version of this app sh...')
+                 > (0,0,1,0,7) definition term paragraph
+                   (0,0,0,0,2) body
+              MixedStyledText('The first version of this app sh...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/__init__.py:docstring of accounts.__init__:44 <term>
+                SingleStyledText('The first version of this app sh...')
+          StaticGroupedFlowables(style='definition')   None:None <definition>
+               > (0,0,1,0,5) definition
+            List(style='bulleted')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/__init__.py:docstring of accounts.__init__:25 <bullet_list>
+                 > (0,0,1,0,2) bulleted list
+              ListItem()
+                   x (0,0,1,0,4) bulleted list item
+                   > fallback to default style
+                ListItemLabel('•')
+                     > (0,0,1,0,6) bulleted list item label
+                       (0,0,0,0,2) list item label
+                    MixedStyledText('•')
+                      SingleStyledText('')
+                      SingleStyledText('•')
+                      SingleStyledText('')
+                StaticGroupedFlowables()   None:None <list_item>
+                     > (0,0,0,0,3) list item body
+                  Paragraph('User registration - Validate inc...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/__init__.py:docstring of accounts.__init__:25 <paragraph>
+                       > (0,0,0,0,5) list item paragraph
+                         (0,0,0,0,2) body
+                    MixedStyledText('User registration - Validate inc...')
+                      SingleStyledText('User registration - Validate inc...')
+              ListItem()
+                   x (0,0,1,0,4) bulleted list item
+                   > fallback to default style
+                ListItemLabel('•')
+                     > (0,0,1,0,6) bulleted list item label
+                       (0,0,0,0,2) list item label
+                    MixedStyledText('•')
+                      SingleStyledText('')
+                      SingleStyledText('•')
+                      SingleStyledText('')
+                StaticGroupedFlowables()   None:None <list_item>
+                     > (0,0,0,0,3) list item body
+                  Paragraph('User login - Validate incoming d...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/__init__.py:docstring of accounts.__init__:31 <paragraph>
+                       > (0,0,0,0,5) list item paragraph
+                         (0,0,0,0,2) body
+                    MixedStyledText('User login - Validate incoming d...')
+                      SingleStyledText('User login - Validate incoming d...')
+              ListItem()
+                   x (0,0,1,0,4) bulleted list item
+                   > fallback to default style
+                ListItemLabel('•')
+                     > (0,0,1,0,6) bulleted list item label
+                       (0,0,0,0,2) list item label
+                    MixedStyledText('•')
+                      SingleStyledText('')
+                      SingleStyledText('•')
+                      SingleStyledText('')
+                StaticGroupedFlowables()   None:None <list_item>
+                     > (0,0,0,0,3) list item body
+                  Paragraph('User logout - Log user out - Ret...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/__init__.py:docstring of accounts.__init__:35 <paragraph>
+                       > (0,0,0,0,5) list item paragraph
+                         (0,0,0,0,2) body
+                    MixedStyledText('User logout - Log user out - Ret...')
+                      SingleStyledText('User logout - Log user out - Ret...')
+              ListItem()
+                   x (0,0,1,0,4) bulleted list item
+                   > fallback to default style
+                ListItemLabel('•')
+                     > (0,0,1,0,6) bulleted list item label
+                       (0,0,0,0,2) list item label
+                    MixedStyledText('•')
+                      SingleStyledText('')
+                      SingleStyledText('•')
+                      SingleStyledText('')
+                StaticGroupedFlowables()   None:None <list_item>
+                     > (0,0,0,0,3) list item body
+                  Paragraph('User profiles - Users should be ...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/__init__.py:docstring of accounts.__init__:38 <paragraph>
+                       > (0,0,0,0,5) list item paragraph
+                         (0,0,0,0,2) body
+                    MixedStyledText('User profiles - Users should be ...')
+                      SingleStyledText('User profiles - Users should be ...')
+              ListItem()
+                   x (0,0,1,0,4) bulleted list item
+                   > fallback to default style
+                ListItemLabel('•')
+                     > (0,0,1,0,6) bulleted list item label
+                       (0,0,0,0,2) list item label
+                    MixedStyledText('•')
+                      SingleStyledText('')
+                      SingleStyledText('•')
+                      SingleStyledText('')
+                StaticGroupedFlowables()   None:None <list_item>
+                     > (0,0,0,0,3) list item body
+                  Paragraph('Password reset - Send an email t...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/__init__.py:docstring of accounts.__init__:41 <paragraph>
+                       > (0,0,0,0,5) list item paragraph
+                         (0,0,0,0,2) body
+                    MixedStyledText('Password reset - Send an email t...')
+                      SingleStyledText('Password reset - Send an email t...')
+      Paragraph('The accounts models.')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models:1 <paragraph>
+           > (0,0,0,0,2) body
+        MixedStyledText('The accounts models.')
+          SingleStyledText('The accounts models.')
+      Paragraph('This is where we’ll store the in...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models:3 <paragraph>
+           > (0,0,0,0,2) body
+        MixedStyledText('This is where we’ll store the in...')
+          SingleStyledText('This is where we’ll store the in...')
+#### DownExpandingContainer('footer')
+  StaticGroupedFlowables()
+    Footer('		1')
+         > (0,0,0,0,2) footer
+           (0,0,0,0,1) body
+      MixedStyledText('		1')
+        Tab('	')
+        Tab('	')
+        Field('1')
+          SingleStyledText('1')
+---------------------------------- page 2 ----------------------------------
+#### FootnoteContainer('footnotes')
+  StaticGroupedFlowables()
+#### DownExpandingContainer('floats')
+  StaticGroupedFlowables()
+#### ChainedContainer('column1')
+  (continued) StaticGroupedFlowables()
+    (continued) DocumentTree()
+      Paragraph('We want to able to store the use...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models:5 <paragraph>
+           > (0,0,0,0,2) body
+      LabeledFlowable(style='object description')   /home/aaron/Documents/projects/decyphr/decyphr/docs/source/index.rst:0 <desc>
+           > (0,0,1,0,2) object description
+        StaticGroupedFlowables(style='signatures')
+             > (0,0,2,0,3) object signatures
+          Paragraph('class accounts.models.UserProfil...', id='accounts.models.UserProfile')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile:None <desc_signature>
+               > (0,0,2,0,5) object signature
+                 (0,0,0,0,2) body
+            MixedStyledText('class accounts.models.UserProfil...')
+              MixedStyledText('class ', style='annotation')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile:None <desc_annotation>
+                   > (0,0,3,0,6) object annotation
+                SingleStyledText('class ')
+              MixedStyledText('accounts.models.', style='additional name part')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile:None <desc_addname>
+                   > (0,0,3,0,6) additional name part
+                SingleStyledText('accounts.models.')
+              MixedStyledText('UserProfile', style='main object name')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile:None <desc_name>
+                   > (0,0,3,0,6) object name
+                SingleStyledText('UserProfile')
+              MixedStyledText(' ( *args, **kwargs ) ')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile:None <desc_parameterlist>
+                MixedStyledText(' ( *args, **kwargs')
+                  SingleStyledText(' ( ', style='parentheses')
+                       > (0,0,3,0,6) object parentheses
+                  MixedStyledText('*args, **kwargs', style='parameter list')
+                       > (0,0,3,0,6) object parameter list
+                    MixedStyledText('*args', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('*args')
+                    SingleStyledText(', ')
+                    MixedStyledText('**kwargs', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('**kwargs')
+                SingleStyledText(' ) ', style='parentheses')
+                     > (0,0,3,0,6) object parentheses
+        StaticGroupedFlowables(style='content')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile:None <desc_content>
+             > (0,0,2,0,3) object description content
+          Paragraph('The user model that stores the u...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile:1 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('The user model that stores the u...')
+              SingleStyledText('The user model that stores the u...')
+          Paragraph('This model extends Django’s Abst...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile:3 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('This model extends Django’s Abst...')
+              SingleStyledText('This model extends Django’s ')
+              MixedStyledText('AbstractUser', style='title reference')   None:None <title_reference>
+                   > (0,0,1,0,1) title reference
+                SingleStyledText('AbstractUser')
+              SingleStyledText(' and inherits the majority of th...')
+              MixedStyledText('username', style='title reference')   None:None <title_reference>
+                   > (0,0,1,0,1) title reference
+                SingleStyledText('username')
+              SingleStyledText(', ')
+              MixedStyledText('email', style='title reference')   None:None <title_reference>
+                   > (0,0,1,0,1) title reference
+                SingleStyledText('email')
+              SingleStyledText(' and ')
+              MixedStyledText('password', style='title reference')   None:None <title_reference>
+                   > (0,0,1,0,1) title reference
+                SingleStyledText('password')
+              SingleStyledText('. As such, not all validation is...')
+              MixedStyledText('serializers', style='title reference')   None:None <title_reference>
+                   > (0,0,1,0,1) title reference
+                SingleStyledText('serializers')
+              SingleStyledText('.')
+          Paragraph('first_language and language_bein...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile:8 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('first_language and language_bein...')
+              MixedStyledText('first_language', style='title reference')   None:None <title_reference>
+                   > (0,0,1,0,1) title reference
+                SingleStyledText('first_language')
+              SingleStyledText(' and ')
+              MixedStyledText('language_being_learned', style='title reference')   None:None <title_reference>
+                   > (0,0,1,0,1) title reference
+                SingleStyledText('language_being_learned')
+              SingleStyledText(' are also required fields, but o...')
+              MixedStyledText('serializer', style='title reference')   None:None <title_reference>
+                   > (0,0,1,0,1) title reference
+                SingleStyledText('serializer')
+              SingleStyledText('. Users created by other means, ...')
+          Paragraph('The language_preference field wi...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile:13 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('The language_preference field wi...')
+              SingleStyledText('The ')
+              MixedStyledText('language_preference', style='title reference')   None:None <title_reference>
+                   > (0,0,1,0,1) title reference
+                SingleStyledText('language_preference')
+              SingleStyledText(' field will allow users to choos...')
+          LabeledFlowable(style='object description')   None:None <desc>
+               > (0,0,1,0,2) object description
+            StaticGroupedFlowables(style='signatures')
+                 > (0,0,2,0,3) object signatures
+              Paragraph('exception DoesNotExist', id='accounts.models.UserProfile.DoesNotExist')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile.DoesNotExist:None <desc_signature>
+                   > (0,0,2,0,5) object signature
+                     (0,0,0,0,2) body
+                MixedStyledText('exception DoesNotExist')
+                  MixedStyledText('exception ', style='annotation')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile.DoesNotExist:None <desc_annotation>
+                       > (0,0,3,0,6) object annotation
+                    SingleStyledText('exception ')
+                  MixedStyledText('DoesNotExist', style='main object name')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile.DoesNotExist:None <desc_name>
+                       > (0,0,3,0,6) object name
+                    SingleStyledText('DoesNotExist')
+            StaticGroupedFlowables(style='content')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile.DoesNotExist:None <desc_content>
+                 > (0,0,2,0,3) object description content
+          LabeledFlowable(style='object description')   None:None <desc>
+               > (0,0,1,0,2) object description
+            StaticGroupedFlowables(style='signatures')
+                 > (0,0,2,0,3) object signatures
+              Paragraph('exception MultipleObjectsReturne...', id='accounts.models.UserProfile.MultipleObjectsReturned')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile.MultipleObjectsReturned:None <desc_signature>
+                   > (0,0,2,0,5) object signature
+                     (0,0,0,0,2) body
+                MixedStyledText('exception MultipleObjectsReturne...')
+                  MixedStyledText('exception ', style='annotation')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile.MultipleObjectsReturned:None <desc_annotation>
+                       > (0,0,3,0,6) object annotation
+                    SingleStyledText('exception ')
+                  MixedStyledText('MultipleObjectsReturned', style='main object name')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile.MultipleObjectsReturned:None <desc_name>
+                       > (0,0,3,0,6) object name
+                    SingleStyledText('MultipleObjectsReturned')
+            StaticGroupedFlowables(style='content')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/models.py:docstring of accounts.models.UserProfile.MultipleObjectsReturned:None <desc_content>
+                 > (0,0,2,0,3) object description content
+      Paragraph('The accounts serializers')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers:1 <paragraph>
+           > (0,0,0,0,2) body
+        MixedStyledText('The accounts serializers')
+          SingleStyledText('The accounts serializers')
+      Paragraph('The Accounts app contains a numb...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers:3 <paragraph>
+           > (0,0,0,0,2) body
+        MixedStyledText('The Accounts app contains a numb...')
+          SingleStyledText('The Accounts app contains a numb...')
+      Paragraph('The EmptySerializer is provided ...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers:6 <paragraph>
+           > (0,0,0,0,2) body
+        MixedStyledText('The EmptySerializer is provided ...')
+          SingleStyledText('The ')
+          MixedStyledText('EmptySerializer', style='title reference')   None:None <title_reference>
+               > (0,0,1,0,1) title reference
+            SingleStyledText('EmptySerializer')
+          SingleStyledText(' is provided as a dummy serializ...')
+      Paragraph('Upon login, a user’s incoming da...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers:9 <paragraph>
+           > (0,0,0,0,2) body
+        MixedStyledText('Upon login, a user’s incoming da...')
+          SingleStyledText('Upon login, a user’s incoming da...')
+          MixedStyledText('UserLoginSerializer', style='title reference')   None:None <title_reference>
+               > (0,0,1,0,1) title reference
+            SingleStyledText('UserLoginSerializer')
+          SingleStyledText('. This will simply just contain ...')
+          MixedStyledText('AuthorisedUserSerializer', style='title reference')   None:None <title_reference>
+               > (0,0,1,0,1) title reference
+            SingleStyledText('AuthorisedUserSerializer')
+          SingleStyledText('.')
+      Paragraph('Upon registration, a users’s inc...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers:14 <paragraph>
+           > (0,0,0,0,2) body
+        MixedStyledText('Upon registration, a users’s inc...')
+          SingleStyledText('Upon registration, a users’s inc...')
+          MixedStyledText('RegisterUserSerializer', style='title reference')   None:None <title_reference>
+               > (0,0,1,0,1) title reference
+            SingleStyledText('RegisterUserSerializer')
+          SingleStyledText('. This will contain the informat...')
+          MixedStyledText('AuthorisedUserSerializer', style='title reference')   None:None <title_reference>
+               > (0,0,1,0,1) title reference
+            SingleStyledText('AuthorisedUserSerializer')
+          SingleStyledText('.')
+      LabeledFlowable(style='object description')   /home/aaron/Documents/projects/decyphr/decyphr/docs/source/index.rst:0 <desc>
+           > (0,0,1,0,2) object description
+        StaticGroupedFlowables(style='signatures')
+             > (0,0,2,0,3) object signatures
+          Paragraph('class accounts.serializers.Autho...', id='accounts.serializers.AuthorisedUserSerializer')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.AuthorisedUserSerializer:None <desc_signature>
+               > (0,0,2,0,5) object signature
+                 (0,0,0,0,2) body
+            MixedStyledText('class accounts.serializers.Autho...')
+              MixedStyledText('class ', style='annotation')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.AuthorisedUserSerializer:None <desc_annotation>
+                   > (0,0,3,0,6) object annotation
+                SingleStyledText('class ')
+              MixedStyledText('accounts.serializers.', style='additional name part')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.AuthorisedUserSerializer:None <desc_addname>
+                   > (0,0,3,0,6) additional name part
+                SingleStyledText('accounts.serializers.')
+              MixedStyledText('AuthorisedUserSerializer', style='main object name')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.AuthorisedUserSerializer:None <desc_name>
+                   > (0,0,3,0,6) object name
+                SingleStyledText('AuthorisedUserSerializer')
+              MixedStyledText(' ( instance=None, data=<class 'r...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.AuthorisedUserSerializer:None <desc_parameterlist>
+                MixedStyledText(' ( instance=None, data=<class 'r...')
+                  SingleStyledText(' ( ', style='parentheses')
+                       > (0,0,3,0,6) object parentheses
+                  MixedStyledText('instance=None, data=<class 'rest...', style='parameter list')
+                       > (0,0,3,0,6) object parameter list
+                    MixedStyledText('instance=None', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('instance=None')
+                    SingleStyledText(', ')
+                    MixedStyledText('data=<class 'rest_framework.fiel...', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('data=<class 'rest_framework.fiel...')
+                    SingleStyledText(', ')
+                    MixedStyledText('**kwargs', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('**kwargs')
+                SingleStyledText(' ) ', style='parentheses')
+                     > (0,0,3,0,6) object parentheses
+        StaticGroupedFlowables(style='content')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.AuthorisedUserSerializer:None <desc_content>
+             > (0,0,2,0,3) object description content
+          Paragraph('Authorised User Serializer')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.AuthorisedUserSerializer:1 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('Authorised User Serializer')
+              SingleStyledText('Authorised User Serializer')
+          Paragraph('The serializer that will contain...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.AuthorisedUserSerializer:3 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('The serializer that will contain...')
+              SingleStyledText('The serializer that will contain...')
+          LabeledFlowable(style='object description')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.AuthorisedUserSerializer.get_auth_token:None <desc>
+               > (0,0,1,0,2) object description
+            StaticGroupedFlowables(style='signatures')
+                 > (0,0,2,0,3) object signatures
+              Paragraph('get_auth_token ( obj ) ', id='accounts.serializers.AuthorisedUserSerializer.get_auth_token')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.AuthorisedUserSerializer.get_auth_token:None <desc_signature>
+                   > (0,0,2,0,5) object signature
+                     (0,0,0,0,2) body
+                MixedStyledText('get_auth_token ( obj ) ')
+                  MixedStyledText('get_auth_token', style='main object name')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.AuthorisedUserSerializer.get_auth_token:None <desc_name>
+                       > (0,0,3,0,6) object name
+                    SingleStyledText('get_auth_token')
+                  MixedStyledText(' ( obj ) ')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.AuthorisedUserSerializer.get_auth_token:None <desc_parameterlist>
+                    MixedStyledText(' ( obj')
+                      SingleStyledText(' ( ', style='parentheses')
+                           > (0,0,3,0,6) object parentheses
+                      MixedStyledText('obj', style='parameter list')
+                           > (0,0,3,0,6) object parameter list
+                        MixedStyledText('obj', style='parameter')   None:None <desc_parameter>
+                             > (0,0,3,0,6) object parameter
+                          SingleStyledText('obj')
+                    SingleStyledText(' ) ', style='parentheses')
+                         > (0,0,3,0,6) object parentheses
+            StaticGroupedFlowables(style='content')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.AuthorisedUserSerializer.get_auth_token:None <desc_content>
+                 > (0,0,2,0,3) object description content
+              Paragraph('Get auth token')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.AuthorisedUserSerializer.get_auth_token:1 <paragraph>
+                   > (0,0,2,0,5) object description content paragraph
+                     (0,0,0,0,2) body
+                MixedStyledText('Get auth token')
+                  SingleStyledText('Get auth token')
+              Paragraph('Get the user’s authentication to...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.AuthorisedUserSerializer.get_auth_token:3 <paragraph>
+                   > (0,0,2,0,5) object description content paragraph
+                     (0,0,0,0,2) body
+                MixedStyledText('Get the user’s authentication to...')
+                  SingleStyledText('Get the user’s authentication to...')
+      LabeledFlowable(style='object description')   /home/aaron/Documents/projects/decyphr/decyphr/docs/source/index.rst:0 <desc>
+           > (0,0,1,0,2) object description
+        StaticGroupedFlowables(style='signatures')
+             > (0,0,2,0,3) object signatures
+          Paragraph('class accounts.serializers.Empty...', id='accounts.serializers.EmptySerializer')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.EmptySerializer:None <desc_signature>
+               > (0,0,2,0,5) object signature
+                 (0,0,0,0,2) body
+            MixedStyledText('class accounts.serializers.Empty...')
+              MixedStyledText('class ', style='annotation')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.EmptySerializer:None <desc_annotation>
+                   > (0,0,3,0,6) object annotation
+                SingleStyledText('class ')
+              MixedStyledText('accounts.serializers.', style='additional name part')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.EmptySerializer:None <desc_addname>
+                   > (0,0,3,0,6) additional name part
+                SingleStyledText('accounts.serializers.')
+              MixedStyledText('EmptySerializer', style='main object name')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.EmptySerializer:None <desc_name>
+                   > (0,0,3,0,6) object name
+                SingleStyledText('EmptySerializer')
+              MixedStyledText(' ( instance=None, data=<class 'r...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.EmptySerializer:None <desc_parameterlist>
+                MixedStyledText(' ( instance=None, data=<class 'r...')
+                  SingleStyledText(' ( ', style='parentheses')
+                       > (0,0,3,0,6) object parentheses
+                  MixedStyledText('instance=None, data=<class 'rest...', style='parameter list')
+                       > (0,0,3,0,6) object parameter list
+                    MixedStyledText('instance=None', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('instance=None')
+                    SingleStyledText(', ')
+                    MixedStyledText('data=<class 'rest_framework.fiel...', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('data=<class 'rest_framework.fiel...')
+                    SingleStyledText(', ')
+                    MixedStyledText('**kwargs', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('**kwargs')
+                SingleStyledText(' ) ', style='parentheses')
+                     > (0,0,3,0,6) object parentheses
+        StaticGroupedFlowables(style='content')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.EmptySerializer:None <desc_content>
+             > (0,0,2,0,3) object description content
+      LabeledFlowable(style='object description')   /home/aaron/Documents/projects/decyphr/decyphr/docs/source/index.rst:0 <desc>
+           > (0,0,1,0,2) object description
+        StaticGroupedFlowables(style='signatures')
+             > (0,0,2,0,3) object signatures
+          Paragraph('class accounts.serializers.Regis...', id='accounts.serializers.RegisterUserSerializer')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.RegisterUserSerializer:None <desc_signature>
+               > (0,0,2,0,5) object signature
+                 (0,0,0,0,2) body
+            MixedStyledText('class accounts.serializers.Regis...')
+              MixedStyledText('class ', style='annotation')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.RegisterUserSerializer:None <desc_annotation>
+                   > (0,0,3,0,6) object annotation
+                SingleStyledText('class ')
+              MixedStyledText('accounts.serializers.', style='additional name part')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.RegisterUserSerializer:None <desc_addname>
+                   > (0,0,3,0,6) additional name part
+                SingleStyledText('accounts.serializers.')
+              MixedStyledText('RegisterUserSerializer', style='main object name')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.RegisterUserSerializer:None <desc_name>
+                   > (0,0,3,0,6) object name
+                SingleStyledText('RegisterUserSerializer')
+              MixedStyledText(' ( instance=None, data=<class 'r...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.RegisterUserSerializer:None <desc_parameterlist>
+                MixedStyledText(' ( instance=None, data=<class 'r...')
+                  SingleStyledText(' ( ', style='parentheses')
+                       > (0,0,3,0,6) object parentheses
+                  MixedStyledText('instance=None, data=<class 'rest...', style='parameter list')
+                       > (0,0,3,0,6) object parameter list
+                    MixedStyledText('instance=None', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('instance=None')
+                    SingleStyledText(', ')
+                    MixedStyledText('data=<class 'rest_framework.fiel...', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('data=<class 'rest_framework.fiel...')
+                    SingleStyledText(', ')
+                    MixedStyledText('**kwargs', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('**kwargs')
+                SingleStyledText(' ) ', style='parentheses')
+                     > (0,0,3,0,6) object parentheses
+        StaticGroupedFlowables(style='content')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.RegisterUserSerializer:None <desc_content>
+             > (0,0,2,0,3) object description content
+          Paragraph('Register New User')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.RegisterUserSerializer:1 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('Register New User')
+              SingleStyledText('Register New User')
+          Paragraph('The serializer that will be used...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.RegisterUserSerializer:3 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('The serializer that will be used...')
+              SingleStyledText('The serializer that will be used...')
+          LabeledFlowable(style='object description')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.RegisterUserSerializer.validate_email:None <desc>
+               > (0,0,1,0,2) object description
+            StaticGroupedFlowables(style='signatures')
+                 > (0,0,2,0,3) object signatures
+              Paragraph('validate_email ( value ) ', id='accounts.serializers.RegisterUserSerializer.validate_email')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.RegisterUserSerializer.validate_email:None <desc_signature>
+                   > (0,0,2,0,5) object signature
+                     (0,0,0,0,2) body
+                MixedStyledText('validate_email ( value ) ')
+                  MixedStyledText('validate_email', style='main object name')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.RegisterUserSerializer.validate_email:None <desc_name>
+                       > (0,0,3,0,6) object name
+                    SingleStyledText('validate_email')
+                  MixedStyledText(' ( value ) ')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.RegisterUserSerializer.validate_email:None <desc_parameterlist>
+                    MixedStyledText(' ( value')
+                      SingleStyledText(' ( ', style='parentheses')
+                           > (0,0,3,0,6) object parentheses
+                      MixedStyledText('value', style='parameter list')
+                           > (0,0,3,0,6) object parameter list
+                        MixedStyledText('value', style='parameter')   None:None <desc_parameter>
+                             > (0,0,3,0,6) object parameter
+                          SingleStyledText('value')
+                    SingleStyledText(' ) ', style='parentheses')
+                         > (0,0,3,0,6) object parentheses
+            StaticGroupedFlowables(style='content')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.RegisterUserSerializer.validate_email:None <desc_content>
+                 > (0,0,2,0,3) object description content
+              Paragraph('Validate email')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.RegisterUserSerializer.validate_email:1 <paragraph>
+                   > (0,0,2,0,5) object description content paragraph
+                     (0,0,0,0,2) body
+                MixedStyledText('Validate email')
+                  SingleStyledText('Validate email')
+              Paragraph('Validate the user’s email addres...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.RegisterUserSerializer.validate_email:3 <paragraph>
+                   > (0,0,2,0,5) object description content paragraph
+                     (0,0,0,0,2) body
+                MixedStyledText('Validate the user’s email addres...')
+                  SingleStyledText('Validate the user’s email addres...')
+#### UpExpandingContainer('header')
+  StaticGroupedFlowables()
+    Header('Decyphr Documentation, Release 0...')
+         > (0,0,0,0,2) header
+           (0,0,0,0,1) body
+      MixedStyledText('Decyphr Documentation, Release 0...')
+        Field('Decyphr Documentation')
+          SingleStyledText('Decyphr Documentation')
+        SingleStyledText(', ')
+        Field('Release 0.0.1')
+          SingleStyledText('Release 0.0.1')
+#### DownExpandingContainer('footer')
+  StaticGroupedFlowables()
+    Footer('2		Chapter ​.  ​')
+         > (0,0,0,0,2) footer
+           (0,0,0,0,1) body
+      MixedStyledText('2		Chapter ​.  ​')
+        Field('2')
+          SingleStyledText('2')
+        Tab('	')
+        Tab('	')
+        StringField('Chapter')
+        SingleStyledText(' ')
+        Field('​')
+          SingleStyledText('​')
+        SingleStyledText('.  ')
+        Field('​')
+          SingleStyledText('​')
+---------------------------------- page 3 ----------------------------------
+#### FootnoteContainer('footnotes')
+  StaticGroupedFlowables()
+#### DownExpandingContainer('floats')
+  StaticGroupedFlowables()
+#### ChainedContainer('column1')
+  (continued) StaticGroupedFlowables()
+    (continued) DocumentTree()
+      LabeledFlowable(style='object description')   /home/aaron/Documents/projects/decyphr/decyphr/docs/source/index.rst:0 <desc>
+           > (0,0,1,0,2) object description
+        StaticGroupedFlowables(style='signatures')
+             > (0,0,2,0,3) object signatures
+          Paragraph('class accounts.serializers.UserL...', id='accounts.serializers.UserLoginSerializer')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.UserLoginSerializer:None <desc_signature>
+               > (0,0,2,0,5) object signature
+                 (0,0,0,0,2) body
+            MixedStyledText('class accounts.serializers.UserL...')
+              MixedStyledText('class ', style='annotation')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.UserLoginSerializer:None <desc_annotation>
+                   > (0,0,3,0,6) object annotation
+                SingleStyledText('class ')
+              MixedStyledText('accounts.serializers.', style='additional name part')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.UserLoginSerializer:None <desc_addname>
+                   > (0,0,3,0,6) additional name part
+                SingleStyledText('accounts.serializers.')
+              MixedStyledText('UserLoginSerializer', style='main object name')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.UserLoginSerializer:None <desc_name>
+                   > (0,0,3,0,6) object name
+                SingleStyledText('UserLoginSerializer')
+              MixedStyledText(' ( instance=None, data=<class 'r...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.UserLoginSerializer:None <desc_parameterlist>
+                MixedStyledText(' ( instance=None, data=<class 'r...')
+                  SingleStyledText(' ( ', style='parentheses')
+                       > (0,0,3,0,6) object parentheses
+                  MixedStyledText('instance=None, data=<class 'rest...', style='parameter list')
+                       > (0,0,3,0,6) object parameter list
+                    MixedStyledText('instance=None', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('instance=None')
+                    SingleStyledText(', ')
+                    MixedStyledText('data=<class 'rest_framework.fiel...', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('data=<class 'rest_framework.fiel...')
+                    SingleStyledText(', ')
+                    MixedStyledText('**kwargs', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('**kwargs')
+                SingleStyledText(' ) ', style='parentheses')
+                     > (0,0,3,0,6) object parentheses
+        StaticGroupedFlowables(style='content')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.UserLoginSerializer:None <desc_content>
+             > (0,0,2,0,3) object description content
+          Paragraph('Login Serializer')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.UserLoginSerializer:1 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('Login Serializer')
+              SingleStyledText('Login Serializer')
+          Paragraph('The serializer that will be used...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.UserLoginSerializer:3 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('The serializer that will be used...')
+              SingleStyledText('The serializer that will be used...')
+          DefinitionList(style='field list')   None:None <field_list>
+               > (0,0,1,0,2) field list
+                 (0,0,0,0,2) definition list
+            LabeledFlowable()   None:None <field>
+                 > (0,0,1,0,4) field list item
+                   (0,0,0,0,4) definition list item
+              Paragraph('Parameters', style='field name')
+                   > (0,0,2,0,6) field name
+                     (0,0,0,0,2) body
+                MixedStyledText('Parameters')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.serializers.UserLoginSerializer:0 <field_name>
+                  SingleStyledText('Parameters')
+              StaticGroupedFlowables()   None:None <field_body>
+                List(style='bulleted')   None:None <bullet_list>
+                     > (0,0,1,0,2) bulleted list
+                  ListItem()
+                       x (0,0,1,0,4) bulleted list item
+                       > fallback to default style
+                    ListItemLabel('•')
+                         > (0,0,1,0,6) bulleted list item label
+                           (0,0,0,0,2) list item label
+                        MixedStyledText('•')
+                          SingleStyledText('')
+                          SingleStyledText('•')
+                          SingleStyledText('')
+                    StaticGroupedFlowables()   None:None <list_item>
+                         > (0,0,0,0,3) list item body
+                      Paragraph('username (str) – The username pr...')   None:None <paragraph>
+                           > (0,0,0,0,5) list item paragraph
+                             (0,0,0,0,2) body
+                        MixedStyledText('username (str) – The username pr...')
+                          MixedStyledText('username', style='literal strong')   None:None <literal_strong>
+                               > (0,0,1,0,1) literal strong
+                            SingleStyledText('username')
+                          SingleStyledText(' (')
+                          AnnotatedText('str', style='external link')   None:None <reference>
+                               > (0,0,1,0,1) external hyperlink
+                            MixedStyledText('str')
+                              MixedStyledText('str', style='literal emphasis')   None:None <literal_emphasis>
+                                   > (0,0,1,0,1) literal emphasis
+                                SingleStyledText('str')
+                          SingleStyledText(')')
+                          SingleStyledText(' – ')
+                          SingleStyledText('The username provided by the use...')
+                  ListItem()
+                       x (0,0,1,0,4) bulleted list item
+                       > fallback to default style
+                    ListItemLabel('•')
+                         > (0,0,1,0,6) bulleted list item label
+                           (0,0,0,0,2) list item label
+                        MixedStyledText('•')
+                          SingleStyledText('')
+                          SingleStyledText('•')
+                          SingleStyledText('')
+                    StaticGroupedFlowables()   None:None <list_item>
+                         > (0,0,0,0,3) list item body
+                      Paragraph('password (str) – The password pr...')   None:None <paragraph>
+                           > (0,0,0,0,5) list item paragraph
+                             (0,0,0,0,2) body
+                        MixedStyledText('password (str) – The password pr...')
+                          MixedStyledText('password', style='literal strong')   None:None <literal_strong>
+                               > (0,0,1,0,1) literal strong
+                            SingleStyledText('password')
+                          SingleStyledText(' (')
+                          AnnotatedText('str', style='external link')   None:None <reference>
+                               > (0,0,1,0,1) external hyperlink
+                            MixedStyledText('str')
+                              MixedStyledText('str', style='literal emphasis')   None:None <literal_emphasis>
+                                   > (0,0,1,0,1) literal emphasis
+                                SingleStyledText('str')
+                          SingleStyledText(')')
+                          SingleStyledText(' – ')
+                          SingleStyledText('The password provided by the use...')
+      LabeledFlowable(style='object description')   /home/aaron/Documents/projects/decyphr/decyphr/docs/source/index.rst:0 <desc>
+           > (0,0,1,0,2) object description
+        StaticGroupedFlowables(style='signatures')
+             > (0,0,2,0,3) object signatures
+          Paragraph('class accounts.views.AuthViewSet...', id='accounts.views.AuthViewSet')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet:None <desc_signature>
+               > (0,0,2,0,5) object signature
+                 (0,0,0,0,2) body
+            MixedStyledText('class accounts.views.AuthViewSet...')
+              MixedStyledText('class ', style='annotation')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet:None <desc_annotation>
+                   > (0,0,3,0,6) object annotation
+                SingleStyledText('class ')
+              MixedStyledText('accounts.views.', style='additional name part')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet:None <desc_addname>
+                   > (0,0,3,0,6) additional name part
+                SingleStyledText('accounts.views.')
+              MixedStyledText('AuthViewSet', style='main object name')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet:None <desc_name>
+                   > (0,0,3,0,6) object name
+                SingleStyledText('AuthViewSet')
+              MixedStyledText(' ( **kwargs ) ')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet:None <desc_parameterlist>
+                MixedStyledText(' ( **kwargs')
+                  SingleStyledText(' ( ', style='parentheses')
+                       > (0,0,3,0,6) object parentheses
+                  MixedStyledText('**kwargs', style='parameter list')
+                       > (0,0,3,0,6) object parameter list
+                    MixedStyledText('**kwargs', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('**kwargs')
+                SingleStyledText(' ) ', style='parentheses')
+                     > (0,0,3,0,6) object parentheses
+        StaticGroupedFlowables(style='content')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet:None <desc_content>
+             > (0,0,2,0,3) object description content
+          Paragraph('Authentication Viewset')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet:1 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('Authentication Viewset')
+              SingleStyledText('Authentication Viewset')
+          Paragraph('The viewset that will be respons...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet:3 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('The viewset that will be respons...')
+              SingleStyledText('The viewset that will be respons...')
+          LabeledFlowable(style='object description')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet.get_serializer_class:None <desc>
+               > (0,0,1,0,2) object description
+            StaticGroupedFlowables(style='signatures')
+                 > (0,0,2,0,3) object signatures
+              Paragraph('get_serializer_class (  ) ', id='accounts.views.AuthViewSet.get_serializer_class')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet.get_serializer_class:None <desc_signature>
+                   > (0,0,2,0,5) object signature
+                     (0,0,0,0,2) body
+                MixedStyledText('get_serializer_class (  ) ')
+                  MixedStyledText('get_serializer_class', style='main object name')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet.get_serializer_class:None <desc_name>
+                       > (0,0,3,0,6) object name
+                    SingleStyledText('get_serializer_class')
+                  MixedStyledText(' (  ) ')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet.get_serializer_class:None <desc_parameterlist>
+                    MixedStyledText(' ( ')
+                      SingleStyledText(' ( ', style='parentheses')
+                           > (0,0,3,0,6) object parentheses
+                      MixedStyledText('', style='parameter list')
+                           > (0,0,3,0,6) object parameter list
+                    SingleStyledText(' ) ', style='parentheses')
+                         > (0,0,3,0,6) object parentheses
+            StaticGroupedFlowables(style='content')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet.get_serializer_class:None <desc_content>
+                 > (0,0,2,0,3) object description content
+              Paragraph('Get Serializer Class')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet.get_serializer_class:1 <paragraph>
+                   > (0,0,2,0,5) object description content paragraph
+                     (0,0,0,0,2) body
+                MixedStyledText('Get Serializer Class')
+                  SingleStyledText('Get Serializer Class')
+              Paragraph('This viewset has multiple action...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet.get_serializer_class:3 <paragraph>
+                   > (0,0,2,0,5) object description content paragraph
+                     (0,0,0,0,2) body
+                MixedStyledText('This viewset has multiple action...')
+                  SingleStyledText('This viewset has multiple action...')
+          LabeledFlowable(style='object description')   None:None <desc>
+               > (0,0,1,0,2) object description
+            StaticGroupedFlowables(style='signatures')
+                 > (0,0,2,0,3) object signatures
+              Paragraph('login ( request ) ', id='accounts.views.AuthViewSet.login')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet.login:None <desc_signature>
+                   > (0,0,2,0,5) object signature
+                     (0,0,0,0,2) body
+                MixedStyledText('login ( request ) ')
+                  MixedStyledText('login', style='main object name')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet.login:None <desc_name>
+                       > (0,0,3,0,6) object name
+                    SingleStyledText('login')
+                  MixedStyledText(' ( request ) ')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet.login:None <desc_parameterlist>
+                    MixedStyledText(' ( request')
+                      SingleStyledText(' ( ', style='parentheses')
+                           > (0,0,3,0,6) object parentheses
+                      MixedStyledText('request', style='parameter list')
+                           > (0,0,3,0,6) object parameter list
+                        MixedStyledText('request', style='parameter')   None:None <desc_parameter>
+                             > (0,0,3,0,6) object parameter
+                          SingleStyledText('request')
+                    SingleStyledText(' ) ', style='parentheses')
+                         > (0,0,3,0,6) object parentheses
+            StaticGroupedFlowables(style='content')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet.login:None <desc_content>
+                 > (0,0,2,0,3) object description content
+              Paragraph('Login')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet.login:1 <paragraph>
+                   > (0,0,2,0,5) object description content paragraph
+                     (0,0,0,0,2) body
+                MixedStyledText('Login')
+                  SingleStyledText('Login')
+              Paragraph('Authenticate the user and log th...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet.login:3 <paragraph>
+                   > (0,0,2,0,5) object description content paragraph
+                     (0,0,0,0,2) body
+                MixedStyledText('Authenticate the user and log th...')
+                  SingleStyledText('Authenticate the user and log th...')
+                  MixedStyledText('UserLoginSerializer', style='title reference')   None:None <title_reference>
+                       > (0,0,1,0,1) title reference
+                    SingleStyledText('UserLoginSerializer')
+                  SingleStyledText('.')
+              DefinitionList(style='field list')   None:None <field_list>
+                   > (0,0,1,0,2) field list
+                     (0,0,0,0,2) definition list
+                LabeledFlowable()   None:None <field>
+                     > (0,0,1,0,4) field list item
+                       (0,0,0,0,4) definition list item
+                  Paragraph('Returns', style='field name')
+                       > (0,0,2,0,6) field name
+                         (0,0,0,0,2) body
+                    MixedStyledText('Returns')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet.login:0 <field_name>
+                      SingleStyledText('Returns')
+                  StaticGroupedFlowables()   None:None <field_body>
+                    Paragraph('A JSON-ified UserProfile object ...')   None:None <paragraph>
+                         > (0,0,0,0,2) body
+                      MixedStyledText('A JSON-ified UserProfile object ...')
+                        SingleStyledText('A JSON-ified UserProfile object ...')
+                LabeledFlowable()   None:None <field>
+                     > (0,0,1,0,4) field list item
+                       (0,0,0,0,4) definition list item
+                  Paragraph('Return type', style='field name')
+                       > (0,0,2,0,6) field name
+                         (0,0,0,0,2) body
+                    MixedStyledText('Return type')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/views.py:docstring of accounts.views.AuthViewSet.login:0 <field_name>
+                      SingleStyledText('Return type')
+                  StaticGroupedFlowables()   None:None <field_body>
+                    Paragraph('AuthorizedUserSerializer')   None:None <paragraph>
+                         > (0,0,0,0,2) body
+                      MixedStyledText('AuthorizedUserSerializer')
+                        SingleStyledText('AuthorizedUserSerializer')
+          LabeledFlowable(style='object description')   :None <desc>
+               > (0,0,1,0,2) object description
+            StaticGroupedFlowables(style='signatures')
+                 > (0,0,2,0,3) object signatures
+              Paragraph('serializer_class', id='accounts.views.AuthViewSet.serializer_class')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.views.AuthViewSet.serializer_class:None <desc_signature>
+                   > (0,0,2,0,5) object signature
+                     (0,0,0,0,2) body
+                MixedStyledText('serializer_class')
+                  MixedStyledText('serializer_class', style='main object name')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.views.AuthViewSet.serializer_class:None <desc_name>
+                       > (0,0,3,0,6) object name
+                    SingleStyledText('serializer_class')
+            StaticGroupedFlowables(style='content')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/serializers.py:docstring of accounts.views.AuthViewSet.serializer_class:None <desc_content>
+                 > (0,0,2,0,3) object description content
+              Paragraph('alias of accounts.serializers.Em...')   :1 <paragraph>
+                   > (0,0,2,0,5) object description content paragraph
+                     (0,0,0,0,2) body
+                MixedStyledText('alias of accounts.serializers.Em...')
+                  SingleStyledText('alias of ')
+                  AnnotatedText('accounts.serializers.EmptySerial...', style='internal link')   None:None <reference>
+                       > (0,0,1,0,1) internal hyperlink
+                    MixedStyledText('accounts.serializers.EmptySerial...')
+                      MixedStyledText('accounts.serializers.EmptySerial...', style='monospaced')   None:None <literal>
+                           > (0,0,1,0,1) monospaced
+                        SingleStyledText('accounts.serializers.EmptySerial...')
+      Paragraph('Accounts Utilities')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils:1 <paragraph>
+           > (0,0,0,0,2) body
+        MixedStyledText('Accounts Utilities')
+          SingleStyledText('Accounts Utilities')
+      Paragraph('The module contains a set of hel...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils:3 <paragraph>
+           > (0,0,0,0,2) body
+        MixedStyledText('The module contains a set of hel...')
+          SingleStyledText('The module contains a set of hel...')
+      LabeledFlowable(style='object description')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:0 <desc>
+           > (0,0,1,0,2) object description
+        StaticGroupedFlowables(style='signatures')
+             > (0,0,2,0,3) object signatures
+          Paragraph('accounts.utils.create_user_accou...', id='accounts.utils.create_user_account')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:None <desc_signature>
+               > (0,0,2,0,5) object signature
+                 (0,0,0,0,2) body
+            MixedStyledText('accounts.utils.create_user_accou...')
+              MixedStyledText('accounts.utils.', style='additional name part')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:None <desc_addname>
+                   > (0,0,3,0,6) additional name part
+                SingleStyledText('accounts.utils.')
+              MixedStyledText('create_user_account', style='main object name')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:None <desc_name>
+                   > (0,0,3,0,6) object name
+                SingleStyledText('create_user_account')
+              MixedStyledText(' ( email, password, username='',...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:None <desc_parameterlist>
+                MixedStyledText(' ( email, password, username='',...')
+                  SingleStyledText(' ( ', style='parentheses')
+                       > (0,0,3,0,6) object parentheses
+                  MixedStyledText('email, password, username='', fi...', style='parameter list')
+                       > (0,0,3,0,6) object parameter list
+                    MixedStyledText('email', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('email')
+                    SingleStyledText(', ')
+                    MixedStyledText('password', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('password')
+                    SingleStyledText(', ')
+                    MixedStyledText('username=''', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('username=''')
+                    SingleStyledText(', ')
+                    MixedStyledText('first_language=0', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('first_language=0')
+                    SingleStyledText(', ')
+                    MixedStyledText('language_being_learned=0', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('language_being_learned=0')
+                    SingleStyledText(', ')
+                    MixedStyledText('language_preference=0', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('language_preference=0')
+                SingleStyledText(' ) ', style='parentheses')
+                     > (0,0,3,0,6) object parentheses
+        StaticGroupedFlowables(style='content')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:None <desc_content>
+             > (0,0,2,0,3) object description content
+          Paragraph('Create User Account')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:1 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('Create User Account')
+              SingleStyledText('Create User Account')
+          Paragraph('Create a new user account using ...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:3 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('Create a new user account using ...')
+              SingleStyledText('Create a new user account using ...')
+              MixedStyledText('.create_user', style='title reference')   None:None <title_reference>
+                   > (0,0,1,0,1) title reference
+                SingleStyledText('.create_user')
+              SingleStyledText(' method in order to create a new...')
+          DefinitionList(style='field list')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:None <field_list>
+               > (0,0,1,0,2) field list
+                 (0,0,0,0,2) definition list
+            LabeledFlowable()   None:None <field>
+                 > (0,0,1,0,4) field list item
+                   (0,0,0,0,4) definition list item
+              Paragraph('Parameters', style='field name')
+                   > (0,0,2,0,6) field name
+                     (0,0,0,0,2) body
+                MixedStyledText('Parameters')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:0 <field_name>
+                  SingleStyledText('Parameters')
+              StaticGroupedFlowables()   None:None <field_body>
+                List(style='bulleted')   None:None <bullet_list>
+                     > (0,0,1,0,2) bulleted list
+                  ListItem()
+                       x (0,0,1,0,4) bulleted list item
+                       > fallback to default style
+                    ListItemLabel('•')
+                         > (0,0,1,0,6) bulleted list item label
+                           (0,0,0,0,2) list item label
+                        MixedStyledText('•')
+                          SingleStyledText('')
+                          SingleStyledText('•')
+                          SingleStyledText('')
+                    StaticGroupedFlowables()   None:None <list_item>
+                         > (0,0,0,0,3) list item body
+                      Paragraph('email (str) – The email provided...')   None:None <paragraph>
+                           > (0,0,0,0,5) list item paragraph
+                             (0,0,0,0,2) body
+                        MixedStyledText('email (str) – The email provided...')
+                          MixedStyledText('email', style='literal strong')   None:None <literal_strong>
+                               > (0,0,1,0,1) literal strong
+                            SingleStyledText('email')
+                          SingleStyledText(' (')
+                          AnnotatedText('str', style='external link')   None:None <reference>
+                               > (0,0,1,0,1) external hyperlink
+                            MixedStyledText('str')
+                              MixedStyledText('str', style='literal emphasis')   None:None <literal_emphasis>
+                                   > (0,0,1,0,1) literal emphasis
+                                SingleStyledText('str')
+                          SingleStyledText(')')
+                          SingleStyledText(' – ')
+                          SingleStyledText('The email provided by the user')
+                  ListItem()
+                       x (0,0,1,0,4) bulleted list item
+                       > fallback to default style
+                    ListItemLabel('•')
+                         > (0,0,1,0,6) bulleted list item label
+                           (0,0,0,0,2) list item label
+                        MixedStyledText('•')
+                          SingleStyledText('')
+                          SingleStyledText('•')
+                          SingleStyledText('')
+                    StaticGroupedFlowables()   None:None <list_item>
+                         > (0,0,0,0,3) list item body
+                      Paragraph('password (str) – The password pr...')   None:None <paragraph>
+                           > (0,0,0,0,5) list item paragraph
+                             (0,0,0,0,2) body
+                        MixedStyledText('password (str) – The password pr...')
+                          MixedStyledText('password', style='literal strong')   None:None <literal_strong>
+                               > (0,0,1,0,1) literal strong
+                            SingleStyledText('password')
+                          SingleStyledText(' (')
+                          AnnotatedText('str', style='external link')   None:None <reference>
+                               > (0,0,1,0,1) external hyperlink
+                            MixedStyledText('str')
+                              MixedStyledText('str', style='literal emphasis')   None:None <literal_emphasis>
+                                   > (0,0,1,0,1) literal emphasis
+                                SingleStyledText('str')
+                          SingleStyledText(')')
+                          SingleStyledText(' – ')
+                          SingleStyledText('The password provided by the use...')
+                  ListItem()
+                       x (0,0,1,0,4) bulleted list item
+                       > fallback to default style
+                    ListItemLabel('•')
+                         > (0,0,1,0,6) bulleted list item label
+                           (0,0,0,0,2) list item label
+                        MixedStyledText('•')
+                          SingleStyledText('')
+                          SingleStyledText('•')
+                          SingleStyledText('')
+                    StaticGroupedFlowables()   None:None <list_item>
+                         > (0,0,0,0,3) list item body
+                      Paragraph('username (str) – The username pr...')   None:None <paragraph>
+                           > (0,0,0,0,5) list item paragraph
+                             (0,0,0,0,2) body
+                        MixedStyledText('username (str) – The username pr...')
+                          MixedStyledText('username', style='literal strong')   None:None <literal_strong>
+                               > (0,0,1,0,1) literal strong
+                            SingleStyledText('username')
+                          SingleStyledText(' (')
+                          AnnotatedText('str', style='external link')   None:None <reference>
+                               > (0,0,1,0,1) external hyperlink
+                            MixedStyledText('str')
+                              MixedStyledText('str', style='literal emphasis')   None:None <literal_emphasis>
+                                   > (0,0,1,0,1) literal emphasis
+                                SingleStyledText('str')
+                          SingleStyledText(')')
+                          SingleStyledText(' – ')
+                          SingleStyledText('The username provided by the use...')
+                  ListItem()
+                       x (0,0,1,0,4) bulleted list item
+                       > fallback to default style
+                    ListItemLabel('•')
+                         > (0,0,1,0,6) bulleted list item label
+                           (0,0,0,0,2) list item label
+                        MixedStyledText('•')
+                          SingleStyledText('')
+                          SingleStyledText('•')
+                          SingleStyledText('')
+                    StaticGroupedFlowables()   None:None <list_item>
+                         > (0,0,0,0,3) list item body
+                      Paragraph('first_language (int) – The ID of...')   None:None <paragraph>
+                           > (0,0,0,0,5) list item paragraph
+                             (0,0,0,0,2) body
+                        MixedStyledText('first_language (int) – The ID of...')
+                          MixedStyledText('first_language', style='literal strong')   None:None <literal_strong>
+                               > (0,0,1,0,1) literal strong
+                            SingleStyledText('first_language')
+                          SingleStyledText(' (')
+                          AnnotatedText('int', style='external link')   None:None <reference>
+                               > (0,0,1,0,1) external hyperlink
+                            MixedStyledText('int')
+                              MixedStyledText('int', style='literal emphasis')   None:None <literal_emphasis>
+                                   > (0,0,1,0,1) literal emphasis
+                                SingleStyledText('int')
+                          SingleStyledText(')')
+                          SingleStyledText(' – ')
+                          SingleStyledText('The ID of the language that the ...')
+                  ListItem()
+                       x (0,0,1,0,4) bulleted list item
+                       > fallback to default style
+                    ListItemLabel('•')
+                         > (0,0,1,0,6) bulleted list item label
+                           (0,0,0,0,2) list item label
+                        MixedStyledText('•')
+                          SingleStyledText('')
+                          SingleStyledText('•')
+                          SingleStyledText('')
+                    StaticGroupedFlowables()   None:None <list_item>
+                         > (0,0,0,0,3) list item body
+                      Paragraph('first language (their) – ')   None:None <paragraph>
+                           > (0,0,0,0,5) list item paragraph
+                             (0,0,0,0,2) body
+                        MixedStyledText('first language (their) – ')
+                          MixedStyledText('first language', style='literal strong')   None:None <literal_strong>
+                               > (0,0,1,0,1) literal strong
+                            SingleStyledText('first language')
+                          SingleStyledText(' (')
+                          MixedStyledText('their', style='literal emphasis')   None:None <literal_emphasis>
+                               > (0,0,1,0,1) literal emphasis
+                            SingleStyledText('their')
+                          SingleStyledText(')')
+                          SingleStyledText(' – ')
+                  ListItem()
+                       x (0,0,1,0,4) bulleted list item
+                       > fallback to default style
+                    ListItemLabel('•')
+                         > (0,0,1,0,6) bulleted list item label
+                           (0,0,0,0,2) list item label
+                        MixedStyledText('•')
+                          SingleStyledText('')
+                          SingleStyledText('•')
+                          SingleStyledText('')
+                    StaticGroupedFlowables()   None:None <list_item>
+                         > (0,0,0,0,3) list item body
+                      Paragraph('language_being_learned (int) – T...')   None:None <paragraph>
+                           > (0,0,0,0,5) list item paragraph
+                             (0,0,0,0,2) body
+                        MixedStyledText('language_being_learned (int) – T...')
+                          MixedStyledText('language_being_learned', style='literal strong')   None:None <literal_strong>
+                               > (0,0,1,0,1) literal strong
+                            SingleStyledText('language_being_learned')
+                          SingleStyledText(' (')
+                          AnnotatedText('int', style='external link')   None:None <reference>
+                               > (0,0,1,0,1) external hyperlink
+                            MixedStyledText('int')
+                              MixedStyledText('int', style='literal emphasis')   None:None <literal_emphasis>
+                                   > (0,0,1,0,1) literal emphasis
+                                SingleStyledText('int')
+                          SingleStyledText(')')
+                          SingleStyledText(' – ')
+                          SingleStyledText('The ID of the language that the ...')
+                  ListItem()
+                       x (0,0,1,0,4) bulleted list item
+                       > fallback to default style
+                    ListItemLabel('•')
+                         > (0,0,1,0,6) bulleted list item label
+                           (0,0,0,0,2) list item label
+                        MixedStyledText('•')
+                          SingleStyledText('')
+                          SingleStyledText('•')
+                          SingleStyledText('')
+                    StaticGroupedFlowables()   None:None <list_item>
+                         > (0,0,0,0,3) list item body
+                      Paragraph('as the language that they wish t...')   None:None <paragraph>
+                           > (0,0,0,0,5) list item paragraph
+                             (0,0,0,0,2) body
+                        MixedStyledText('as the language that they wish t...')
+                          MixedStyledText('as the language that they wish t...', style='literal strong')   None:None <literal_strong>
+                               > (0,0,1,0,1) literal strong
+                            SingleStyledText('as the language that they wish t...')
+                          SingleStyledText(' (')
+                          MixedStyledText('chose', style='literal emphasis')   None:None <literal_emphasis>
+                               > (0,0,1,0,1) literal emphasis
+                            SingleStyledText('chose')
+                          SingleStyledText(')')
+                          SingleStyledText(' – ')
+                  ListItem()
+                       x (0,0,1,0,4) bulleted list item
+                       > fallback to default style
+                    ListItemLabel('•')
+                         > (0,0,1,0,6) bulleted list item label
+                           (0,0,0,0,2) list item label
+                        MixedStyledText('•')
+                          SingleStyledText('')
+                          SingleStyledText('•')
+                          SingleStyledText('')
+                    StaticGroupedFlowables()   None:None <list_item>
+                         > (0,0,0,0,3) list item body
+                      Paragraph('language_preference (int) – The ...')   None:None <paragraph>
+                           > (0,0,0,0,5) list item paragraph
+                             (0,0,0,0,2) body
+                        MixedStyledText('language_preference (int) – The ...')
+                          MixedStyledText('language_preference', style='literal strong')   None:None <literal_strong>
+                               > (0,0,1,0,1) literal strong
+                            SingleStyledText('language_preference')
+                          SingleStyledText(' (')
+                          AnnotatedText('int', style='external link')   None:None <reference>
+                               > (0,0,1,0,1) external hyperlink
+                            MixedStyledText('int')
+                              MixedStyledText('int', style='literal emphasis')   None:None <literal_emphasis>
+                                   > (0,0,1,0,1) literal emphasis
+                                SingleStyledText('int')
+                          SingleStyledText(')')
+                          SingleStyledText(' – ')
+                          SingleStyledText('The ID of the language that the ...')
+                  ListItem()
+                       x (0,0,1,0,4) bulleted list item
+                       > fallback to default style
+                    ListItemLabel('•')
+                         > (0,0,1,0,6) bulleted list item label
+                           (0,0,0,0,2) list item label
+                        MixedStyledText('•')
+                          SingleStyledText('')
+                          SingleStyledText('•')
+                          SingleStyledText('')
+                    StaticGroupedFlowables()   None:None <list_item>
+                         > (0,0,0,0,3) list item body
+                      Paragraph('as the language that they wish t...')   None:None <paragraph>
+                           > (0,0,0,0,5) list item paragraph
+                             (0,0,0,0,2) body
+                        MixedStyledText('as the language that they wish t...')
+                          MixedStyledText('as the language that they wish t...', style='literal strong')   None:None <literal_strong>
+                               > (0,0,1,0,1) literal strong
+                            SingleStyledText('as the language that they wish t...')
+                          SingleStyledText(' (')
+                          MixedStyledText('chose', style='literal emphasis')   None:None <literal_emphasis>
+                               > (0,0,1,0,1) literal emphasis
+                            SingleStyledText('chose')
+                          SingleStyledText(')')
+                          SingleStyledText(' – ')
+            LabeledFlowable()   None:None <field>
+                 > (0,0,1,0,4) field list item
+                   (0,0,0,0,4) definition list item
+              Paragraph('Returns', style='field name')
+                   > (0,0,2,0,6) field name
+                     (0,0,0,0,2) body
+                MixedStyledText('Returns')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:0 <field_name>
+                  SingleStyledText('Returns')
+              StaticGroupedFlowables()   None:None <field_body>
+                Paragraph('The newly created user instance')   None:None <paragraph>
+                     > (0,0,0,0,2) body
+                  MixedStyledText('The newly created user instance')
+                    SingleStyledText('The newly created user instance')
+#### UpExpandingContainer('header')
+  StaticGroupedFlowables()
+    Header('		Decyphr Documentation, Release...')
+         > (0,0,0,0,2) header
+           (0,0,0,0,1) body
+      MixedStyledText('		Decyphr Documentation, Release...')
+        Tab('	')
+        Tab('	')
+        Field('Decyphr Documentation')
+          SingleStyledText('Decyphr Documentation')
+        SingleStyledText(', ')
+        Field('Release 0.0.1')
+          SingleStyledText('Release 0.0.1')
+#### DownExpandingContainer('footer')
+  StaticGroupedFlowables()
+    Footer('​.  ​		3')
+         > (0,0,0,0,2) footer
+           (0,0,0,0,1) body
+      MixedStyledText('​.  ​		3')
+        Field('​')
+          SingleStyledText('​')
+        SingleStyledText('.  ')
+        Field('​')
+          SingleStyledText('​')
+        Tab('	')
+        Tab('	')
+        Field('3')
+          SingleStyledText('3')
+---------------------------------- page 4 ----------------------------------
+#### FootnoteContainer('footnotes')
+  StaticGroupedFlowables()
+#### DownExpandingContainer('floats')
+  StaticGroupedFlowables()
+#### ChainedContainer('column1')
+  (continued) StaticGroupedFlowables()
+    (continued) DocumentTree()
+      (continued) LabeledFlowable(style='object description')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:0 <desc>
+           > (0,0,1,0,2) object description
+        (continued) StaticGroupedFlowables(style='content')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:None <desc_content>
+             > (0,0,2,0,3) object description content
+          (continued) DefinitionList(style='field list')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:None <field_list>
+               > (0,0,1,0,2) field list
+                 (0,0,0,0,2) definition list
+            LabeledFlowable()   None:None <field>
+                 > (0,0,1,0,4) field list item
+                   (0,0,0,0,4) definition list item
+              Paragraph('Return type', style='field name')
+                   > (0,0,2,0,6) field name
+                     (0,0,0,0,2) body
+                MixedStyledText('Return type')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:0 <field_name>
+                  SingleStyledText('Return type')
+              StaticGroupedFlowables()   None:None <field_body>
+                Paragraph('UserProfile')   None:None <paragraph>
+                     > (0,0,0,0,2) body
+                  MixedStyledText('UserProfile')
+                    AnnotatedText('UserProfile', style='internal link')   None:None <reference>
+                         > (0,0,1,0,1) internal hyperlink
+                      MixedStyledText('UserProfile')
+                        SingleStyledText('UserProfile')
+          Paragraph('Example', style='rubric')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:27 <rubric>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,1,0,2) rubric
+                 (0,0,0,0,2) body
+            MixedStyledText('Example')
+              SingleStyledText('Example')
+          Paragraph('This function can be called by e...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:28 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('This function can be called by e...')
+              SingleStyledText('This function can be called by e...')
+          CodeBlock('user = create_user_account(email...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:30 <literal_block>
+               > (1,0,0,0,2) code block
+                 (0,0,2,0,4) object description content paragraph
+                 (0,0,0,0,1) body
+            Token('user', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token(' ', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+            Token('=', type=Token.Operator)
+                 > (0,0,0,1,2) (pygments)Token.Operator
+                   (0,0,0,1,2) (pygments)Token.Operator
+            Token(' ', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+            Token('create_user_account', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token('(', type=Token.Punctuation)
+                 > (0,0,0,1,2) (pygments)Token.Punctuation
+                   (0,0,0,1,2) (pygments)Token.Punctuation
+            Token('email', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token(',', type=Token.Punctuation)
+                 > (0,0,0,1,2) (pygments)Token.Punctuation
+                   (0,0,0,1,2) (pygments)Token.Punctuation
+            Token(' ', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+            Token('password', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token(',', type=Token.Punctuation)
+                 > (0,0,0,1,2) (pygments)Token.Punctuation
+                   (0,0,0,1,2) (pygments)Token.Punctuation
+            Token(' ', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+            Token('username', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token(',', type=Token.Punctuation)
+                 > (0,0,0,1,2) (pygments)Token.Punctuation
+                   (0,0,0,1,2) (pygments)Token.Punctuation
+            Token('\n    ', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+            Token('first_language', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token(',', type=Token.Punctuation)
+                 > (0,0,0,1,2) (pygments)Token.Punctuation
+                   (0,0,0,1,2) (pygments)Token.Punctuation
+            Token(' ', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+            Token('language_being_learned', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token(',', type=Token.Punctuation)
+                 > (0,0,0,1,2) (pygments)Token.Punctuation
+                   (0,0,0,1,2) (pygments)Token.Punctuation
+            Token(' ', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+            Token('language_preference', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token(')', type=Token.Punctuation)
+                 > (0,0,0,1,2) (pygments)Token.Punctuation
+                   (0,0,0,1,2) (pygments)Token.Punctuation
+            Token('\n', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+          Paragraph('Or, by unpacking the RegisterUse...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:33 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('Or, by unpacking the RegisterUse...')
+              SingleStyledText('Or, by unpacking the ')
+              MixedStyledText('RegisterUserSerializer', style='title reference')   None:None <title_reference>
+                   > (0,0,1,0,1) title reference
+                SingleStyledText('RegisterUserSerializer')
+              SingleStyledText(':')
+          CodeBlock('user = create_user_account(**ser...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.create_user_account:35 <literal_block>
+               > (1,0,0,0,2) code block
+                 (0,0,2,0,4) object description content paragraph
+                 (0,0,0,0,1) body
+            Token('user', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token(' ', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+            Token('=', type=Token.Operator)
+                 > (0,0,0,1,2) (pygments)Token.Operator
+                   (0,0,0,1,2) (pygments)Token.Operator
+            Token(' ', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+            Token('create_user_account', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token('(', type=Token.Punctuation)
+                 > (0,0,0,1,2) (pygments)Token.Punctuation
+                   (0,0,0,1,2) (pygments)Token.Punctuation
+            Token('**', type=Token.Operator)
+                 > (0,0,0,1,2) (pygments)Token.Operator
+                   (0,0,0,1,2) (pygments)Token.Operator
+            Token('serializer', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token('.', type=Token.Operator)
+                 > (0,0,0,1,2) (pygments)Token.Operator
+                   (0,0,0,1,2) (pygments)Token.Operator
+            Token('validated_data', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token(')', type=Token.Punctuation)
+                 > (0,0,0,1,2) (pygments)Token.Punctuation
+                   (0,0,0,1,2) (pygments)Token.Punctuation
+            Token('\n', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+      LabeledFlowable(style='object description')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:0 <desc>
+           > (0,0,1,0,2) object description
+        StaticGroupedFlowables(style='signatures')
+             > (0,0,2,0,3) object signatures
+          Paragraph('accounts.utils.get_and_authentic...', id='accounts.utils.get_and_authenticate_user')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:None <desc_signature>
+               > (0,0,2,0,5) object signature
+                 (0,0,0,0,2) body
+            MixedStyledText('accounts.utils.get_and_authentic...')
+              MixedStyledText('accounts.utils.', style='additional name part')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:None <desc_addname>
+                   > (0,0,3,0,6) additional name part
+                SingleStyledText('accounts.utils.')
+              MixedStyledText('get_and_authenticate_user', style='main object name')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:None <desc_name>
+                   > (0,0,3,0,6) object name
+                SingleStyledText('get_and_authenticate_user')
+              MixedStyledText(' ( username, password ) ')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:None <desc_parameterlist>
+                MixedStyledText(' ( username, password')
+                  SingleStyledText(' ( ', style='parentheses')
+                       > (0,0,3,0,6) object parentheses
+                  MixedStyledText('username, password', style='parameter list')
+                       > (0,0,3,0,6) object parameter list
+                    MixedStyledText('username', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('username')
+                    SingleStyledText(', ')
+                    MixedStyledText('password', style='parameter')   None:None <desc_parameter>
+                         > (0,0,3,0,6) object parameter
+                      SingleStyledText('password')
+                SingleStyledText(' ) ', style='parentheses')
+                     > (0,0,3,0,6) object parentheses
+        StaticGroupedFlowables(style='content')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:None <desc_content>
+             > (0,0,2,0,3) object description content
+          Paragraph('Authenticate the user')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:1 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('Authenticate the user')
+              SingleStyledText('Authenticate the user')
+          Paragraph('Authenticate the user that’s att...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:3 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('Authenticate the user that’s att...')
+              SingleStyledText('Authenticate the user that’s att...')
+          DefinitionList(style='field list')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:None <field_list>
+               > (0,0,1,0,2) field list
+                 (0,0,0,0,2) definition list
+            LabeledFlowable()   None:None <field>
+                 > (0,0,1,0,4) field list item
+                   (0,0,0,0,4) definition list item
+              Paragraph('Parameters', style='field name')
+                   > (0,0,2,0,6) field name
+                     (0,0,0,0,2) body
+                MixedStyledText('Parameters')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:0 <field_name>
+                  SingleStyledText('Parameters')
+              StaticGroupedFlowables()   None:None <field_body>
+                List(style='bulleted')   None:None <bullet_list>
+                     > (0,0,1,0,2) bulleted list
+                  ListItem()
+                       x (0,0,1,0,4) bulleted list item
+                       > fallback to default style
+                    ListItemLabel('•')
+                         > (0,0,1,0,6) bulleted list item label
+                           (0,0,0,0,2) list item label
+                        MixedStyledText('•')
+                          SingleStyledText('')
+                          SingleStyledText('•')
+                          SingleStyledText('')
+                    StaticGroupedFlowables()   None:None <list_item>
+                         > (0,0,0,0,3) list item body
+                      Paragraph('username (str) – The username th...')   None:None <paragraph>
+                           > (0,0,0,0,5) list item paragraph
+                             (0,0,0,0,2) body
+                        MixedStyledText('username (str) – The username th...')
+                          MixedStyledText('username', style='literal strong')   None:None <literal_strong>
+                               > (0,0,1,0,1) literal strong
+                            SingleStyledText('username')
+                          SingleStyledText(' (')
+                          AnnotatedText('str', style='external link')   None:None <reference>
+                               > (0,0,1,0,1) external hyperlink
+                            MixedStyledText('str')
+                              MixedStyledText('str', style='literal emphasis')   None:None <literal_emphasis>
+                                   > (0,0,1,0,1) literal emphasis
+                                SingleStyledText('str')
+                          SingleStyledText(')')
+                          SingleStyledText(' – ')
+                          SingleStyledText('The username that the user provi...')
+                  ListItem()
+                       x (0,0,1,0,4) bulleted list item
+                       > fallback to default style
+                    ListItemLabel('•')
+                         > (0,0,1,0,6) bulleted list item label
+                           (0,0,0,0,2) list item label
+                        MixedStyledText('•')
+                          SingleStyledText('')
+                          SingleStyledText('•')
+                          SingleStyledText('')
+                    StaticGroupedFlowables()   None:None <list_item>
+                         > (0,0,0,0,3) list item body
+                      Paragraph('password (str) – The password th...')   None:None <paragraph>
+                           > (0,0,0,0,5) list item paragraph
+                             (0,0,0,0,2) body
+                        MixedStyledText('password (str) – The password th...')
+                          MixedStyledText('password', style='literal strong')   None:None <literal_strong>
+                               > (0,0,1,0,1) literal strong
+                            SingleStyledText('password')
+                          SingleStyledText(' (')
+                          AnnotatedText('str', style='external link')   None:None <reference>
+                               > (0,0,1,0,1) external hyperlink
+                            MixedStyledText('str')
+                              MixedStyledText('str', style='literal emphasis')   None:None <literal_emphasis>
+                                   > (0,0,1,0,1) literal emphasis
+                                SingleStyledText('str')
+                          SingleStyledText(')')
+                          SingleStyledText(' – ')
+                          SingleStyledText('The password that the user provi...')
+            LabeledFlowable()   None:None <field>
+                 > (0,0,1,0,4) field list item
+                   (0,0,0,0,4) definition list item
+              Paragraph('Returns', style='field name')
+                   > (0,0,2,0,6) field name
+                     (0,0,0,0,2) body
+                MixedStyledText('Returns')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:0 <field_name>
+                  SingleStyledText('Returns')
+              StaticGroupedFlowables()   None:None <field_body>
+                Paragraph('An authenticated user instance i...')   None:None <paragraph>
+                     > (0,0,0,0,2) body
+                  MixedStyledText('An authenticated user instance i...')
+                    SingleStyledText('An authenticated user instance i...')
+            LabeledFlowable()   None:None <field>
+                 > (0,0,1,0,4) field list item
+                   (0,0,0,0,4) definition list item
+              Paragraph('Return type', style='field name')
+                   > (0,0,2,0,6) field name
+                     (0,0,0,0,2) body
+                MixedStyledText('Return type')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:0 <field_name>
+                  SingleStyledText('Return type')
+              StaticGroupedFlowables()   None:None <field_body>
+                Paragraph('UserProfile')   None:None <paragraph>
+                     > (0,0,0,0,2) body
+                  MixedStyledText('UserProfile')
+                    AnnotatedText('UserProfile', style='internal link')   None:None <reference>
+                         > (0,0,1,0,1) internal hyperlink
+                      MixedStyledText('UserProfile')
+                        SingleStyledText('UserProfile')
+            LabeledFlowable()   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:15 <field>
+                 > (0,0,1,0,4) field list item
+                   (0,0,0,0,4) definition list item
+              Paragraph('Raises', style='field name')
+                   > (0,0,2,0,6) field name
+                     (0,0,0,0,2) body
+                MixedStyledText('Raises')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:0 <field_name>
+                  SingleStyledText('Raises')
+              StaticGroupedFlowables()   None:None <field_body>
+                Paragraph('ValidationError – If the usernam...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:15 <paragraph>
+                     > (0,0,0,0,2) body
+                  MixedStyledText('ValidationError – If the usernam...')
+                    MixedStyledText('ValidationError', style='monospaced')   None:None <literal>
+                         > (0,0,1,0,1) monospaced
+                      SingleStyledText('ValidationError')
+                    SingleStyledText(' – If the username and password ...')
+          Paragraph('Examples', style='rubric')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:18 <rubric>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,1,0,2) rubric
+                 (0,0,0,0,2) body
+            MixedStyledText('Examples')
+              SingleStyledText('Examples')
+          Paragraph('This function can be called by e...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:19 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('This function can be called by e...')
+              SingleStyledText('This function can be called by e...')
+          CodeBlock('user = get_and_authenticate_user...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:22 <literal_block>
+               > (1,0,0,0,2) code block
+                 (0,0,2,0,4) object description content paragraph
+                 (0,0,0,0,1) body
+            Token('user', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token(' ', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+            Token('=', type=Token.Operator)
+                 > (0,0,0,1,2) (pygments)Token.Operator
+                   (0,0,0,1,2) (pygments)Token.Operator
+            Token(' ', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+            Token('get_and_authenticate_user', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token('(', type=Token.Punctuation)
+                 > (0,0,0,1,2) (pygments)Token.Punctuation
+                   (0,0,0,1,2) (pygments)Token.Punctuation
+            Token('username', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token(',', type=Token.Punctuation)
+                 > (0,0,0,1,2) (pygments)Token.Punctuation
+                   (0,0,0,1,2) (pygments)Token.Punctuation
+            Token(' ', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+            Token('password', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token(')', type=Token.Punctuation)
+                 > (0,0,0,1,2) (pygments)Token.Punctuation
+                   (0,0,0,1,2) (pygments)Token.Punctuation
+            Token('\n', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+          Paragraph('Or, by unpacking the UserLoginSe...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:24 <paragraph>
+               > (0,0,2,0,5) object description content paragraph
+                 (0,0,0,0,2) body
+            MixedStyledText('Or, by unpacking the UserLoginSe...')
+              SingleStyledText('Or, by unpacking the ')
+              MixedStyledText('UserLoginSerializer', style='title reference')   None:None <title_reference>
+                   > (0,0,1,0,1) title reference
+                SingleStyledText('UserLoginSerializer')
+              SingleStyledText(':')
+          CodeBlock('user = get_and_authenticate_user...')   /home/aaron/Documents/projects/decyphr/decyphr/accounts/utils.py:docstring of accounts.utils.get_and_authenticate_user:26 <literal_block>
+               > (1,0,0,0,2) code block
+                 (0,0,2,0,4) object description content paragraph
+                 (0,0,0,0,1) body
+            Token('user', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token(' ', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+            Token('=', type=Token.Operator)
+                 > (0,0,0,1,2) (pygments)Token.Operator
+                   (0,0,0,1,2) (pygments)Token.Operator
+            Token(' ', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+            Token('get_and_authenticate_user', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token('(', type=Token.Punctuation)
+                 > (0,0,0,1,2) (pygments)Token.Punctuation
+                   (0,0,0,1,2) (pygments)Token.Punctuation
+            Token('**', type=Token.Operator)
+                 > (0,0,0,1,2) (pygments)Token.Operator
+                   (0,0,0,1,2) (pygments)Token.Operator
+            Token('serializer', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token('.', type=Token.Operator)
+                 > (0,0,0,1,2) (pygments)Token.Operator
+                   (0,0,0,1,2) (pygments)Token.Operator
+            Token('validated_data', type=Token.Name)
+                 > (0,0,0,1,2) (pygments)Token.Name
+                   (0,0,0,1,2) (pygments)Token.Name
+            Token(')', type=Token.Punctuation)
+                 > (0,0,0,1,2) (pygments)Token.Punctuation
+                   (0,0,0,1,2) (pygments)Token.Punctuation
+            Token('\n', type=Token.Text)
+                 > (0,0,0,1,2) (pygments)Token.Text
+                   (0,0,0,1,2) (pygments)Token.Text
+#### UpExpandingContainer('header')
+  StaticGroupedFlowables()
+    Header('Decyphr Documentation, Release 0...')
+         > (0,0,0,0,2) header
+           (0,0,0,0,1) body
+      MixedStyledText('Decyphr Documentation, Release 0...')
+        Field('Decyphr Documentation')
+          SingleStyledText('Decyphr Documentation')
+        SingleStyledText(', ')
+        Field('Release 0.0.1')
+          SingleStyledText('Release 0.0.1')
+#### DownExpandingContainer('footer')
+  StaticGroupedFlowables()
+    Footer('4		Chapter ​.  ​')
+         > (0,0,0,0,2) footer
+           (0,0,0,0,1) body
+      MixedStyledText('4		Chapter ​.  ​')
+        Field('4')
+          SingleStyledText('4')
+        Tab('	')
+        Tab('	')
+        StringField('Chapter')
+        SingleStyledText(' ')
+        Field('​')
+          SingleStyledText('​')
+        SingleStyledText('.  ')
+        Field('​')
+          SingleStyledText('​')
+---------------------------------- page 5 ----------------------------------
+#### FootnoteContainer('footnotes')
+  StaticGroupedFlowables()
+#### DownExpandingContainer('floats')
+  StaticGroupedFlowables()
+#### FlowablesContainer('chapter title')
+  Paragraph('Python Module Index', style='front matter section title')
+       > (0,0,1,0,2) front matter section title
+         (0,0,0,0,2) body
+    Field('Python Module Index')
+      SingleStyledText('Python Module Index')
+#### ChainedContainer('column1')
+  StaticGroupedFlowables()
+    StaticGroupedFlowables()
+      IndexSection()
+           > (0,0,0,1,1) chapter
+        IndexLabel('a')
+             > (0,0,0,0,2) index section label
+               (0,0,0,0,1) body
+          SingleStyledText('a')
+        IndexEntry('accounts')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          SingleStyledText('accounts', style='domain')
+               > (0,0,1,0,3) domain index entry name
+        IndexEntry('accounts.__init__, ??')
+             > (0,0,0,1,2) level 2 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('accounts.__init__, ??')
+            SingleStyledText('accounts.__init__', style='domain')
+                 > (0,0,1,0,3) domain index entry name
+            SingleStyledText(', ')
+            Reference('??')
+                 > (0,0,0,1,1) linked reference
+              SingleStyledText('??')
+        IndexEntry('accounts.models, ??')
+             > (0,0,0,1,2) level 2 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('accounts.models, ??')
+            SingleStyledText('accounts.models', style='domain')
+                 > (0,0,1,0,3) domain index entry name
+            SingleStyledText(', ')
+            Reference('??')
+                 > (0,0,0,1,1) linked reference
+              SingleStyledText('??')
+        IndexEntry('accounts.serializers, ??')
+             > (0,0,0,1,2) level 2 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('accounts.serializers, ??')
+            SingleStyledText('accounts.serializers', style='domain')
+                 > (0,0,1,0,3) domain index entry name
+            SingleStyledText(', ')
+            Reference('??')
+                 > (0,0,0,1,1) linked reference
+              SingleStyledText('??')
+        IndexEntry('accounts.utils, ??')
+             > (0,0,0,1,2) level 2 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('accounts.utils, ??')
+            SingleStyledText('accounts.utils', style='domain')
+                 > (0,0,1,0,3) domain index entry name
+            SingleStyledText(', ')
+            Reference('??')
+                 > (0,0,0,1,1) linked reference
+              SingleStyledText('??')
+        IndexEntry('accounts.views, ??')
+             > (0,0,0,1,2) level 2 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('accounts.views, ??')
+            SingleStyledText('accounts.views', style='domain')
+                 > (0,0,1,0,3) domain index entry name
+            SingleStyledText(', ')
+            Reference('??')
+                 > (0,0,0,1,1) linked reference
+              SingleStyledText('??')
+#### DownExpandingContainer('footer')
+  StaticGroupedFlowables()
+    Footer('		5')
+         > (0,0,0,0,2) footer
+           (0,0,0,0,1) body
+      MixedStyledText('		5')
+        Tab('	')
+        Tab('	')
+        Field('5')
+          SingleStyledText('5')
+---------------------------------- page 6 ----------------------------------
+#### FootnoteContainer('footnotes')
+  StaticGroupedFlowables()
+#### DownExpandingContainer('floats')
+  StaticGroupedFlowables()
+#### ChainedContainer('column1')
+  (continued) StaticGroupedFlowables()
+#### UpExpandingContainer('header')
+  StaticGroupedFlowables()
+    Header('Decyphr Documentation, Release 0...')
+         > (0,0,0,0,2) header
+           (0,0,0,0,1) body
+      MixedStyledText('Decyphr Documentation, Release 0...')
+        Field('Decyphr Documentation')
+          SingleStyledText('Decyphr Documentation')
+        SingleStyledText(', ')
+        Field('Release 0.0.1')
+          SingleStyledText('Release 0.0.1')
+#### DownExpandingContainer('footer')
+  StaticGroupedFlowables()
+    Footer('6		Python Module Index')
+         > (0,0,0,0,2) footer
+           (0,0,0,0,1) body
+      MixedStyledText('6		Python Module Index')
+        Field('6')
+          SingleStyledText('6')
+        Tab('	')
+        Tab('	')
+        Field('Python Module Index')
+          SingleStyledText('Python Module Index')
+---------------------------------- page 7 ----------------------------------
+#### FootnoteContainer('footnotes')
+  StaticGroupedFlowables()
+#### DownExpandingContainer('floats')
+  StaticGroupedFlowables()
+#### FlowablesContainer('chapter title')
+  Paragraph('Index', style='front matter section title')
+       > (0,0,1,0,2) front matter section title
+         (0,0,0,0,2) body
+    Field('Index')
+      SingleStyledText('Index')
+#### ChainedContainer('column1')
+  (continued) StaticGroupedFlowables()
+    IndexSection()
+         > (0,0,0,1,1) chapter
+      Index()   index
+           > (0,0,0,0,2) index
+        IndexLabel('A')
+             > (0,0,0,0,2) index section label
+               (0,0,0,0,1) body
+          SingleStyledText('A')
+        IndexEntry('accounts.__init__ (module), 1')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('accounts.__init__ (module), 1')
+            SingleStyledText('accounts.__init__ (module), ')
+            MixedStyledText('1')
+              Reference('1')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('1')
+        IndexEntry('accounts.models (module), 1')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('accounts.models (module), 1')
+            SingleStyledText('accounts.models (module), ')
+            MixedStyledText('1')
+              Reference('1')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('1')
+        IndexEntry('accounts.serializers (module), 2')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('accounts.serializers (module), 2')
+            SingleStyledText('accounts.serializers (module), ')
+            MixedStyledText('2')
+              Reference('2')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('2')
+        IndexEntry('accounts.utils (module), 3')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('accounts.utils (module), 3')
+            SingleStyledText('accounts.utils (module), ')
+            MixedStyledText('3')
+              Reference('3')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('3')
+        IndexEntry('accounts.views (module), 3')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('accounts.views (module), 3')
+            SingleStyledText('accounts.views (module), ')
+            MixedStyledText('3')
+              Reference('3')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('3')
+        IndexEntry('AuthorisedUserSerializer (class ...')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('AuthorisedUserSerializer (class ...')
+            SingleStyledText('AuthorisedUserSerializer (class ...')
+            MixedStyledText('2')
+              Reference('2')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('2')
+        IndexEntry('AuthViewSet (class in accounts.v...')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('AuthViewSet (class in accounts.v...')
+            SingleStyledText('AuthViewSet (class in accounts.v...')
+            MixedStyledText('3')
+              Reference('3')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('3')
+        IndexLabel('C')
+             > (0,0,0,0,2) index section label
+               (0,0,0,0,1) body
+          SingleStyledText('C')
+        IndexEntry('create_user_account() (in module...')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('create_user_account() (in module...')
+            SingleStyledText('create_user_account() (in module...')
+            MixedStyledText('3')
+              Reference('3')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('3')
+        IndexLabel('E')
+             > (0,0,0,0,2) index section label
+               (0,0,0,0,1) body
+          SingleStyledText('E')
+        IndexEntry('EmptySerializer (class in accoun...')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('EmptySerializer (class in accoun...')
+            SingleStyledText('EmptySerializer (class in accoun...')
+            MixedStyledText('2')
+              Reference('2')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('2')
+        IndexLabel('G')
+             > (0,0,0,0,2) index section label
+               (0,0,0,0,1) body
+          SingleStyledText('G')
+        IndexEntry('get_and_authenticate_user() (in ...')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('get_and_authenticate_user() (in ...')
+            SingleStyledText('get_and_authenticate_user() (in ...')
+            MixedStyledText('4')
+              Reference('4')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('4')
+        IndexEntry('get_auth_token() (accounts.seria...')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('get_auth_token() (accounts.seria...')
+            SingleStyledText('get_auth_token() (accounts.seria...')
+            MixedStyledText('2')
+              Reference('2')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('2')
+        IndexEntry('get_serializer_class() (accounts...')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('get_serializer_class() (accounts...')
+            SingleStyledText('get_serializer_class() (accounts...')
+            MixedStyledText('3')
+              Reference('3')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('3')
+        IndexLabel('L')
+             > (0,0,0,0,2) index section label
+               (0,0,0,0,1) body
+          SingleStyledText('L')
+        IndexEntry('login() (accounts.views.AuthView...')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('login() (accounts.views.AuthView...')
+            SingleStyledText('login() (accounts.views.AuthView...')
+            MixedStyledText('3')
+              Reference('3')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('3')
+        IndexLabel('R')
+             > (0,0,0,0,2) index section label
+               (0,0,0,0,1) body
+          SingleStyledText('R')
+        IndexEntry('RegisterUserSerializer (class in...')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('RegisterUserSerializer (class in...')
+            SingleStyledText('RegisterUserSerializer (class in...')
+            MixedStyledText('2')
+              Reference('2')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('2')
+        IndexLabel('S')
+             > (0,0,0,0,2) index section label
+               (0,0,0,0,1) body
+          SingleStyledText('S')
+        IndexEntry('serializer_class (accounts.views...')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('serializer_class (accounts.views...')
+            SingleStyledText('serializer_class (accounts.views...')
+            MixedStyledText('3')
+              Reference('3')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('3')
+#### ChainedContainer('column2')
+  (continued) StaticGroupedFlowables()
+    (continued) IndexSection()
+         > (0,0,0,1,1) chapter
+      (continued) Index()   index
+           > (0,0,0,0,2) index
+        IndexLabel('U')
+             > (0,0,0,0,2) index section label
+               (0,0,0,0,1) body
+        IndexEntry('UserLoginSerializer (class in ac...')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('UserLoginSerializer (class in ac...')
+            SingleStyledText('UserLoginSerializer (class in ac...')
+            MixedStyledText('3')
+              Reference('3')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('3')
+        IndexEntry('UserProfile (class in accounts.m...')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('UserProfile (class in accounts.m...')
+            SingleStyledText('UserProfile (class in accounts.m...')
+            MixedStyledText('2')
+              Reference('2')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('2')
+        IndexEntry('UserProfile.DoesNotExist, 2')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('UserProfile.DoesNotExist, 2')
+            SingleStyledText('UserProfile.DoesNotExist, ')
+            MixedStyledText('2')
+              Reference('2')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('2')
+        IndexEntry('UserProfile.MultipleObjectsRetur...')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('UserProfile.MultipleObjectsRetur...')
+            SingleStyledText('UserProfile.MultipleObjectsRetur...')
+            MixedStyledText('2')
+              Reference('2')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('2')
+        IndexLabel('V')
+             > (0,0,0,0,2) index section label
+               (0,0,0,0,1) body
+          SingleStyledText('V')
+        IndexEntry('validate_email() (accounts.seria...')
+             > (0,0,0,1,2) level 1 index entry
+               (0,0,0,0,1) body
+          MixedStyledText('validate_email() (accounts.seria...')
+            SingleStyledText('validate_email() (accounts.seria...')
+            MixedStyledText('2')
+              Reference('2')
+                   > (0,0,0,1,1) linked reference
+                SingleStyledText('2')
+#### DownExpandingContainer('footer')
+  StaticGroupedFlowables()
+    Footer('		7')
+         > (0,0,0,0,2) footer
+           (0,0,0,0,1) body
+      MixedStyledText('		7')
+        Tab('	')
+        Tab('	')
+        Field('7')
+          SingleStyledText('7')

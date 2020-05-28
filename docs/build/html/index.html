@@ -1,0 +1,404 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome to Decyphr’s documentation! &#8212; Decyphr 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-decyphr-s-documentation">
+<h1>Welcome to Decyphr’s documentation!<a class="headerlink" href="#welcome-to-decyphr-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+<div class="section" id="module-accounts.__init__">
+<span id="accounts"></span><h1>Accounts<a class="headerlink" href="#module-accounts.__init__" title="Permalink to this headline">¶</a></h1>
+<p>The accounts app.</p>
+<p>The accounts will handle a couple of different scenarios, which are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>store basic user information, such as the users name, email, password, etc
+so that a user can be indentified and authorized within the application</li>
+<li>store any preferences that a user may have about how they interact with the
+application, such as the language that they would like to read the site in</li>
+<li>store information about how often the user is logging in. This will
+us to award a user for logging everyday, and it will also allow us to send
+reminders to users to remind them to come back to the site in the event
+that they haven’t accessed the platform in some time</li>
+</ul>
+</div></blockquote>
+<p>The authentication system is token based. When a user creates an account, a
+token will be generated for them. After both registration and login, the token
+will be returned to the requesting client to enable authentication to be
+performed on all API calls that require authentication.</p>
+<p>In addition to this, we will need to be able to store additional information
+about the user and their login habits. In order to achieve this, we had to
+build a custom view that handles the login process, rather than using the view
+that the DRF provides out of the box.</p>
+<dl class="docutils">
+<dt>The first version of this app should provide the following functionality:</dt>
+<dd><ul class="first last simple">
+<li>User registration
+- Validate incoming data
+- Create the user profile
+- Generate the user’s token
+- Send a confirmation email
+- Return token to client</li>
+<li>User login
+- Validate incoming data
+- Authenticate user
+- Return token to client</li>
+<li>User logout
+- Log user out
+- Return message to the client</li>
+<li>User profiles
+- Users should be able to view their profiles, update any aspect of the
+profile and even delete the profile if they choose</li>
+<li>Password reset
+- Send an email to the user as confirmation
+- Validate the incoming data
+- Update the password</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="module-accounts.models">
+<span id="accounts-models"></span><h1>Accounts models<a class="headerlink" href="#module-accounts.models" title="Permalink to this headline">¶</a></h1>
+<p>The accounts models.</p>
+<p>This is where we’ll store the information relevant to the users’ accounts.</p>
+<p>We want to able to store the user’s information, such as their usual profile
+information, their preferences for the site, and also a login history to give
+users points for logging into the app everyday.</p>
+<dl class="class">
+<dt id="accounts.models.UserProfile">
+<em class="property">class </em><code class="descclassname">accounts.models.</code><code class="descname">UserProfile</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/models.html#UserProfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#accounts.models.UserProfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>The user model that stores the user’s overall profile.</p>
+<p>This model extends Django’s <cite>AbstractUser</cite> and inherits the
+majority of the necessary fields like <cite>username</cite>, <cite>email</cite> and
+<cite>password</cite>. As such, not all validation is done at the model
+level. Unique emails are enforced within the <cite>serializers</cite>.</p>
+<p><cite>first_language</cite> and <cite>language_being_learned</cite> are also required
+fields, but only enforced by the <cite>serializer</cite>. Users created by
+other means, like superusers, will be given a default value upon
+the creation of the account.</p>
+<p>The <cite>language_preference</cite> field will allow users to choose what lanugage
+they would like to view the site in.</p>
+<dl class="exception">
+<dt id="accounts.models.UserProfile.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#accounts.models.UserProfile.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="accounts.models.UserProfile.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#accounts.models.UserProfile.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-accounts.serializers">
+<span id="accounts-serializers"></span><h1>Accounts serializers<a class="headerlink" href="#module-accounts.serializers" title="Permalink to this headline">¶</a></h1>
+<p>The accounts serializers</p>
+<p>The Accounts app contains a number of different serializers that will all be
+used for various instances.</p>
+<p>The <cite>EmptySerializer</cite> is provided as a dummy serializer required by Django Rest
+Framework’s viewset classes.</p>
+<p>Upon login, a user’s incoming data will deserialized by the <cite>UserLoginSerializer</cite>.
+This will simply just contain the login credentials provided by the user. Once
+the user has successfully logged in and authenticated, the view will return
+the <cite>AuthorisedUserSerializer</cite>.</p>
+<p>Upon registration, a users’s incoming data will be deserialized by the
+<cite>RegisterUserSerializer</cite>. This will contain the information that the user
+provided when filling out the registration form. Once the user has successfully
+been created, the view will return the <cite>AuthorisedUserSerializer</cite>.</p>
+<dl class="class">
+<dt id="accounts.serializers.AuthorisedUserSerializer">
+<em class="property">class </em><code class="descclassname">accounts.serializers.</code><code class="descname">AuthorisedUserSerializer</code><span class="sig-paren">(</span><em>instance=None</em>, <em>data=&lt;class 'rest_framework.fields.empty'&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/serializers.html#AuthorisedUserSerializer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#accounts.serializers.AuthorisedUserSerializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authorised User Serializer</p>
+<p>The serializer that will contain the general information about the user,
+after they have logged in</p>
+<dl class="method">
+<dt id="accounts.serializers.AuthorisedUserSerializer.get_auth_token">
+<code class="descname">get_auth_token</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/serializers.html#AuthorisedUserSerializer.get_auth_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#accounts.serializers.AuthorisedUserSerializer.get_auth_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get auth token</p>
+<p>Get the user’s authentication token.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="accounts.serializers.EmptySerializer">
+<em class="property">class </em><code class="descclassname">accounts.serializers.</code><code class="descname">EmptySerializer</code><span class="sig-paren">(</span><em>instance=None</em>, <em>data=&lt;class 'rest_framework.fields.empty'&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/serializers.html#EmptySerializer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#accounts.serializers.EmptySerializer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="accounts.serializers.RegisterUserSerializer">
+<em class="property">class </em><code class="descclassname">accounts.serializers.</code><code class="descname">RegisterUserSerializer</code><span class="sig-paren">(</span><em>instance=None</em>, <em>data=&lt;class 'rest_framework.fields.empty'&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/serializers.html#RegisterUserSerializer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#accounts.serializers.RegisterUserSerializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register New User</p>
+<p>The serializer that will be used to regsiter a new user</p>
+<dl class="method">
+<dt id="accounts.serializers.RegisterUserSerializer.validate_email">
+<code class="descname">validate_email</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/serializers.html#RegisterUserSerializer.validate_email"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#accounts.serializers.RegisterUserSerializer.validate_email" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate email</p>
+<p>Validate the user’s email address to ensure that the email address
+doesn’t already exist in the database. An error will be raise if the
+email exists within the database</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="accounts.serializers.UserLoginSerializer">
+<em class="property">class </em><code class="descclassname">accounts.serializers.</code><code class="descname">UserLoginSerializer</code><span class="sig-paren">(</span><em>instance=None</em>, <em>data=&lt;class 'rest_framework.fields.empty'&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/serializers.html#UserLoginSerializer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#accounts.serializers.UserLoginSerializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Login Serializer</p>
+<p>The serializer that will be used for the user’s incoming login credentials.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>username</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The username provided by the user</li>
+<li><strong>password</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The password provided by the user</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-accounts.views">
+<span id="accounts-views"></span><h1>Accounts views<a class="headerlink" href="#module-accounts.views" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="accounts.views.AuthViewSet">
+<em class="property">class </em><code class="descclassname">accounts.views.</code><code class="descname">AuthViewSet</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/views.html#AuthViewSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#accounts.views.AuthViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authentication Viewset</p>
+<p>The viewset that will be responsible for handle the user’s authentication
+and authorization</p>
+<dl class="method">
+<dt id="accounts.views.AuthViewSet.get_serializer_class">
+<code class="descname">get_serializer_class</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/views.html#AuthViewSet.get_serializer_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#accounts.views.AuthViewSet.get_serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Serializer Class</p>
+<p>This viewset has multiple actions and has potentially different
+serializers per action. This will handle the switching out of each
+of the serializer classes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="accounts.views.AuthViewSet.login">
+<code class="descname">login</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/views.html#AuthViewSet.login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#accounts.views.AuthViewSet.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Login</p>
+<p>Authenticate the user and log them in, and return the user and the
+user’s token to the client. The request data will be serialized as per
+the requirements of the <cite>UserLoginSerializer</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A JSON-ified UserProfile object which
+also includes the token for that user</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">AuthorizedUserSerializer</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="accounts.views.AuthViewSet.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#accounts.views.AuthViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#accounts.serializers.EmptySerializer" title="accounts.serializers.EmptySerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">accounts.serializers.EmptySerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-accounts.utils">
+<span id="accounts-utils"></span><h1>Accounts utils<a class="headerlink" href="#module-accounts.utils" title="Permalink to this headline">¶</a></h1>
+<p>Accounts Utilities</p>
+<p>The module contains a set of helper methods that will be used to create and
+authenticate users within the application. These functions will mostly exist
+for the purpose of wrapping existing functionality within Django</p>
+<dl class="function">
+<dt id="accounts.utils.create_user_account">
+<code class="descclassname">accounts.utils.</code><code class="descname">create_user_account</code><span class="sig-paren">(</span><em>email</em>, <em>password</em>, <em>username=''</em>, <em>first_language=0</em>, <em>language_being_learned=0</em>, <em>language_preference=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/utils.html#create_user_account"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#accounts.utils.create_user_account" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create User Account</p>
+<p>Create a new user account using the information provided. This function
+will just wrap Django’s <cite>.create_user</cite> method in order to create a new
+user instance with the protected password.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The email provided by the user</li>
+<li><strong>password</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The password provided by the user</li>
+<li><strong>username</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The username provided by the user</li>
+<li><strong>first_language</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The ID of the language that the user chose as</li>
+<li><strong>first language</strong> (<em>their</em>) – </li>
+<li><strong>language_being_learned</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The ID of the language that the user</li>
+<li><strong>as the language that they wish to learn</strong> (<em>chose</em>) – </li>
+<li><strong>language_preference</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The ID of the language that the user</li>
+<li><strong>as the language that they wish to view the site in</strong> (<em>chose</em>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The newly created user instance</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#accounts.models.UserProfile" title="accounts.models.UserProfile">UserProfile</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<p>This function can be called by explicitly passing in the arguments:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">user</span> <span class="o">=</span> <span class="n">create_user_account</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span>
+    <span class="n">first_language</span><span class="p">,</span> <span class="n">language_being_learned</span><span class="p">,</span> <span class="n">language_preference</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or, by unpacking the <cite>RegisterUserSerializer</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">user</span> <span class="o">=</span> <span class="n">create_user_account</span><span class="p">(</span><span class="o">**</span><span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="accounts.utils.get_and_authenticate_user">
+<code class="descclassname">accounts.utils.</code><code class="descname">get_and_authenticate_user</code><span class="sig-paren">(</span><em>username</em>, <em>password</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/utils.html#get_and_authenticate_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#accounts.utils.get_and_authenticate_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authenticate the user</p>
+<p>Authenticate the user that’s attempting to log in using their username and
+password.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>username</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The username that the user provided</li>
+<li><strong>password</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The password that the user provided</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">An authenticated user instance is returned if the
+authentication process is successful</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference internal" href="#accounts.models.UserProfile" title="accounts.models.UserProfile">UserProfile</a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValidationError</span></code> – If the username and password cannot be matched</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>This function can be called by explicitly passing the username and
+password:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">user</span> <span class="o">=</span> <span class="n">get_and_authenticate_user</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or, by unpacking the <cite>UserLoginSerializer</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">user</span> <span class="o">=</span> <span class="n">get_and_authenticate_user</span><span class="p">(</span><span class="o">**</span><span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to Decyphr’s documentation!</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#module-accounts.__init__">Accounts</a></li>
+<li><a class="reference internal" href="#module-accounts.models">Accounts models</a></li>
+<li><a class="reference internal" href="#module-accounts.serializers">Accounts serializers</a></li>
+<li><a class="reference internal" href="#module-accounts.views">Accounts views</a></li>
+<li><a class="reference internal" href="#module-accounts.utils">Accounts utils</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Aaron Sinnott.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

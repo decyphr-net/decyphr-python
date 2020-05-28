@@ -1,79 +1,74 @@
-from django.core.mail import send_mail
 from django.conf import settings
-from rest_framework.views import APIView
+from django.contrib.auth import logout
+from django.core.exceptions import ImproperlyConfigured
+from rest_framework.decorators import action
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.authtoken.models import Token
-from accounts.permissions import IsCreationOrIsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from accounts.models import UserProfile
-from accounts.serializers import UserSerializer, TokenAuthSerializer
+from . import serializers
+from .utils import get_and_authenticate_user, create_user_account
 
 
-class ObtainAuthToken(APIView):
+class AuthViewSet(viewsets.GenericViewSet):
+    """Authentication Viewset
 
-    def post(self, request):
-        try:
-            serializer = TokenAuthSerializer(data=request.data)
-            serializer.is_valid(raise_exception=True)
-        
-            user = serializer.validated_data["user"]
-            token, created = Token.objects.get_or_create(user=user)
-
-            content = {
-              "token": token.key
-            }
-
-            return Response(content, status=status.HTTP_200_OK)
-        except UserProfile.DoesNotExist:
-            message = "This user wasn't found. Please try again"
-            return Response(message, status.HTTP_404_NOT_FOUND)
-
-
-class UserViewSet(viewsets.ModelViewSet):
+    The viewset that will be responsible for handle the user's authentication
+    and authorization
     """
-    Handle user interactions with their profile
-    """
-
+    permission_classes = [AllowAny,]
+    serializer_class = serializers.EmptySerializer
+    serializer_classes = {
+        'login': serializers.UserLoginSerializer,
+        'register': serializers.RegisterUserSerializer
+    }
     queryset = UserProfile.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = (IsCreationOrIsAuthenticated, )
 
-    def _send_email(self, email_address):
-        """
-        Send an email to the newly created to user to let them know
-        that they've completed the sign up
-        """
-        subject = "Welcome to langapp"
-        message = "Thank you for registering on langapp"
-        send_mail(
-            subject,
-            message,
-            settings.EMAIL_HOST_USER,
-            [email_address],
-            fail_silently=False,
-        )
-    
-    def _create_token(self, user):
-        Token.objects.create(user=user)
-        return user
+    @action(methods=['POST'], detail=False)
+    def login(self, request):
+        """Login
+        
+        Authenticate the user and log them in, and return the user and the
+        user's token to the client. The request data will be serialized as per
+        the requirements of the `UserLoginSerializer`.
 
-    def create(self, request):
+        Returns:
+            AuthorizedUserSerializer: A JSON-ified UserProfile object which
+            also includes the token for that user
         """
-        Register the new user
-        """
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            user = UserProfile.objects.create_user(**serializer.validated_data)
-            self._create_token(user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = get_and_authenticate_user(**serializer.validated_data)
+        data = serializers.AuthorisedUserSerializer(user).data
+        return Response(data=data, status=status.HTTP_200_OK)
     
-    def retrieve(self, request, pk=None, *args, **kwargs):
+    @action(methods=['POST'], detail=False)
+    def register(self, request):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = create_user_account(**serializer.validated_data)
+        data = serializers.AuthorisedUserSerializer(user).data
+        return Response(data=data, status=status.HTTP_201_CREATED)
+    
+
+    @action(methods=['POST'], detail=False)
+    def logout(self, request):
+        logout(request)
+        data = {'success': 'Successfully logged out'}
+        return Response(data=data, status=status.HTTP_200_OK)
+    
+    def get_serializer_class(self):
+        """Get Serializer Class
+
+        This viewset has multiple actions and has potentially different 
+        serializers per action. This will handle the switching out of each
+        of the serializer classes
         """
-        Retrieve the profile for the currently logged in user
-        """
-        serializer = self.serializer_class(request.user)
-        return Response(serializer.data)
+        if not isinstance(self.serializer_classes, dict):
+            raise ImproperlyConfigured(
+                "serializer_classes should be a dict mapping")
+
+        if self.action in self.serializer_classes.keys():
+            return self.serializer_classes[self.action]
+        return super().get_serializer_class()

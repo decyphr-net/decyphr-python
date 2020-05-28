@@ -45,7 +45,7 @@ class AccountsViewTests(APITestCase):
 
         A user can register when all of the requirements are successfully met
         """
-        url = reverse("user-list")
+        url = reverse("user-register")
         data = self.user_details_as_dict
 
         response = self.client.post(url, data, format="json")
@@ -61,7 +61,7 @@ class AccountsViewTests(APITestCase):
         they will receive an error informing them that the username has been
         taken
         """
-        url = reverse("user-list")
+        url = reverse("user-register")
         data = self.user_details_as_dict
 
         data["username"] = "aaron"
@@ -80,7 +80,7 @@ class AccountsViewTests(APITestCase):
         they will receive an error informing them that the email has been
         taken
         """
-        url = reverse("user-list")
+        url = reverse("user-register")
         data = self.user_details_as_dict
 
         data["email"] = "aaronsnig@gmail.com"
@@ -96,7 +96,7 @@ class AccountsViewTests(APITestCase):
         When a user tries to register without providing a password they
         receive an error informing them that they must provide a password
         """
-        url = reverse("user-list")
+        url = reverse("user-register")
         data = self.user_details_as_dict
 
         data["password"] = ""
@@ -112,7 +112,7 @@ class AccountsViewTests(APITestCase):
         When a user tries to register without providing a first language they
         receive an error informing them that they must provide a first language
         """
-        url = reverse("user-list")
+        url = reverse("user-register")
         data = self.user_details_as_dict
 
         data["first_language"] = ""
@@ -129,7 +129,7 @@ class AccountsViewTests(APITestCase):
         When a user tries to register without providing a second language they
         receive an error informing them that they must provide a second language
         """
-        url = reverse("user-list")
+        url = reverse("user-register")
         data = self.user_details_as_dict
 
         data["language_being_learned"] = ""
@@ -147,7 +147,7 @@ class AccountsViewTests(APITestCase):
         they receive an error informing them that they must provide a language
         preference
         """
-        url = reverse("user-list")
+        url = reverse("user-register")
         data = self.user_details_as_dict
 
         data["language_preference"] = ""
@@ -165,7 +165,7 @@ class AccountsViewTests(APITestCase):
         they receive an error informing them that they cannot learn the same
         language as their first language
         """
-        url = reverse("user-list")
+        url = reverse("user-register")
         data = self.user_details_as_dict
 
         data["language_being_learned"] = 1
@@ -184,7 +184,7 @@ class AccountsViewTests(APITestCase):
         language to learn. They are not limited to the languages used elsewhere
         in these tests
         """
-        url = reverse("user-list")
+        url = reverse("user-register")
         data = self.user_details_as_dict
 
         data.update({"first_language": 4, "language_being_learned": 3})
@@ -203,7 +203,7 @@ class AccountsViewTests(APITestCase):
         When a user registers to the site, they are assigned an auth token
         that the client will use to authenticate the user against the API
         """
-        url = reverse("user-list")
+        url = reverse("user-register")
         data = self.user_details_as_dict
 
         response = self.client.post(url, data, format="json")
@@ -218,7 +218,7 @@ class AccountsViewTests(APITestCase):
 
         Once a user has registered, they can get access to their auth token
         """
-        registration_url = reverse("user-list")
+        registration_url = reverse("user-register")
         auth_token_url = reverse("api_token_auth")
 
         registration_data = self.user_details_as_dict
@@ -243,7 +243,7 @@ class AccountsViewTests(APITestCase):
         When a user is logging in, they can use their email address as an
         identifier
         """
-        registration_url = reverse("user-list")
+        registration_url = reverse("user-register")
         auth_token_url = reverse("api_token_auth")
 
         registration_data = self.user_details_as_dict
@@ -266,7 +266,7 @@ class AccountsViewTests(APITestCase):
         data, they will receive an error telling them that they need to enter a
         username
         """
-        registration_url = reverse("user-list")
+        registration_url = reverse("user-register")
         auth_token_url = reverse("api_token_auth")
 
         registration_data = self.user_details_as_dict
@@ -284,7 +284,6 @@ class AccountsViewTests(APITestCase):
         self.assertEqual(
             login_response.data["username"][0], "Please enter a username")
 
-
     def test_that_correct_error_is_thrown_if_no_username_is_provided(self):
         """Login cannot be performed without a username
 
@@ -292,7 +291,7 @@ class AccountsViewTests(APITestCase):
         `username` in the post data, an error will be return to inform that a
         username field is required
         """
-        registration_url = reverse("user-list")
+        registration_url = reverse("user-register")
         auth_token_url = reverse("api_token_auth")
 
         registration_data = self.user_details_as_dict
@@ -317,7 +316,7 @@ class AccountsViewTests(APITestCase):
         data, they will receive an error telling them that they need to enter a
         password
         """
-        registration_url = reverse("user-list")
+        registration_url = reverse("user-register")
         auth_token_url = reverse("api_token_auth")
 
         registration_data = self.user_details_as_dict
@@ -342,7 +341,7 @@ class AccountsViewTests(APITestCase):
         `password` in the post data, an error will be return to inform that a
         password field is required
         """
-        registration_url = reverse("user-list")
+        registration_url = reverse("user-register")
         auth_token_url = reverse("api_token_auth")
 
         registration_data = self.user_details_as_dict

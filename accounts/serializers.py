@@ -25,6 +25,7 @@ from django.contrib.auth.models import BaseUserManager
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 from rest_framework import exceptions
+from rest_framework.validators import UniqueValidator
 from accounts.models import UserProfile
 from languages.models import Language
 
@@ -40,6 +41,14 @@ class UserLoginSerializer(serializers.Serializer):
     """
     username = serializers.CharField(max_length=50, required=True)
     password = serializers.CharField(required=True, write_only=True)
+
+    def __init__(self, *args, **kwargs):
+        super(UserLoginSerializer, self).__init__(*args, **kwargs)
+
+        self.fields["username"].error_messages["required"] = u"Username is required"
+        self.fields["username"].error_messages["blank"] = u"Please enter a username"
+        self.fields["password"].error_messages["required"] = u"Password is required"
+        self.fields["password"].error_messages["blank"] = u"Please enter a password"
 
 
 class AuthorisedUserSerializer(serializers.ModelSerializer):
@@ -72,10 +81,25 @@ class RegisterUserSerializer(serializers.ModelSerializer):
     The serializer that will be used to regsiter a new user
     """
 
+    email = serializers.EmailField(
+        validators=[UniqueValidator(queryset=UserProfile.objects.all())]
+    )
+    password = serializers.CharField(write_only=True)
+    date_joined = serializers.DateTimeField(read_only=True)
+    first_language = serializers.PrimaryKeyRelatedField(
+        queryset=Language.objects.all())
+    language_being_learned = serializers.PrimaryKeyRelatedField(
+        queryset=Language.objects.all()
+    )
+    language_preference = serializers.PrimaryKeyRelatedField(
+        queryset=Language.objects.all()
+    )
+
     class Meta:
         model = UserProfile
+        depth = 1
         fields = ('id', 'email', 'password', 'username', 'first_language',
-            'language_being_learned', 'language_preference')
+            'date_joined', 'language_being_learned', 'language_preference')
     
     def validate_email(self, value):
         """Validate email
@@ -92,6 +116,18 @@ class RegisterUserSerializer(serializers.ModelSerializer):
     def validate_password(self, value):
         password_validation.validate_password(value)
         return value
+    
+    def validate(self, data):
+        """
+        We'll do an extra step of validation to ensure that a user
+        hasn't chosen thesame language from both language fields upon
+        registration
+        """
+        if data["first_language"] == data["language_being_learned"]:
+            raise serializers.ValidationError(
+                "You cannot learn a language that is the same as your native language."
+            )
+        return data
 
 
 class EmptySerializer(serializers.Serializer):

@@ -219,7 +219,7 @@ class AccountsViewTests(APITestCase):
         Once a user has registered, they can get access to their auth token
         """
         registration_url = reverse("user-register")
-        auth_token_url = reverse("api_token_auth")
+        auth_token_url = reverse("user-login")
 
         registration_data = self.user_details_as_dict
         login_data = {"username": self.username, "password": self.password}
@@ -235,29 +235,7 @@ class AccountsViewTests(APITestCase):
             auth_token_url, login_data, format="json")
 
         self.assertEqual(login_response.status_code, status.HTTP_200_OK)
-        self.assertIn("token", login_response.data)
-    
-    def test_that_a_user_can_log_in_with_an_email(self):
-        """Logins can be performed with an email address
-
-        When a user is logging in, they can use their email address as an
-        identifier
-        """
-        registration_url = reverse("user-register")
-        auth_token_url = reverse("api_token_auth")
-
-        registration_data = self.user_details_as_dict
-        login_data = {"username": self.email, "password": self.password}
-
-        registration_response = self.client.post(
-            registration_url, registration_data, format="json"
-        )
-
-        login_response = self.client.post(
-            auth_token_url, login_data, format="json")
-
-        self.assertEqual(login_response.status_code, status.HTTP_200_OK)
-        self.assertIn("token", login_response.data)
+        self.assertIn("auth_token", login_response.data)
     
     def test_that_correct_error_is_thrown_if_the_username_field_is_empty(self):
         """Login cannot be performed with an empty username
@@ -267,7 +245,7 @@ class AccountsViewTests(APITestCase):
         username
         """
         registration_url = reverse("user-register")
-        auth_token_url = reverse("api_token_auth")
+        auth_token_url = reverse("user-login")
 
         registration_data = self.user_details_as_dict
         login_data = {"username": "", "password": self.password}
@@ -292,7 +270,7 @@ class AccountsViewTests(APITestCase):
         username field is required
         """
         registration_url = reverse("user-register")
-        auth_token_url = reverse("api_token_auth")
+        auth_token_url = reverse("user-login")
 
         registration_data = self.user_details_as_dict
         login_data = {"password": self.password}
@@ -317,7 +295,7 @@ class AccountsViewTests(APITestCase):
         password
         """
         registration_url = reverse("user-register")
-        auth_token_url = reverse("api_token_auth")
+        auth_token_url = reverse("user-login")
 
         registration_data = self.user_details_as_dict
         login_data = {"username": self.username, "password": ""}
@@ -342,7 +320,7 @@ class AccountsViewTests(APITestCase):
         password field is required
         """
         registration_url = reverse("user-register")
-        auth_token_url = reverse("api_token_auth")
+        auth_token_url = reverse("user-login")
 
         registration_data = self.user_details_as_dict
         login_data = {"username": self.username}
@@ -365,16 +343,15 @@ class AccountsViewTests(APITestCase):
         Clients that have not registered to the site cannot retrieve access
         tokens
         """
-        url = reverse("api_token_auth")
+        url = reverse("user-login")
         data = {
             "username": "notindatabaseusername",
             "password": "noneexistentpassword"
         }
 
         response = self.client.post(url, data, format="json")
-
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(
-            response.data,
-            "This user wasn't found. Please try again"
+            response.data[0],
+            "Invalid email/password. Please try again!"
         )

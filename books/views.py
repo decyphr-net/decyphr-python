@@ -63,15 +63,15 @@ class BookViewSet(viewsets.ModelViewSet):
             Reponse: The serialized list of books and the status
         """
         search_parameters = request.query_params["name"]
-        user_language = request.user.language_being_learned.short_code
+        user_language = request.user.language_being_learned
         books = Book.objects.filter(title__icontains=search_parameters)
 
         # If the set of books returned from the database is 0, get the books
         # from the Google Books API
         if books.count() == 0:
-            api_data = get_books(search_parameters, user_language)
-            books = parse_book_data(api_data, user_language)
-        
+            api_data = get_books(search_parameters, user_language.short_code)
+            books = parse_book_data(api_data, user_language.id)
+ 
         serializer = self.serializer_class(data=books, many=True)
         serializer.is_valid()
         serializer.save()

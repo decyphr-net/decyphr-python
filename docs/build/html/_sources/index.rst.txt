@@ -43,3 +43,28 @@ Accounts utils
 ==============
 .. automodule:: accounts.utils
    :members:
+
+Books
+=====
+.. automodule:: books.__init__
+   :members:
+
+Books models
+============
+.. automodule:: books.models
+   :members:
+
+Books serializers
+=================
+.. automodule:: books.serializers
+   :members:
+
+Books views
+===========
+.. automodule:: books.views
+   :members:
+
+Books google_utils
+==================
+.. automodule:: books.google_utils
+   :members:

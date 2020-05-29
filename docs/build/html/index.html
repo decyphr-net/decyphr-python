@@ -170,6 +170,14 @@ after they have logged in</p>
 <dd><p>Register New User</p>
 <p>The serializer that will be used to regsiter a new user</p>
 <dl class="method">
+<dt id="accounts.serializers.RegisterUserSerializer.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/serializers.html#RegisterUserSerializer.validate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#accounts.serializers.RegisterUserSerializer.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>We’ll do an extra step of validation to ensure that a user
+hasn’t chosen thesame language from both language fields upon
+registration</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="accounts.serializers.RegisterUserSerializer.validate_email">
 <code class="descname">validate_email</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/serializers.html#RegisterUserSerializer.validate_email"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#accounts.serializers.RegisterUserSerializer.validate_email" title="Permalink to this definition">¶</a></dt>
 <dd><p>Validate email</p>
@@ -182,7 +190,7 @@ email exists within the database</p>
 
 <dl class="class">
 <dt id="accounts.serializers.UserLoginSerializer">
-<em class="property">class </em><code class="descclassname">accounts.serializers.</code><code class="descname">UserLoginSerializer</code><span class="sig-paren">(</span><em>instance=None</em>, <em>data=&lt;class 'rest_framework.fields.empty'&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/serializers.html#UserLoginSerializer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#accounts.serializers.UserLoginSerializer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">accounts.serializers.</code><code class="descname">UserLoginSerializer</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/serializers.html#UserLoginSerializer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#accounts.serializers.UserLoginSerializer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Login Serializer</p>
 <p>The serializer that will be used for the user’s incoming login credentials.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -337,6 +345,211 @@ password:</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-books.__init__">
+<span id="books"></span><h1>Books<a class="headerlink" href="#module-books.__init__" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="module-books.models">
+<span id="books-models"></span><h1>Books models<a class="headerlink" href="#module-books.models" title="Permalink to this headline">¶</a></h1>
+<p>The Book Model</p>
+<p>This model will store all necessary information pertaining to each individual
+book.</p>
+<dl class="class">
+<dt id="books.models.Book">
+<em class="property">class </em><code class="descclassname">books.models.</code><code class="descname">Book</code><span class="sig-paren">(</span><em>id</em>, <em>title</em>, <em>author</em>, <em>publisher</em>, <em>publish_date</em>, <em>description</em>, <em>category</em>, <em>language</em>, <em>small_thumbnail</em>, <em>thumbnail</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/books/models.html#Book"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#books.models.Book" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="exception">
+<dt id="books.models.Book.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#books.models.Book.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="books.models.Book.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#books.models.Book.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-books.serializers">
+<span id="books-serializers"></span><h1>Books serializers<a class="headerlink" href="#module-books.serializers" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="books.serializers.BookSerializer">
+<em class="property">class </em><code class="descclassname">books.serializers.</code><code class="descname">BookSerializer</code><span class="sig-paren">(</span><em>instance=None</em>, <em>data=&lt;class 'rest_framework.fields.empty'&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/books/serializers.html#BookSerializer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#books.serializers.BookSerializer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-books.views">
+<span id="books-views"></span><h1>Books views<a class="headerlink" href="#module-books.views" title="Permalink to this headline">¶</a></h1>
+<p>The Book Views.</p>
+<p>This module will handle the interaction between the client and the Book model.</p>
+<p>Clients can retrieve single book instances, or lists of books. When a client
+searches for a book, we check to see if the book is present in the database
+and if it’s not, the book will be searched for in Google Books and if found
+there, they will be added to the database and for easier access when a client
+tries to access this data at a later point</p>
+<dl class="class">
+<dt id="books.views.BookViewSet">
+<em class="property">class </em><code class="descclassname">books.views.</code><code class="descname">BookViewSet</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/books/views.html#BookViewSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#books.views.BookViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles the interactions that the user will have with the the books within
+the application.</p>
+<p>Only users that have been authenticated will be able to access the books.</p>
+<dl class="method">
+<dt id="books.views.BookViewSet.list">
+<code class="descname">list</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/books/views.html#BookViewSet.list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#books.views.BookViewSet.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of books</p>
+<p>Retrieves a list of books from the database, but will retrieve a list
+from Google Books if no results are found in the database</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>self</strong> (<a class="reference internal" href="#books.views.BookViewSet" title="books.views.BookViewSet"><em>BookViewSet</em></a>) – The current BookViewSet instance</li>
+<li><strong>request</strong> (<em>Request</em>) – The current request being handled</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The serialized list of books and the status</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Reponse</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="books.views.BookViewSet.retrieve">
+<code class="descname">retrieve</code><span class="sig-paren">(</span><em>request</em>, <em>pk</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/books/views.html#BookViewSet.retrieve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#books.views.BookViewSet.retrieve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get by ID</p>
+<p>Retrieve a single book instance based on it’s ID.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>self</strong> (<a class="reference internal" href="#books.views.BookViewSet" title="books.views.BookViewSet"><em>BookViewSet</em></a>) – The current BookViewSet instance</li>
+<li><strong>request</strong> (<em>Request</em>) – The current request being handled</li>
+<li><strong>pk</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The ID of the book that is being requested by the client</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The serialized book and the status</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Reponse</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="books.views.BookViewSet.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#books.views.BookViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#books.serializers.BookSerializer" title="books.serializers.BookSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">books.serializers.BookSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-books.google_utils">
+<span id="books-google-utils"></span><h1>Books google_utils<a class="headerlink" href="#module-books.google_utils" title="Permalink to this headline">¶</a></h1>
+<p>The utilities used to help with the integration with Google Books</p>
+<p>This module contains a number of functions that will be used to handle the
+communication between the BookViewset and the Google Books API.</p>
+<p>Google Books allows us to search for books with a number of parameters. The
+main parameters that we’ll use will be:
+- name: the name of the book (this does not need to the full name of the
+book as the API will return partial matches)
+- projection: we use <cite>lite</cite> to lower the footprint that we’re using
+- langRestrict: restrict results to be a specific language. We will use the
+language that the user is learning
+- orderBy: we can order by <cite>newest</cite> or <cite>relevance</cite>. Right now we’re
+ordering by relevance in order to ensure that users will still be able to
+search for books that are both new and old
+- limit_param: we are currently limiting the results to 10
+- key_param: the Google Books API key which is defined in the <cite>settings</cite></p>
+<p>The data that comes back from the API is not structured very well. Not all
+books contain the information that we’re looking for and dates have no set
+format. Some dates only contain years, some years and months while others have
+the year, month and date.</p>
+<p>In addition to this, Google doesn’t even provide keys in the instances where
+they don’t have information, meaning that the <cite>KeyError</cite> is thrown
+often here.</p>
+<p>Because the information is not always consistent, we’ll store the information
+that we can for now. Most of the database will allow for empty fields to
+accomodate these issues here.</p>
+<p>For now, we’ll stick with the Google Books API as it seems to be the most
+complete API to date. If a more consistent solution is found can consider
+changing, but it’s better to stick with Google for now.</p>
+<dl class="function">
+<dt id="books.google_utils.get_books">
+<code class="descclassname">books.google_utils.</code><code class="descname">get_books</code><span class="sig-paren">(</span><em>name</em>, <em>language_code</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/books/google_utils.html#get_books"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#books.google_utils.get_books" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get books from Google Books API</p>
+<p>Retrieve the set of books from the Google API.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The name of the book being searched for</li>
+<li><strong>language_code</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The short code of the language that the student</li>
+<li><strong>learning</strong> (<em>is</em>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The list of books returned from the API
+None: If there was an issue retrieving the data from the API</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<p>This function must be called with the language short code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">api_data</span> <span class="o">=</span> <span class="n">get_books</span><span class="p">(</span><span class="n">search_parameters</span><span class="p">,</span> <span class="n">user_language</span><span class="o">.</span><span class="n">short_code</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="books.google_utils.parse_book_data">
+<code class="descclassname">books.google_utils.</code><code class="descname">parse_book_data</code><span class="sig-paren">(</span><em>data</em>, <em>lang</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/books/google_utils.html#parse_book_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#books.google_utils.parse_book_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the book information</p>
+<p>This function will take all of the information that was recieved from the
+API and format it in a way that we can store it in our database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – The list of books that came back from the API. This list</li>
+<li><strong>be comprised of dicts that contain a volumeInfo key</strong> (<em>must</em>) – </li>
+<li><strong>lang</strong> (<em>id</em>) – The ID of the language that the user is learning</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A list of the parsed and formatted book information for us to
+write to the database</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<p>This function can be used once the data has been retruned from the API:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">api_data</span> <span class="o">=</span> <span class="n">get_books</span><span class="p">(</span><span class="n">search_parameters</span><span class="p">,</span> <span class="n">user_language</span><span class="o">.</span><span class="n">short_code</span><span class="p">)</span>
+<span class="n">books</span> <span class="o">=</span> <span class="n">parse_book_data</span><span class="p">(</span><span class="n">api_data</span><span class="p">,</span> <span class="n">user_language</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
 
 
           </div>
@@ -354,6 +567,11 @@ password:</p>
 <li><a class="reference internal" href="#module-accounts.serializers">Accounts serializers</a></li>
 <li><a class="reference internal" href="#module-accounts.views">Accounts views</a></li>
 <li><a class="reference internal" href="#module-accounts.utils">Accounts utils</a></li>
+<li><a class="reference internal" href="#module-books.__init__">Books</a></li>
+<li><a class="reference internal" href="#module-books.models">Books models</a></li>
+<li><a class="reference internal" href="#module-books.serializers">Books serializers</a></li>
+<li><a class="reference internal" href="#module-books.views">Books views</a></li>
+<li><a class="reference internal" href="#module-books.google_utils">Books google_utils</a></li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>

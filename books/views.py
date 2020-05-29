@@ -71,9 +71,8 @@ class BookViewSet(viewsets.ModelViewSet):
         if books.count() == 0:
             api_data = get_books(search_parameters, user_language)
             books = parse_book_data(api_data, user_language)
-            serializer = self.serializer_class(data=books, many=True)
-            if serializer.is_valid():
-                serializer.save()
         
-        serializer = self.serializer_class(books, many=True)
+        serializer = self.serializer_class(data=books, many=True)
+        serializer.is_valid()
+        serializer.save()
         return Response(data=serializer.data, status=status.HTTP_200_OK)

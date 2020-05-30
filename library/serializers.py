@@ -30,6 +30,10 @@ class LibrarySerializer(serializers.ModelSerializer):
 
 
 class AddToLibrarySerializer(serializers.ModelSerializer):
+    book = serializers.PrimaryKeyRelatedField(queryset=Book.objects.all())
+    user = serializers.PrimaryKeyRelatedField(
+        queryset=UserProfile.objects.all(),
+        default=serializers.CurrentUserDefault())
 
     class Meta:
         model = LibraryBook

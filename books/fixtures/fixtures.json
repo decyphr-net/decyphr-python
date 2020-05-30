@@ -53,8 +53,8 @@
         "is_staff": true,
         "is_active": true,
         "date_joined": "2020-05-13T20:01:13.237Z",
-        "first_language": 1,
-        "language_being_learned": 2,
+        "first_language": 2,
+        "language_being_learned": 1,
         "language_preference": 2,
         "groups": [],
         "user_permissions": []

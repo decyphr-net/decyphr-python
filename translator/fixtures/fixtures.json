@@ -1,0 +1,64 @@
+[
+    {
+        "model": "languages.language",
+        "pk": 1,
+        "fields": {
+            "name": "Brazilian Portuguese",
+            "code": "pt-BR",
+            "short_code": "pt",
+            "description": "The language spoken in Brazil"
+        }
+    },
+    {
+        "model": "languages.language",
+        "pk": 2,
+        "fields": {
+            "name": "English",
+            "code": "en-GB",
+            "short_code": "en",
+            "description": "The language spoken in Ireland"
+        }
+    },
+    {
+        "model": "languages.language",
+        "pk": 3,
+        "fields": {
+            "name": "German",
+            "code": "de",
+            "short_code": "de",
+            "description": "The language spoken in Germany"
+        }
+    },
+    {
+        "model": "languages.language",
+        "pk": 4,
+        "fields": {
+            "name": "Spanish",
+            "code": "es",
+            "short_code": "es",
+            "description": "The language spoken in Spain"
+        }
+    },
+    {
+        "model": "accounts.userprofile",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$180000$DvzBOBJMboRl$gJ5/QoQIwtAWGWBwQGNbwa6/2chfmVDlKT+WpKTThUw=",
+            "last_login": "2020-05-13T20:42:56.979Z",
+            "is_superuser": true,
+            "username": "aaron",
+            "first_name": "",
+            "last_name": "",
+            "email": "aaronsnig@gmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2020-05-13T20:01:13.237Z",
+            "first_language": 2,
+            "language_being_learned": 1,
+            "language_preference": 2,
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+    ]
+    

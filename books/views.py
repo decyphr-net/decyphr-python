@@ -139,15 +139,21 @@ class BookViewSet(viewsets.ModelViewSet):
         """
         search_parameters = request.query_params["name"]
         user_language = request.user.language_being_learned
-        books = Book.objects.filter(title__icontains=search_parameters)
 
         # If the set of books returned from the database is 0, get the books
         # from the Google Books API
-        if books.count() == 0:
+        if Book.objects.filter(title__icontains=search_parameters).count() == 0:
             api_data = get_books(search_parameters, user_language.short_code)
             books = parse_book_data(api_data, user_language.id)
- 
-        serializer = self.serializer_class(data=books, many=True)
-        serializer.is_valid()
-        serializer.save()
+
+            # DRF was returning odd errors when trying to save this data with
+            # `many=True` so for now each book that comes from the API will
+            # created until another bulk operation can be found
+            for book in books:
+                serializer = self.serializer_class(data=book)
+                if serializer.is_valid():
+                    serializer.save()
+        
+        books = Book.objects.filter(title__icontains=search_parameters)
+        serializer = self.serializer_class(books, many=True)
         return Response(data=serializer.data, status=status.HTTP_200_OK)

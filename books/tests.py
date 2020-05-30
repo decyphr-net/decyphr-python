@@ -64,5 +64,4 @@ class BooksTests(APITestCase):
         self.client.get(create_book_url, {"name": "harry"})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        print(response.__dict__)
-        self.assertEqual(2, response.data["language"])
+        self.assertEqual(1, response.data["language"])

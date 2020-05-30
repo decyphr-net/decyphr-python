@@ -2,7 +2,6 @@ language: python
 python:
   - '3.6'
 install:
-  - pip install pipenv
-  - pipenv install --sequential
+  - pip install -r requirements.txt
 before_script: pipenv run python manage.py migrate
 script: pipenv run python manage.py test

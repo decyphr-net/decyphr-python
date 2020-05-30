@@ -36,12 +36,12 @@ class TranslationViewSet(viewsets.ModelViewSet):
     
     def create(self, request):
         """
-        Create a new translation based on the incoming text. The incoming serializer
-        will provide the text to be translated and the ID of the session that the
-        text belongs to.
+        Create a new translation based on the incoming text. The incoming
+        serializer will provide the text to be translated and the ID of the
+        session that the text belongs to.
 
-        This will then be translated and analysed by AWS, with a audio clip which
-        will be contained in the outgoing serializer
+        This will then be translated and analysed by AWS, with a audio clip
+        which will be contained in the outgoing serializer.
         """
         serializer = self.write_serializer(data=request.data)
 

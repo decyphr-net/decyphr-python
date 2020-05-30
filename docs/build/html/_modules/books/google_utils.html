@@ -40,16 +40,17 @@
 
 <span class="sd">Google Books allows us to search for books with a number of parameters. The</span>
 <span class="sd">main parameters that we&#39;ll use will be:</span>
-<span class="sd">- name: the name of the book (this does not need to the full name of the</span>
-<span class="sd">book as the API will return partial matches)</span>
-<span class="sd">- projection: we use `lite` to lower the footprint that we&#39;re using</span>
-<span class="sd">- langRestrict: restrict results to be a specific language. We will use the</span>
-<span class="sd">language that the user is learning</span>
-<span class="sd">- orderBy: we can order by `newest` or `relevance`. Right now we&#39;re</span>
-<span class="sd">ordering by relevance in order to ensure that users will still be able to</span>
-<span class="sd">search for books that are both new and old</span>
-<span class="sd">- limit_param: we are currently limiting the results to 10</span>
-<span class="sd">- key_param: the Google Books API key which is defined in the `settings`</span>
+
+<span class="sd">    - **name**: the name of the book (this does not need to the full name of</span>
+<span class="sd">      the book as the API will return partial matches)</span>
+<span class="sd">    - **projection**: we use `lite` to lower the footprint that we&#39;re using</span>
+<span class="sd">    - **langRestrict**: restrict results to be a specific language. We will use</span>
+<span class="sd">      the language that the user is learning</span>
+<span class="sd">    - **orderBy**: we can order by `newest` or `relevance`. Right now we&#39;re</span>
+<span class="sd">      ordering by relevance in order to ensure that users will still be able to</span>
+<span class="sd">      search for books that are both new and old</span>
+<span class="sd">    - **limit_param**: we are currently limiting the results to 10</span>
+<span class="sd">    - **key_param**: the Google Books API key which is defined in the `settings`</span>
 
 <span class="sd">The data that comes back from the API is not structured very well. Not all</span>
 <span class="sd">books contain the information that we&#39;re looking for and dates have no set</span>

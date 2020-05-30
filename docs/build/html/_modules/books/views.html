@@ -41,7 +41,7 @@
 <span class="sd">searches for a book, we check to see if the book is present in the database</span>
 <span class="sd">and if it&#39;s not, the book will be searched for in Google Books and if found</span>
 <span class="sd">there, they will be added to the database and for easier access when a client</span>
-<span class="sd">tries to access this data at a later point</span>
+<span class="sd">tries to access this data at a later point.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">rest_framework.response</span> <span class="kn">import</span> <span class="n">Response</span>
 <span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">status</span>
@@ -57,9 +57,8 @@
     <span class="sd">&quot;&quot;&quot;BookViewSet</span>
 
 <span class="sd">    Handles the interactions that the user will have with the the books within</span>
-<span class="sd">    the application.</span>
-
-<span class="sd">    Only users that have been authenticated will be able to access the books.</span>
+<span class="sd">    the application. Only users that have been authenticated will be able to</span>
+<span class="sd">    access the books.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">(</span><span class="n">IsAuthenticated</span><span class="p">,)</span>
@@ -67,17 +66,47 @@
     <span class="n">queryset</span> <span class="o">=</span> <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 
 <div class="viewcode-block" id="BookViewSet.retrieve"><a class="viewcode-back" href="../../index.html#books.views.BookViewSet.retrieve">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Get by ID</span>
-
+        <span class="sd">&quot;&quot;&quot;Get by ID.</span>
+<span class="sd">        </span>
 <span class="sd">        Retrieve a single book instance based on it&#39;s ID.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            self (BookViewSet): The current BookViewSet instance</span>
 <span class="sd">            request (Request): The current request being handled</span>
 <span class="sd">            pk (int): The ID of the book that is being requested by the client</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            Reponse: The serialized book and the status</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            This endpoint will be available at::</span>
+
+<span class="sd">                /books/&lt;pk&gt;</span>
+
+<span class="sd">            In order to call this from cURL, use the following::</span>
+
+<span class="sd">                curl -H &#39;Content-type: application/json&#39; \\</span>
+<span class="sd">                     -H &#39;Authorization: Token &lt;your_token&gt;&#39; \\</span>
+<span class="sd">                    http://127.0.0.1:8000/books/2/</span>
+
+<span class="sd">        Example Response:</span>
+<span class="sd">            The response data should look like::</span>
+
+<span class="sd">                {</span>
+<span class="sd">                    &quot;id&quot;: 2,</span>
+<span class="sd">                    &quot;title&quot;: &quot;Reading Harry Potter&quot;,</span>
+<span class="sd">                    &quot;author&quot;: &quot;[&#39;Giselle Liza Anatol&#39;]&quot;,</span>
+<span class="sd">                    &quot;publisher&quot;: &quot;Greenwood Publishing Group&quot;,</span>
+<span class="sd">                    &quot;publish_date&quot;: &quot;2020-05-14&quot;,</span>
+<span class="sd">                    &quot;description&quot;: &quot;The tropes and themes of J. K. Rowling&#39;s ...&quot;,</span>
+<span class="sd">                    &quot;category&quot;: &quot;&quot;,</span>
+<span class="sd">                    &quot;small_thumbnail&quot;: &quot;http://books.google.com/books/...&quot;,</span>
+<span class="sd">                    &quot;thumbnail&quot;: &quot;http://books.google.com/books/...&quot;,</span>
+<span class="sd">                    &quot;language&quot;: 2</span>
+<span class="sd">                }</span>
+<span class="sd">        </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            HTTP 401 Unauthorized status if the user is not authorized</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">book</span> <span class="o">=</span> <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">pk</span><span class="p">)</span>
         <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serializer_class</span><span class="p">(</span><span class="n">book</span><span class="p">)</span>
@@ -87,7 +116,9 @@
         <span class="sd">&quot;&quot;&quot;Get a list of books</span>
 
 <span class="sd">        Retrieves a list of books from the database, but will retrieve a list</span>
-<span class="sd">        from Google Books if no results are found in the database</span>
+<span class="sd">        from Google Books if no results are found in the database.</span>
+
+<span class="sd">        This endpoint must be called with a query paramater of `name`</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            self (BookViewSet): The current BookViewSet instance</span>
@@ -95,6 +126,50 @@
 <span class="sd">        </span>
 <span class="sd">        Returns:</span>
 <span class="sd">            Reponse: The serialized list of books and the status</span>
+<span class="sd">        </span>
+<span class="sd">        Example:</span>
+<span class="sd">            This endpoint will be available at::</span>
+
+<span class="sd">                /books/?name=&lt;book_name&gt;</span>
+
+<span class="sd">            In order to call this from cURL, use the following::</span>
+
+<span class="sd">                curl -X POST -H &#39;Content-type: application/json&#39; \\</span>
+<span class="sd">                     -H &#39;Authorization: Token &lt;your_token&gt;&#39; \\</span>
+<span class="sd">                    http://127.0.0.1:8000/books/?name=harry</span>
+<span class="sd">        </span>
+<span class="sd">        Example output:</span>
+<span class="sd">            The response data should look like::</span>
+<span class="sd">            </span>
+<span class="sd">                [</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;id&quot;: 1,</span>
+<span class="sd">                        &quot;title&quot;: &quot;The Ivory Tower and Harry Potter&quot;,</span>
+<span class="sd">                        &quot;author&quot;: &quot;[&#39;Lana A. Whited&#39;]&quot;,</span>
+<span class="sd">                        &quot;publisher&quot;: &quot;University of Missouri Press&quot;,</span>
+<span class="sd">                        &quot;publish_date&quot;: &quot;2020-05-14&quot;,</span>
+<span class="sd">                        &quot;description&quot;: &quot;Now available in paper, The Ivory...&quot;,</span>
+<span class="sd">                        &quot;category&quot;: &quot;&quot;,</span>
+<span class="sd">                        &quot;small_thumbnail&quot;: &quot;http://books.google.com/books/...&quot;,</span>
+<span class="sd">                        &quot;thumbnail&quot;: &quot;http://books.google.com/books/...&quot;,</span>
+<span class="sd">                        &quot;language&quot;: 2</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;id&quot;: 2,</span>
+<span class="sd">                        &quot;title&quot;: &quot;Reading Harry Potter&quot;,</span>
+<span class="sd">                        &quot;author&quot;: &quot;[&#39;Giselle Liza Anatol&#39;]&quot;,</span>
+<span class="sd">                        &quot;publisher&quot;: &quot;Greenwood Publishing Group&quot;,</span>
+<span class="sd">                        &quot;publish_date&quot;: &quot;2020-05-14&quot;,</span>
+<span class="sd">                        &quot;description&quot;: &quot;The tropes and themes of J. K. ...&quot;,</span>
+<span class="sd">                        &quot;category&quot;: &quot;&quot;,</span>
+<span class="sd">                        &quot;small_thumbnail&quot;: &quot;http://books.google.com/books/...&quot;,</span>
+<span class="sd">                        &quot;thumbnail&quot;: &quot;http://books.google.com/books/...&quot;,</span>
+<span class="sd">                        &quot;language&quot;: 2</span>
+<span class="sd">                    }</span>
+<span class="sd">                ]</span>
+<span class="sd">        </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            HTTP 401 Unauthorized status if the user is not authorized</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">search_parameters</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
         <span class="n">user_language</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">language_being_learned</span>

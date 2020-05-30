@@ -385,19 +385,20 @@ book.</p>
 searches for a book, we check to see if the book is present in the database
 and if it’s not, the book will be searched for in Google Books and if found
 there, they will be added to the database and for easier access when a client
-tries to access this data at a later point</p>
+tries to access this data at a later point.</p>
 <dl class="class">
 <dt id="books.views.BookViewSet">
 <em class="property">class </em><code class="descclassname">books.views.</code><code class="descname">BookViewSet</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/books/views.html#BookViewSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#books.views.BookViewSet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handles the interactions that the user will have with the the books within
-the application.</p>
-<p>Only users that have been authenticated will be able to access the books.</p>
+the application. Only users that have been authenticated will be able to
+access the books.</p>
 <dl class="method">
 <dt id="books.views.BookViewSet.list">
 <code class="descname">list</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/books/views.html#BookViewSet.list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#books.views.BookViewSet.list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of books</p>
 <p>Retrieves a list of books from the database, but will retrieve a list
-from Google Books if no results are found in the database</p>
+from Google Books if no results are found in the database.</p>
+<p>This endpoint must be called with a query paramater of <cite>name</cite></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -416,12 +417,64 @@ from Google Books if no results are found in the database</p>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Example</p>
+<p>This endpoint will be available at:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/books/?name=&lt;book_name&gt;
+</pre></div>
+</div>
+<p>In order to call this from cURL, use the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>curl -X POST -H &#39;Content-type: application/json&#39; \
+     -H &#39;Authorization: Token &lt;your_token&gt;&#39; \
+    http://127.0.0.1:8000/books/?name=harry
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Example output:</dt>
+<dd><p class="first">The response data should look like:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;The Ivory Tower and Harry Potter&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;[&#39;Lana A. Whited&#39;]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;publisher&quot;</span><span class="p">:</span> <span class="s2">&quot;University of Missouri Press&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;publish_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-05-14&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Now available in paper, The Ivory...&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;small_thumbnail&quot;</span><span class="p">:</span> <span class="s2">&quot;http://books.google.com/books/...&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;thumbnail&quot;</span><span class="p">:</span> <span class="s2">&quot;http://books.google.com/books/...&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;language&quot;</span><span class="p">:</span> <span class="mi">2</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Reading Harry Potter&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;[&#39;Giselle Liza Anatol&#39;]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;publisher&quot;</span><span class="p">:</span> <span class="s2">&quot;Greenwood Publishing Group&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;publish_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-05-14&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;The tropes and themes of J. K. ...&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;small_thumbnail&quot;</span><span class="p">:</span> <span class="s2">&quot;http://books.google.com/books/...&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;thumbnail&quot;</span><span class="p">:</span> <span class="s2">&quot;http://books.google.com/books/...&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;language&quot;</span><span class="p">:</span> <span class="mi">2</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">HTTP 401 Unauthorized status if the user is not authorized</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="books.views.BookViewSet.retrieve">
 <code class="descname">retrieve</code><span class="sig-paren">(</span><em>request</em>, <em>pk</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/books/views.html#BookViewSet.retrieve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#books.views.BookViewSet.retrieve" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get by ID</p>
+<dd><p>Get by ID.</p>
 <p>Retrieve a single book instance based on it’s ID.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -442,6 +495,44 @@ from Google Books if no results are found in the database</p>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Example</p>
+<p>This endpoint will be available at:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">books</span><span class="o">/&lt;</span><span class="n">pk</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>In order to call this from cURL, use the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Content-type: application/json&#39;</span> \
+     <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Authorization: Token &lt;your_token&gt;&#39;</span> \
+    <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Example Response:</dt>
+<dd><p class="first">The response data should look like:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Reading Harry Potter&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;[&#39;Giselle Liza Anatol&#39;]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;publisher&quot;</span><span class="p">:</span> <span class="s2">&quot;Greenwood Publishing Group&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;publish_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-05-14&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;The tropes and themes of J. K. Rowling&#39;s ...&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;small_thumbnail&quot;</span><span class="p">:</span> <span class="s2">&quot;http://books.google.com/books/...&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;thumbnail&quot;</span><span class="p">:</span> <span class="s2">&quot;http://books.google.com/books/...&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;language&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">HTTP 401 Unauthorized status if the user is not authorized</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
@@ -459,17 +550,21 @@ from Google Books if no results are found in the database</p>
 <p>This module contains a number of functions that will be used to handle the
 communication between the BookViewset and the Google Books API.</p>
 <p>Google Books allows us to search for books with a number of parameters. The
-main parameters that we’ll use will be:
-- name: the name of the book (this does not need to the full name of the
-book as the API will return partial matches)
-- projection: we use <cite>lite</cite> to lower the footprint that we’re using
-- langRestrict: restrict results to be a specific language. We will use the
-language that the user is learning
-- orderBy: we can order by <cite>newest</cite> or <cite>relevance</cite>. Right now we’re
+main parameters that we’ll use will be:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>name</strong>: the name of the book (this does not need to the full name of
+the book as the API will return partial matches)</li>
+<li><strong>projection</strong>: we use <cite>lite</cite> to lower the footprint that we’re using</li>
+<li><strong>langRestrict</strong>: restrict results to be a specific language. We will use
+the language that the user is learning</li>
+<li><strong>orderBy</strong>: we can order by <cite>newest</cite> or <cite>relevance</cite>. Right now we’re
 ordering by relevance in order to ensure that users will still be able to
-search for books that are both new and old
-- limit_param: we are currently limiting the results to 10
-- key_param: the Google Books API key which is defined in the <cite>settings</cite></p>
+search for books that are both new and old</li>
+<li><strong>limit_param</strong>: we are currently limiting the results to 10</li>
+<li><strong>key_param</strong>: the Google Books API key which is defined in the <cite>settings</cite></li>
+</ul>
+</div></blockquote>
 <p>The data that comes back from the API is not structured very well. Not all
 books contain the information that we’re looking for and dates have no set
 format. Some dates only contain years, some years and months while others have

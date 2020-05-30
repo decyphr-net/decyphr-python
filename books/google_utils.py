@@ -6,16 +6,17 @@ communication between the BookViewset and the Google Books API.
 
 Google Books allows us to search for books with a number of parameters. The
 main parameters that we'll use will be:
-- name: the name of the book (this does not need to the full name of the
-book as the API will return partial matches)
-- projection: we use `lite` to lower the footprint that we're using
-- langRestrict: restrict results to be a specific language. We will use the
-language that the user is learning
-- orderBy: we can order by `newest` or `relevance`. Right now we're
-ordering by relevance in order to ensure that users will still be able to
-search for books that are both new and old
-- limit_param: we are currently limiting the results to 10
-- key_param: the Google Books API key which is defined in the `settings`
+
+    - **name**: the name of the book (this does not need to the full name of
+      the book as the API will return partial matches)
+    - **projection**: we use `lite` to lower the footprint that we're using
+    - **langRestrict**: restrict results to be a specific language. We will use
+      the language that the user is learning
+    - **orderBy**: we can order by `newest` or `relevance`. Right now we're
+      ordering by relevance in order to ensure that users will still be able to
+      search for books that are both new and old
+    - **limit_param**: we are currently limiting the results to 10
+    - **key_param**: the Google Books API key which is defined in the `settings`
 
 The data that comes back from the API is not structured very well. Not all
 books contain the information that we're looking for and dates have no set

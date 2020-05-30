@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/aaronsnig501/decyphr.svg?branch=master)](https://travis-ci.org/aaronsnig501/decyphr)
+
 # Decyphr
 Decyphr is designed to assist users that are learning to read in new languages.
 

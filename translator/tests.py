@@ -33,23 +33,7 @@ class TranslatorTests(APITestCase):
     """
     The test cases for the translator API endpoint
     """
-
-    def _create_user(self):
-        """
-        A helper method that will create a new user and return that
-        user's email address
-        """
-        url = reverse("register")
-        data = {
-            "username": "aaronsnig501",
-            "email": "aaronsnig@gmail.com",
-            "password": "testpassword",
-            "first_language": 2,
-            "language_being_learned": 1
-        }
-        self.client.post(url, data)
-        
-        return data["email"]
+    fixtures = ['fixtures.json']
     
     def _create_reading_session(self):
         """
@@ -64,7 +48,7 @@ class TranslatorTests(APITestCase):
             language=Language.objects.get(name="Brazilian Portuguese"))
         book.save()
 
-        user = UserProfile.objects.get(email=self._create_user())
+        user = UserProfile.objects.get(email="aaronsnig@gmail.com")
         library_item = LibraryBook(user=user, book=book)
         library_item.save()
 
@@ -93,51 +77,12 @@ class TranslatorTests(APITestCase):
             session=session)
         translation.save()
 
-    def setUp(self):
-        """
-        The test cases for this endpoint will require some extra items.
-
-        There will need to be languages present in the database, as well
-        as some users so that we can test to ensure that users can only
-        access these enpoints when their logged in, and we also need to
-        test to ensure that the translations are associated with the correct
-        user, etc
-        """
-        pt = Language(
-            name="Brazilian Portuguese",
-            code="pt-BR",
-            short_code="pt",
-            description="The language spoken in Brazil",
-        )
-        en = Language(
-            name="English",
-            code="en-GB",
-            short_code="en",
-            description="The language spoken in Ireland",
-        )
-        es = Language(
-            name="Spanish",
-            code="es",
-            short_code="ens",
-            description="The language spoken in Spain",
-        )
-        de = Language(
-            name="German",
-            code="de",
-            short_code="de",
-            description="The language spoken in Germany",
-        )
-        pt.save()
-        en.save()
-        es.save()
-        de.save()
-
     def test_that_a_non_logged_in_user_cant_get_translations(self):
         """
         Ensure that unauthenticated users cannot retireve translations from
         the API
         """
-        url = reverse("translate")
+        url = reverse("translate-list")
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -147,7 +92,7 @@ class TranslatorTests(APITestCase):
         Ensure that unauthenticated users cannot add translations via the
         translations API
         """
-        url = reverse("translate")
+        url = reverse("translate-list")
 
         data = {
             "text_to_be_translated": "Esta é uma frase em português.",
@@ -162,8 +107,8 @@ class TranslatorTests(APITestCase):
         Test to ensure that a logged in user can retrieve a list of their
         translations
         """
-        url = reverse("translate")
-        user = UserProfile.objects.get(email=self._create_user())
+        url = reverse("translate-list")
+        user = UserProfile.objects.get(email="aaronsnig@gmail.com")
 
         self._create_translation(
             "Esta é uma frase em português.", user)
@@ -178,15 +123,16 @@ class TranslatorTests(APITestCase):
         Test to ensure that a user that is logged in can post to the
         translations endpoint
         """
-        url = reverse("translate")
-        self._create_reading_session()
+        url = reverse("translate-list")
+        
 
         data = {
             "text_to_be_translated": "Esta é uma frase em português.",
             "session": 1
         }
-        user = UserProfile.objects.get(email=self._create_user())
+        user = UserProfile.objects.get(email="aaronsnig@gmail.com")
         self.client.force_authenticate(user=user)
+        self._create_reading_session()
 
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -195,15 +141,16 @@ class TranslatorTests(APITestCase):
         """
         Ensure that the translation contains an ID property
         """
-        url = reverse("translate")
-        self._create_reading_session()
+        url = reverse("translate-list")
+        
 
         data = {
             "text_to_be_translated": "Esta é uma frase em português.",
             "session": 1
         }
-        user = UserProfile.objects.get(email=self._create_user())
+        user = UserProfile.objects.get(email="aaronsnig@gmail.com")
         self.client.force_authenticate(user=user)
+        self._create_reading_session()
 
         response = self.client.post(url, data)
         self.assertIn("id", response.data)
@@ -213,14 +160,14 @@ class TranslatorTests(APITestCase):
         Test that the API returns the correct source language for
         the logged in user
         """
-        url = reverse("translate")
+        url = reverse("translate-list")
         self._create_reading_session()
 
         data = {
             "text_to_be_translated": "Esta é uma frase em português.",
             "session": 1
         }
-        user = UserProfile.objects.get(email=self._create_user())
+        user = UserProfile.objects.get(email="aaronsnig@gmail.com")
         self.client.force_authenticate(user=user)
 
         response = self.client.post(url, data)
@@ -234,15 +181,15 @@ class TranslatorTests(APITestCase):
         Test that the correct response is given from the API after the
         text has been translated
         """
-        url = reverse("translate")
-        self._create_reading_session()
+        url = reverse("translate-list")
 
         data = {
             "text_to_be_translated": "Esta é uma frase em português.",
             "session": 1
         }
-        user = UserProfile.objects.get(email=self._create_user())
+        user = UserProfile.objects.get(email="aaronsnig@gmail.com")
         self.client.force_authenticate(user=user)
+        self._create_reading_session()
 
         response = self.client.post(url, data)
 
@@ -255,15 +202,16 @@ class TranslatorTests(APITestCase):
         Ensure that the source language ID in the response is correct.
         This should match the ID of the language that the user is learning
         """
-        url = reverse("translate")
-        self._create_reading_session()
+        url = reverse("translate-list")
+        
 
         data = {
             "text_to_be_translated": "Esta é uma frase em português.",
             "session": 1
         }
-        user = UserProfile.objects.get(email=self._create_user())
+        user = UserProfile.objects.get(email="aaronsnig@gmail.com")
         self.client.force_authenticate(user=user)
+        self._create_reading_session()
 
         response = self.client.post(url, data)
         self.assertEqual(
@@ -275,15 +223,15 @@ class TranslatorTests(APITestCase):
         Ensure that the target language ID in the response is correct.
         This should match the ID of the user's native language
         """
-        url = reverse("translate")
-        self._create_reading_session()
+        url = reverse("translate-list")
 
         data = {
             "text_to_be_translated": "Esta é uma frase em português.",
             "session": 1
         }
-        user = UserProfile.objects.get(email=self._create_user())
+        user = UserProfile.objects.get(email="aaronsnig@gmail.com")
         self.client.force_authenticate(user=user)
+        self._create_reading_session()
 
         response = self.client.post(url, data)
         self.assertEqual(
@@ -295,15 +243,15 @@ class TranslatorTests(APITestCase):
         Test to ensure that the audio clip of the text snippet is
         received
         """
-        url = reverse("translate")
-        self._create_reading_session()
+        url = reverse("translate-list")
 
         data = {
             "text_to_be_translated": "Esta é uma frase em português.",
             "session": 1
         }
-        user = UserProfile.objects.get(email=self._create_user())
+        user = UserProfile.objects.get(email="aaronsnig@gmail.com")
         self.client.force_authenticate(user=user)
+        self._create_reading_session()
 
         response = self.client.post(url, data)
 
@@ -314,15 +262,15 @@ class TranslatorTests(APITestCase):
         Test to ensure that the text anaylsis of the text snippet is
         received
         """
-        url = reverse("translate")
-        self._create_reading_session()
+        url = reverse("translate-list")
 
         data = {
             "text_to_be_translated": "Esta é uma frase em português.",
             "session": 1
         }
-        user = UserProfile.objects.get(email=self._create_user())
+        user = UserProfile.objects.get(email="aaronsnig@gmail.com")
         self.client.force_authenticate(user=user)
+        self._create_reading_session()
 
         response = self.client.post(url, data)
         self.assertIn("analysis", response.data)
@@ -331,11 +279,11 @@ class TranslatorTests(APITestCase):
         """
         Test to ensure that the a translation can be deleted
         """
-        url = reverse("translate-id", args=(1,))
-        self._create_reading_session()
+        url = reverse("translate-detail", args=(1,))
         
-        user = UserProfile.objects.get(email=self._create_user())
+        user = UserProfile.objects.get(email="aaronsnig@gmail.com")
         self.client.force_authenticate(user=user)
+        self._create_reading_session()
 
         self._create_translation("Esta é uma frase em português.", user)
 
@@ -361,7 +309,7 @@ class TranslatorTests(APITestCase):
         new_language = Language.objects.get(name="Brazilian Portuguese")
         translation = _translate_text(
             text, first_language, new_language)
-        self.assertEqual(translation, "I am hungry.")
+        self.assertEqual(translation, "I'm hungry")
 
     # TODO: Create a test to ensure the correct ordering
     # TODO: Create tests for the `pagination` functionality

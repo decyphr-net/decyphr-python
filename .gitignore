@@ -9,3 +9,4 @@ staticfiles/
 *.pem
 __pycache__/
 vars.sh
+env.sh

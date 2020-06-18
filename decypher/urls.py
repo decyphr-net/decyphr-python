@@ -21,18 +21,20 @@ from accounts.views import AuthViewSet
 from translator.views import TranslationViewSet
 from books.views import BookViewSet
 from library.views import LibraryViewSet
+from reading_sessions.views import ReadingSessionViewSet
 
 router = DefaultRouter()
 router.register(r'users', AuthViewSet, basename='user')
 router.register(r'translate', TranslationViewSet, basename='translate')
 router.register(r'books', BookViewSet, basename='books')
 router.register(r'reading-list', LibraryViewSet, basename='reading-list')
+router.register(r'reading-sessions', ReadingSessionViewSet, basename='reading-sessions')
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path("languages/", include("languages.urls")),
-    path("reading-sessions/", include("reading_sessions.urls")),
+    # path("reading-sessions/", include("reading_sessions.urls")),
     path("practice-sessions/", include("practice.urls")),
     path("dashboard/", include("dashboard.urls"))
 ]

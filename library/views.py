@@ -40,9 +40,10 @@ class LibraryViewSet(viewsets.ModelViewSet):
             data=request.data, context={"request": request})
 
         if serializer.is_valid():
-            instance = serializer.save()
-            serializer = self.serializer_class(data=instance)
-            serializer.is_valid()
+            serializer.save()
+            library_item = self.queryset.get(
+                user=request.user, book_id=serializer.data["book"])
+            serializer = self.serializer_class(library_item)
             return Response(
                 data=serializer.data, status=status.HTTP_201_CREATED)
         else:

@@ -159,7 +159,7 @@ EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS")
 ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 REGION = os.getenv("AWS_REGION")
-BUCKET_NAME = os.getenv("BUCKET_NAME")
+BUCKET_NAME = os.getenv("AWS_BUCKET_NAME")
 
 POLLY_CONFIG = {"engine": "standard", "output_format": "mp3", "text_type": "text"}
 

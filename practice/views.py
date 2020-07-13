@@ -34,12 +34,10 @@ class PracticeQuestionView(APIView):
 
         ratio = fuzz.ratio(users_guess, correct_answer)
         
-        question.answer_provided
-        
-        if ratio >= 85:
-            question.correct = True
-        
+        question.answer_provided = users_guess
+        question.correct = True if ratio >= 85 else False
         question.save()
+        
         serializer = self.serializer_class(question)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 

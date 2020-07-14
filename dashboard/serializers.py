@@ -1,13 +1,11 @@
 from rest_framework import serializers
 from translator.serializers import TranslationSerializer
-from practice.serializers import SessionSerializer
-from reading_sessions.serializers import ReadingSessionSerializer
 from library.serializers import LibrarySerializer
 
 
 class DashboardSerializer(serializers.Serializer):
 
-    translations = TranslationSerializer(many=True)
-    library_items = LibrarySerializer(many=True)
-    practice_sessions = SessionSerializer(many=True)
-    reading_sessions = ReadingSessionSerializer(many=True)
+    translations_count = serializers.IntegerField()
+    library_item_count = serializers.IntegerField()
+    practice_sessions_count = serializers.IntegerField()
+    reading_sessions_count = serializers.IntegerField()                                                                                                                                   

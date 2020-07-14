@@ -1,3 +1,4 @@
+from django.db.models import Count
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -17,15 +18,17 @@ class Dashboard(APIView):
     def get(self, request):
         user = request.user
         translations = Translation.objects.filter(user=user)
-        practice_sessions = Session.objects.filter(user=user)
-        reading_sessions = ReadingSession.objects.filter(user=user)
         library_items = LibraryBook.objects.filter(user=user)
+        practice_sessions_count = Session.objects.filter(
+            user=user).count()
 
         data = {
-            "translations": translations,
-            "library_items": library_items,
-            "practice_sessions": practice_sessions,
-            "reading_sessions": reading_sessions
+            "library_item_count": library_items.count(),
+            "translations_count": translations.count(),
+            "practice_sessions_count": practice_sessions_count,
+            "reading_sessions_count": library_items.prefetch_related(
+                "readingsession_set").annotate(
+                    total=Count('readingsession')).count()
         }
 
         serializer = self.serializer_class(data)

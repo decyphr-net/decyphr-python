@@ -21,14 +21,14 @@ class Dashboard(APIView):
         library_items = LibraryBook.objects.filter(user=user)
         practice_sessions_count = Session.objects.filter(
             user=user).count()
+        reading_session_count = ReadingSession.objects.filter(
+            library_item__user=user).count()
 
         data = {
             "library_item_count": library_items.count(),
             "translations_count": translations.count(),
             "practice_sessions_count": practice_sessions_count,
-            "reading_sessions_count": library_items.prefetch_related(
-                "readingsession_set").annotate(
-                    total=Count('readingsession')).count()
+            "reading_sessions_count": reading_session_count
         }
 
         serializer = self.serializer_class(data)

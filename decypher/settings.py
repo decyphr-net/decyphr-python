@@ -32,6 +32,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
     "aaron-lang-app.herokuapp.com",
+    "35.196.20.211",
 ]
 
 

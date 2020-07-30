@@ -21,7 +21,7 @@ class LibraryViewSet(viewsets.ModelViewSet):
     This Viewset provides handlers for the following actions:
     - List all library items - GET
     - Create a library item - POST
-    - Mark a an item as finished - PATCH
+    - Mark an item as finished - PATCH
     """
 
     permission_classes = (IsAuthenticated,)

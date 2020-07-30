@@ -3,10 +3,10 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-from translator.aws_utils import bundle_aws_data
 from translator.models import Translation
 from translator.serializers import IncomingSerializer
 from translator.serializers import TranslationSerializer
+from .utils import translate_text
 
 
 class TranslationViewSet(viewsets.ModelViewSet):
@@ -25,15 +25,28 @@ class TranslationViewSet(viewsets.ModelViewSet):
             return Translation.objects.get(pk=pk)
         except Translation.DoesNotExist:
             raise Http404
-    
+
     def bundle_new_data(self, data, user):
         """
         Bundle up the calls to AWS and the population of the new new serializer
         """
-        new_data = bundle_aws_data(data["text_to_be_translated"], user)
-        new_data["session"] = data["session"]
-        return self.serializer_class(data=new_data)
-    
+        translation = translate_text(
+            data["text_to_be_translated"],
+            user.language_being_learned.short_code,
+            user.first_language.code,
+        )
+
+        translation_data = {
+            "source_text": data["text_to_be_translated"],
+            "translated_text": translation["translated_text"],
+            "audio_file_path": translation["audio_location"],
+            "source_language": user.language_being_learned.id,
+            "target_language": user.first_language.id,
+            "user": user.id,
+            "session": data["session"],
+        }
+        return self.serializer_class(data=translation_data)
+
     def create(self, request):
         """
         Create a new translation based on the incoming text. The incoming
@@ -50,9 +63,9 @@ class TranslationViewSet(viewsets.ModelViewSet):
             translation.is_valid()
             translation.save()
             return Response(translation.data, status=status.HTTP_201_CREATED)
-        
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
     def list(self, request):
         """
         Retrieve the list of translations specific to that user's current
@@ -61,17 +74,18 @@ class TranslationViewSet(viewsets.ModelViewSet):
         user = request.user
         session_id = request.GET.get("sessionId")
         session_translations = self.queryset.filter(
-            user=user, session__id=session_id).order_by('-created_on')
-        
+            user=user, session__id=session_id
+        ).order_by("-created_on")
+
         page = self.paginate_queryset(session_translations)
 
         if page is not None:
             serializer = self.get_serializer(page, many=True)
             return self.get_paginated_response(serializer.data)
-        
+
         serializer = self.get_serializer(session_translations, many=True)
         return Response(serializer.data)
-    
+
     def destroy(self, request, pk):
         """
         Delete a translation from the database

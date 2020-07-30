@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     "lemmatizer",
     "reading_sessions",
     "practice",
-    "dashboard"
+    "dashboard",
 ]
 
 MIDDLEWARE = [
@@ -95,13 +95,13 @@ WSGI_APPLICATION = "decypher.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 if "DATABASE_URL" in os.environ:
-    DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
+    DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 else:
     print("Database URL not found. Using SQLite instead")
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
     }
 
@@ -136,13 +136,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
 
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 # Users
 AUTH_USER_MODEL = "accounts.UserProfile"
@@ -155,13 +153,8 @@ EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS")
 
-# AWS
-ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-REGION = os.getenv("AWS_REGION")
-BUCKET_NAME = os.getenv("AWS_BUCKET_NAME")
-
-POLLY_CONFIG = {"engine": "standard", "output_format": "mp3", "text_type": "text"}
+# Translate Service Endpoint
+FULL_TRANSLATION = "https://decyphr.uc.r.appspot.com/api/v1/full-translation/"
 
 # GOOGLE BOOKS API
 GOOGLE_BOOKS_API = os.getenv("GOOGLE_BOOKS_API")
@@ -172,7 +165,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
-        "rest_framework.authentication.SessionAuthentication"
+        "rest_framework.authentication.SessionAuthentication",
     ],
 }
 

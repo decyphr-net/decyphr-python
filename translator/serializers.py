@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from translator.models import Translation
-from translator.analyzer import analyse
 
 
 class IncomingSerializer(serializers.Serializer):
@@ -20,7 +19,6 @@ class TranslationSerializer(serializers.ModelSerializer):
     translations and store them in the database, as well as
     render translations to a user
     """
-    analysis = serializers.SerializerMethodField()
 
     class Meta:
         model = Translation
@@ -33,8 +31,4 @@ class TranslationSerializer(serializers.ModelSerializer):
             "target_language",
             "user",
             "session",
-            "analysis"
         ]
-    
-    def get_analysis(self, obj):
-        return analyse(obj.source_text, obj.target_language)

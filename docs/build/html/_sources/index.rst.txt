@@ -68,3 +68,8 @@ Books google_utils
 ==================
 .. automodule:: books.google_utils
    :members:
+
+Translations views
+==================
+.. automodule:: translator.views
+   :members:

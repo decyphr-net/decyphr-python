@@ -17,9 +17,25 @@ class TranslationViewSet(viewsets.ModelViewSet):
     serializer_class = TranslationSerializer
 
     def get_object(self, pk):
-        """
-        A simple helper method to retrieve an individual item from
-        the database based on the ID, or raise a 404 error
+        """Get object
+
+        A simple helper method to retrieve an individual item from the database
+        based on the ID, or raise a 404 error.
+
+        Args:
+            pk (int): The primary key of the object being looked up
+        
+        Returns:
+            Translation: The translation object that matches the primary key
+        
+        Raises:
+            Http404 is the object doesn't exist in the database
+        
+        Examples:
+            Can be called with the following::
+
+                def destroy(self, request, pk):
+                    translation = self.get_object(pk)
         """
         try:
             return Translation.objects.get(pk=pk)
@@ -27,8 +43,26 @@ class TranslationViewSet(viewsets.ModelViewSet):
             raise Http404
 
     def bundle_new_data(self, data, user):
-        """
-        Bundle up the calls to AWS and the population of the new new serializer
+        """Bundle Data
+        
+        A helper method to bundle up the call to the Translation service and
+        generate a new serializer instance based on the information from the
+        API.
+
+        Args:
+            data (IncomingSerializer): A validated instance of IncomingSerializer
+            user (UserProfile): The user that the information will relate to
+        
+        Returns:
+            TranslationSerializer: The TranslationSerializer generated from the API data
+        
+        Examples:
+            Can be called with the following::
+            
+                serializer = self.write_serializer(data=request.data)
+
+                if serializer.is_valid():
+                    translation = self.bundle_new_data(serializer.data, request.user)
         """
         translation = translate_text(
             data["text_to_be_translated"],
@@ -53,7 +87,7 @@ class TranslationViewSet(viewsets.ModelViewSet):
         serializer will provide the text to be translated and the ID of the
         session that the text belongs to.
 
-        This will then be translated and analysed by AWS, with a audio clip
+        This will then be translated and analysed by Google, with a audio clip
         which will be contained in the outgoing serializer.
         """
         serializer = self.write_serializer(data=request.data)

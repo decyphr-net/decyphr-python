@@ -173,17 +173,23 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">search_parameters</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
         <span class="n">user_language</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">language_being_learned</span>
-        <span class="n">books</span> <span class="o">=</span> <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">title__icontains</span><span class="o">=</span><span class="n">search_parameters</span><span class="p">)</span>
 
         <span class="c1"># If the set of books returned from the database is 0, get the books</span>
         <span class="c1"># from the Google Books API</span>
-        <span class="k">if</span> <span class="n">books</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">title__icontains</span><span class="o">=</span><span class="n">search_parameters</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">api_data</span> <span class="o">=</span> <span class="n">get_books</span><span class="p">(</span><span class="n">search_parameters</span><span class="p">,</span> <span class="n">user_language</span><span class="o">.</span><span class="n">short_code</span><span class="p">)</span>
             <span class="n">books</span> <span class="o">=</span> <span class="n">parse_book_data</span><span class="p">(</span><span class="n">api_data</span><span class="p">,</span> <span class="n">user_language</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
- 
-        <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serializer_class</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">books</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">()</span>
-        <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+            <span class="c1"># DRF was returning odd errors when trying to save this data with</span>
+            <span class="c1"># `many=True` so for now each book that comes from the API will</span>
+            <span class="c1"># created until another bulk operation can be found</span>
+            <span class="k">for</span> <span class="n">book</span> <span class="ow">in</span> <span class="n">books</span><span class="p">:</span>
+                <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serializer_class</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">book</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+                    <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        
+        <span class="n">books</span> <span class="o">=</span> <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">title__icontains</span><span class="o">=</span><span class="n">search_parameters</span><span class="p">)</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serializer_class</span><span class="p">(</span><span class="n">books</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span></div></div>
 </pre></div>
 

@@ -645,6 +645,112 @@ write to the database</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-translator.views">
+<span id="translations-views"></span><h1>Translations views<a class="headerlink" href="#module-translator.views" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="translator.views.TranslationViewSet">
+<em class="property">class </em><code class="descclassname">translator.views.</code><code class="descname">TranslationViewSet</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/translator/views.html#TranslationViewSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#translator.views.TranslationViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="translator.views.TranslationViewSet.bundle_new_data">
+<code class="descname">bundle_new_data</code><span class="sig-paren">(</span><em>data</em>, <em>user</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/translator/views.html#TranslationViewSet.bundle_new_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#translator.views.TranslationViewSet.bundle_new_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bundle Data</p>
+<p>A helper method to bundle up the call to the Translation service and
+generate a new serializer instance based on the information from the
+API.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>IncomingSerializer</em>) – A validated instance of IncomingSerializer</li>
+<li><strong>user</strong> (<a class="reference internal" href="#accounts.models.UserProfile" title="accounts.models.UserProfile"><em>UserProfile</em></a>) – The user that the information will relate to</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The TranslationSerializer generated from the API data</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">TranslationSerializer</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Can be called with the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_serializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+    <span class="n">translation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bundle_new_data</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="translator.views.TranslationViewSet.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/translator/views.html#TranslationViewSet.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#translator.views.TranslationViewSet.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new translation based on the incoming text. The incoming
+serializer will provide the text to be translated and the ID of the
+session that the text belongs to.</p>
+<p>This will then be translated and analysed by AWS, with a audio clip
+which will be contained in the outgoing serializer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="translator.views.TranslationViewSet.destroy">
+<code class="descname">destroy</code><span class="sig-paren">(</span><em>request</em>, <em>pk</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/translator/views.html#TranslationViewSet.destroy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#translator.views.TranslationViewSet.destroy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a translation from the database</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="translator.views.TranslationViewSet.get_object">
+<code class="descname">get_object</code><span class="sig-paren">(</span><em>pk</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/translator/views.html#TranslationViewSet.get_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#translator.views.TranslationViewSet.get_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get object</p>
+<p>A simple helper method to retrieve an individual item from the database
+based on the ID, or raise a 404 error.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pk</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The primary key of the object being looked up</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The translation object that matches the primary key</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Translation</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">Http404 is the object doesn’t exist in the database</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Can be called with the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
+    <span class="n">translation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="n">pk</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="translator.views.TranslationViewSet.list">
+<code class="descname">list</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/translator/views.html#TranslationViewSet.list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#translator.views.TranslationViewSet.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the list of translations specific to that user’s current
+reading session and paginate the results</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="translator.views.TranslationViewSet.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#translator.views.TranslationViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">translator.serializers.TranslationSerializer</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="translator.views.TranslationViewSet.write_serializer">
+<code class="descname">write_serializer</code><a class="headerlink" href="#translator.views.TranslationViewSet.write_serializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">translator.serializers.IncomingSerializer</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 
 
           </div>
@@ -667,6 +773,7 @@ write to the database</p>
 <li><a class="reference internal" href="#module-books.serializers">Books serializers</a></li>
 <li><a class="reference internal" href="#module-books.views">Books views</a></li>
 <li><a class="reference internal" href="#module-books.google_utils">Books google_utils</a></li>
+<li><a class="reference internal" href="#module-translator.views">Translations views</a></li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>

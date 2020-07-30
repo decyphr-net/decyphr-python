@@ -1,0 +1,187 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>library.views &#8212; Decyphr 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for library.views</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">viewsets</span>
+<span class="kn">from</span> <span class="nn">rest_framework.response</span> <span class="kn">import</span> <span class="n">Response</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">status</span>
+<span class="kn">from</span> <span class="nn">rest_framework.permissions</span> <span class="kn">import</span> <span class="n">IsAuthenticated</span>
+<span class="kn">from</span> <span class="nn">library.models</span> <span class="kn">import</span> <span class="n">LibraryBook</span>
+<span class="kn">from</span> <span class="nn">library.serializers</span> <span class="kn">import</span> <span class="n">LibrarySerializer</span><span class="p">,</span> <span class="n">AddToLibrarySerializer</span>
+<span class="kn">from</span> <span class="nn">books.models</span> <span class="kn">import</span> <span class="n">Book</span>
+<span class="kn">from</span> <span class="nn">reading_sessions.models</span> <span class="kn">import</span> <span class="n">ReadingSession</span>
+
+
+<div class="viewcode-block" id="LibraryViewSet"><a class="viewcode-back" href="../../index.html#library.views.LibraryViewSet">[docs]</a><span class="k">class</span> <span class="nc">LibraryViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;LibraryViewSet</span>
+
+<span class="sd">    Handles all of the interactions that users will have with their libraries and the</span>
+<span class="sd">    individual library items. Users will use this endpoint to monitor and manage their</span>
+<span class="sd">    libraries, including updating and deleting items.</span>
+
+<span class="sd">    A user can get a list of library items, add books to their library, and update the</span>
+<span class="sd">    finished date.</span>
+
+<span class="sd">    This Viewset provides handlers for the following actions:</span>
+<span class="sd">    - List all library items - GET</span>
+<span class="sd">    - Create a library item - POST</span>
+<span class="sd">    - Mark a an item as finished - PATCH</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">(</span><span class="n">IsAuthenticated</span><span class="p">,)</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">LibrarySerializer</span>
+    <span class="n">write_serializer</span> <span class="o">=</span> <span class="n">AddToLibrarySerializer</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">LibraryBook</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+<div class="viewcode-block" id="LibraryViewSet.list"><a class="viewcode-back" href="../../index.html#library.views.LibraryViewSet.list">[docs]</a>    <span class="k">def</span> <span class="nf">list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;List the user&#39;s library</span>
+
+<span class="sd">        Get a full list of the items that the user has in their library.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            LibrarySerializer (list): A list of library items</span>
+<span class="sd">        </span>
+<span class="sd">        Examples:</span>
+<span class="sd">            This endpoint will be available at::</span>
+
+<span class="sd">                /reading-list/</span>
+
+<span class="sd">            In order to call this from cURL, use the following::</span>
+
+<span class="sd">                curl -X POST -H &#39;Content-type: application/json&#39; \\</span>
+<span class="sd">                    -H &#39;Authorization: Token &lt;your_token&gt;&#39; \\</span>
+<span class="sd">                    http://127.0.0.1:8000/reading-list/</span>
+<span class="sd">        </span>
+<span class="sd">        Example response:</span>
+<span class="sd">            The response data should look like (longer strings have been truncated for brevity)::</span>
+
+<span class="sd">                [</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;id&quot;: 1,</span>
+<span class="sd">                        &quot;book&quot;: {</span>
+<span class="sd">                            &quot;id&quot;: 7,</span>
+<span class="sd">                            &quot;title&quot;: &quot;Harry Potter and International Relations&quot;,</span>
+<span class="sd">                            &quot;author&quot;: &quot;[&#39;Daniel H. Nexon&#39;, &#39;Iver B. Neumann&#39;]&quot;,</span>
+<span class="sd">                            &quot;publisher&quot;: &quot;Rowman &amp; Littlefield&quot;,</span>
+<span class="sd">                            &quot;publish_date&quot;: &quot;2020-07-30&quot;,</span>
+<span class="sd">                            &quot;description&quot;: &quot;Drawing on a range of historical...&quot;,</span>
+<span class="sd">                            &quot;category&quot;: null,</span>
+<span class="sd">                            &quot;small_thumbnail&quot;: &quot;http://books.google.com/books/content...&quot;,</span>
+<span class="sd">                            &quot;thumbnail&quot;: &quot;http://books.google.com/books/content?...&quot;,</span>
+<span class="sd">                            &quot;language&quot;: 2</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;readingsession_count&quot;: 1,</span>
+<span class="sd">                        &quot;finished_on&quot;: &quot;2020-07-20T16:24:00Z&quot;,</span>
+<span class="sd">                        &quot;is_finished&quot;: false</span>
+<span class="sd">                    }</span>
+<span class="sd">                ]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">library</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serializer_class</span><span class="p">(</span><span class="n">library</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LibraryViewSet.create"><a class="viewcode-back" href="../../index.html#library.views.LibraryViewSet.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add item to library</span>
+
+<span class="sd">        Add a new book to a user&#39;s library</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_serializer</span><span class="p">(</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;request&quot;</span><span class="p">:</span> <span class="n">request</span><span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">library_item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">queryset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">book_id</span><span class="o">=</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;book&quot;</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serializer_class</span><span class="p">(</span><span class="n">library_item</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_201_CREATED</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">serializer</span><span class="o">.</span><span class="n">errors</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">partial_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">LibraryBook</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">pk</span><span class="p">)</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serializer_class</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">partial</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">errors</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Aaron Sinnott.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

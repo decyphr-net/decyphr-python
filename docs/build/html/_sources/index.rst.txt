@@ -69,6 +69,21 @@ Books google_utils
 .. automodule:: books.google_utils
    :members:
 
+Library Items
+===================
+.. automodule:: library.__init__
+   :members:
+
+Library Items models
+====================
+.. automodule:: library.models
+   :members:
+
+Library Items views
+===================
+.. automodule:: library.views
+   :members:
+
 Translations views
 ==================
 .. automodule:: translator.views

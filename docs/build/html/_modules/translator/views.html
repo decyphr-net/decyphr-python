@@ -67,7 +67,7 @@
 <span class="sd">        </span>
 <span class="sd">        Examples:</span>
 <span class="sd">            Can be called with the following::</span>
-<span class="sd">            </span>
+
 <span class="sd">                def destroy(self, request, pk):</span>
 <span class="sd">                    translation = self.get_object(pk)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -121,7 +121,7 @@
 <span class="sd">        serializer will provide the text to be translated and the ID of the</span>
 <span class="sd">        session that the text belongs to.</span>
 
-<span class="sd">        This will then be translated and analysed by AWS, with a audio clip</span>
+<span class="sd">        This will then be translated and analysed by Google, with a audio clip</span>
 <span class="sd">        which will be contained in the outgoing serializer.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_serializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>

@@ -20,34 +20,32 @@ class LibrarySerializer(serializers.ModelSerializer):
 
     book = BookSerializer()
     readingsession_count = serializers.SerializerMethodField()
-    
+
     def get_readingsession_count(self, obj):
         return obj.readingsession_set.all().count()
 
     class Meta:
         model = LibraryBook
-        fields = ["id", "book", "readingsession_count"]
+        fields = ["id", "book", "readingsession_count", "finished_on", "is_finished"]
 
 
 class AddToLibrarySerializer(serializers.ModelSerializer):
     book = serializers.PrimaryKeyRelatedField(queryset=Book.objects.all())
     user = serializers.PrimaryKeyRelatedField(
-        queryset=UserProfile.objects.all(),
-        default=serializers.CurrentUserDefault())
+        queryset=UserProfile.objects.all(), default=serializers.CurrentUserDefault()
+    )
 
     class Meta:
         model = LibraryBook
         fields = ["user", "book"]
         validators = [
             UniqueTogetherValidator(
-                queryset=LibraryBook.objects.all(),
-                fields=("user", "book")
+                queryset=LibraryBook.objects.all(), fields=("user", "book")
             )
         ]
-    
+
     def create(self, validated_data):
         self.is_valid(raise_exception=True)
         library_book = super(AddToLibrarySerializer, self).create(validated_data)
         library_book.save()
         return library_book
-        

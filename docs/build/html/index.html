@@ -645,6 +645,134 @@ write to the database</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-library.__init__">
+<span id="library-items"></span><h1>Library Items<a class="headerlink" href="#module-library.__init__" title="Permalink to this headline">¶</a></h1>
+<p>Library</p>
+<p>The purpose of this app is to try to replicate a user’s <cite>real-world</cite> personal
+library. A user has their own set of books on their shelves and have their own
+bookmarks and their own set of translations for a specific book.</p>
+<p>A user should be able to add a book to their library, read that book, but they
+should also be able to archive the library item and track their progress for
+the book.</p>
+<p>decyphr should also keep track of when the user started reading the book and
+how long they take to read it. This would be good to get an idea of how long a
+user takes to read any given book, but it would also be used to send users
+reminders that they need to get back to reading a specific book.</p>
+</div>
+<div class="section" id="module-library.models">
+<span id="library-items-models"></span><h1>Library Items models<a class="headerlink" href="#module-library.models" title="Permalink to this headline">¶</a></h1>
+<p>The Library model.</p>
+<p>This model stores all of the information regarding a user their relationship
+with a specific book. This will be the model that will be used to store the
+user’s reading list and their progress with the book.</p>
+<dl class="class">
+<dt id="library.models.LibraryBook">
+<em class="property">class </em><code class="descclassname">library.models.</code><code class="descname">LibraryBook</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library/models.html#LibraryBook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#library.models.LibraryBook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Library Book Model</p>
+<dl class="exception">
+<dt id="library.models.LibraryBook.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#library.models.LibraryBook.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="library.models.LibraryBook.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#library.models.LibraryBook.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-library.views">
+<span id="library-items-views"></span><h1>Library Items views<a class="headerlink" href="#module-library.views" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="library.views.LibraryViewSet">
+<em class="property">class </em><code class="descclassname">library.views.</code><code class="descname">LibraryViewSet</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library/views.html#LibraryViewSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#library.views.LibraryViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles all of the interactions that users will have with their libraries and the
+individual library items. Users will use this endpoint to monitor and manage their
+libraries, including updating and deleting items.</p>
+<p>A user can get a list of library items, add books to their library, and update the
+finished date.</p>
+<p>This Viewset provides handlers for the following actions:
+- List all library items - GET
+- Create a library item - POST
+- Mark a an item as finished - PATCH</p>
+<dl class="method">
+<dt id="library.views.LibraryViewSet.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library/views.html#LibraryViewSet.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#library.views.LibraryViewSet.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add item to library</p>
+<p>Add a new book to a user’s library</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="library.views.LibraryViewSet.list">
+<code class="descname">list</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library/views.html#LibraryViewSet.list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#library.views.LibraryViewSet.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the user’s library</p>
+<p>Get a full list of the items that the user has in their library.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of library items</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">LibrarySerializer (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a>)</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>This endpoint will be available at:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">reading</span><span class="o">-</span><span class="nb">list</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>In order to call this from cURL, use the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Content-type: application/json&#39;</span> \
+    <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Authorization: Token &lt;your_token&gt;&#39;</span> \
+    <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">reading</span><span class="o">-</span><span class="nb">list</span><span class="o">/</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Example response:</dt>
+<dd><p class="first">The response data should look like (longer strings have been truncated for brevity):</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;book&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Harry Potter and International Relations&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;[&#39;Daniel H. Nexon&#39;, &#39;Iver B. Neumann&#39;]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;publisher&quot;</span><span class="p">:</span> <span class="s2">&quot;Rowman &amp; Littlefield&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;publish_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-07-30&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Drawing on a range of historical...&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+            <span class="s2">&quot;small_thumbnail&quot;</span><span class="p">:</span> <span class="s2">&quot;http://books.google.com/books/content...&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;thumbnail&quot;</span><span class="p">:</span> <span class="s2">&quot;http://books.google.com/books/content?...&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;language&quot;</span><span class="p">:</span> <span class="mi">2</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;readingsession_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;finished_on&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-07-20T16:24:00Z&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;is_finished&quot;</span><span class="p">:</span> <span class="n">false</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="library.views.LibraryViewSet.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#library.views.LibraryViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">library.serializers.LibrarySerializer</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="library.views.LibraryViewSet.write_serializer">
+<code class="descname">write_serializer</code><a class="headerlink" href="#library.views.LibraryViewSet.write_serializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">library.serializers.AddToLibrarySerializer</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-translator.views">
 <span id="translations-views"></span><h1>Translations views<a class="headerlink" href="#module-translator.views" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
@@ -691,7 +819,7 @@ API.</p>
 <dd><p>Create a new translation based on the incoming text. The incoming
 serializer will provide the text to be translated and the ID of the
 session that the text belongs to.</p>
-<p>This will then be translated and analysed by AWS, with a audio clip
+<p>This will then be translated and analysed by Google, with a audio clip
 which will be contained in the outgoing serializer.</p>
 </dd></dl>
 
@@ -773,6 +901,9 @@ reading session and paginate the results</p>
 <li><a class="reference internal" href="#module-books.serializers">Books serializers</a></li>
 <li><a class="reference internal" href="#module-books.views">Books views</a></li>
 <li><a class="reference internal" href="#module-books.google_utils">Books google_utils</a></li>
+<li><a class="reference internal" href="#module-library.__init__">Library Items</a></li>
+<li><a class="reference internal" href="#module-library.models">Library Items models</a></li>
+<li><a class="reference internal" href="#module-library.views">Library Items views</a></li>
 <li><a class="reference internal" href="#module-translator.views">Translations views</a></li>
 </ul>
 <div class="relations">

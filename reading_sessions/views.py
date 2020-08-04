@@ -23,7 +23,10 @@ class ReadingSessionViewSet(viewsets.ModelViewSet):
     The viewset that will handle the interactions between the user and their
     reading sessions
     """
-    permission_classes = [IsAuthenticated,]
+
+    permission_classes = [
+        IsAuthenticated,
+    ]
     serializer_class = serializers.ReadingSessionSerializer
     queryset = ReadingSession.objects.all()
 
@@ -51,14 +54,48 @@ class ReadingSessionViewSet(viewsets.ModelViewSet):
             return Response(return_serializer.data)
         else:
             return Response(create_serializer.errors)
-    
+
     def partial_update(self, request, pk):
+        """Update Reading Session
+
+        This view is used to update reading sessions. The is currently used to end a
+        reading session. The client passes the name of the field to be updated and the
+        new value.
+
+        This is used to update the status field and the number of pages read. The number
+        of pages read will update the `progress` field of the library book, as well the
+        pages value of the Reading Session model.
+
+        Args:
+            pages (str): This will likely be received as a string and cast to a float
+            status (str): Either `E` or `F` to match the status' for the reading session
+        
+        Examples:
+            The URL is as follows::
+                /reading-sessions/1/
+            
+            And the body should be::
+                {
+                    "pages": "1",
+                    "status": "F"
+                }
+            
+            This will return the following response::
+                {
+                    "id": 1,
+                    "library_item": 1,
+                    "duration": "00:01:00",
+                    "pages": 1.0,
+                    "status": "F"
+                }
+        """
         session = ReadingSession.objects.get(id=pk)
-        serializer = self.serializer_class(
-            session, data=request.data, partial=True)
+        serializer = self.serializer_class(session, data=request.data, partial=True)
 
         if serializer.is_valid():
             serializer.save()
+            session.library_item.progress += float(serializer.data["pages"])
+            session.library_item.save()
 
             return Response(serializer.data)
         else:

@@ -18,6 +18,7 @@ class LibraryBook(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="books")
     created_on = models.DateTimeField(auto_now_add=True)
     finished_on = models.DateTimeField(null=True, blank=True)
+    progress = models.FloatField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.user.username} is reading {self.book.title}"

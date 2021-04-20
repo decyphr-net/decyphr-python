@@ -55,7 +55,7 @@ pbr==5.4.5
 pluggy==0.13.1
 pre-commit==2.4.0
 psycopg2-binary==2.8.5
-py==1.8.1
+py==1.10.0
 py-thesaurus==1.0.5
 pycodestyle==2.5.0
 PyDictionary==1.5.2
